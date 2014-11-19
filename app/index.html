@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./assets/ember.dialog.min.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/ember.js/1.5.1/ember.js"></script>
+    <script type="text/javascript" src="./assets/loader.js"></script>
+    <script type="text/javascript" src="./assets/ember.dialog.min.js"></script>
+</head>
+<body>
+
+    <script type="text/javascript">
+    window.App = Ember.Application.extend().create();
+
+    App.ApplicationController = Em.Controller.extend({
+        init: function() {
+            var manager = this.get('dialogManager');
+            var controller = Ember.Controller.extend({
+                actions: {
+                    accept: function(modal) {
+                        manager.notice('Saved!');
+                    },
+                    decline: function(modal) {
+                        var p = manager.confirm('Are U sure?', null, {title: 'Question', substrate: true});
+                        p.then(function() {
+                            modal.close();
+                        });
+                    }
+                }
+            }).create();
+            manager.confirm('Imagine here is an form', controller, {title: 'New entity', acceptLabel: 'save'});
+        }
+    });
+    </script>
+
+</body>
+</html>

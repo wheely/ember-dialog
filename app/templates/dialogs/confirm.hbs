@@ -1,0 +1,13 @@
+<div class="dialog-header">
+    <button type="button" class="close" {{action "decline" target}}>×</button>
+    <h4 class="dialog-title">
+        {{target.title}}
+    </h4>
+</div>
+<div class="dialog-body">
+    {{yield}}
+</div>
+<div class="dialog-footer">
+    <button class="btn btn-primary" type="button" {{action "accept" target}}>{{target.acceptLabel}}</button>
+    <button class="btn btn-default" type="button" {{action "decline" target}}>{{target.declineLabel}}</button>
+</div>
