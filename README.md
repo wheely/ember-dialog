@@ -1,4 +1,4 @@
-# Ember.Dialog [![Build Status](https://secure.travis-ci.org/ajile/ember-dialog.svg)](http://travis-ci.org/ajile/ember-dialog)
+# Ember.Dialog [![Build Status](https://secure.travis-ci.org/wheely/ember-dialog.svg)](http://travis-ci.org/wheely/ember-dialog)
 
 ## Introduction
 
