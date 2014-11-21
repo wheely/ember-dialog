@@ -3,6 +3,33 @@
 <head>
     <title>Example</title>
     <link rel="stylesheet" type="text/css" href="./css/ember.dialog.min.css">
+    <style type="text/css">
+    body {
+        font-size: 12px;
+        font-family: Arial;
+    }
+    .red-background {
+        width: 90%;
+    }
+    .red-background.substrate {
+        background-color:rgba(255,0,0,0.5);
+    }
+    .red-background .dialog-content {
+        background: #F00;
+        color: #FFF;
+    }
+    .red-background .dialog-content .dialog-header button.close {
+        color: #FFF;
+        background: transparent;
+    }
+    .red-background .dialog-content .dialog-footer button {
+        color: #FFF;
+        background: #D00;
+        border: 1px solid #C00;
+        border-radius: 5px;
+        padding: 6px 21px;
+    }
+    </style>
 </head>
 <body style="position: absolute; width: 100%; height: 100%; min-height: 100%; padding:0; margin: 0">
 
@@ -21,6 +48,9 @@
         
         <h2>Alert</h2>
         <button type="button" {{action showAlert}}>Show alert</button>
+        
+        <h2>Custom</h2>
+        <button type="button" {{action showCustom}}>Show custom</button>
     </script>
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -89,13 +119,19 @@
             },
 
             showConfirmDesigned: function() {
-                this.m.confirm("Hello, I'm confirm", null, {title: 'Stylish confirm', 'className': 'asd'});
+                this.m.confirm("Hello, I'm confirm", null, {title: 'Stylish confirm', substrate:true, 'className': 'red-background'});
             },
 
             showAlert: function() {
-                this.m.alert("Read this text").then(function() {
-                    alert("asd")
+                var m = this.m;
+                m.alert("Read this text").then(function() {
+                    m.notice("You have read the text")
                 });
+            },
+
+            showCustom: function() {
+                var m = this.m;
+                m.custom("Read this text or you may click <b><a {{action 'accept' target}}>HERE</a></b> to close modal.", null, {substrate:true});
             },
         }
     });
