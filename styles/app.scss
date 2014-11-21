@@ -82,7 +82,9 @@
         .dialog-header {
             min-height: 16.43px;
             padding: 15px;
-            border-bottom: 1px solid #e5e5e5;
+            .dialog-title {
+                font-weight: 900;
+            }
             button.close {
                 float: right;
                 background: #FFF;
@@ -98,55 +100,6 @@
         .dialog-footer {
             padding: 15px;
             text-align: right;
-            border-top: 1px solid #e5e5e5;
         }
     }
 }
-
-
-// .component-dialog-dialog.notice {
-//     right: 0;
-//     width: 206px;
-//     min-width: inherit;
-//     -webkit-transform: none;
-//     -ms-transform: none;
-//     transform: none;
-// }
-// .component-dialog-dialog.notice .dialog-content {
-// }
-// /** Simple dialog **/
-// .component-dialog-dialog .dialog-content {
-//     width: 100%;
-//     margin: 0;
-//     top: 0;
-//     -webkit-transform: none;
-//     -ms-transform: none;
-//     transform: none;
-// }
-// /** Substrated dialog **/
-// .component-dialog-dialog.substrate .dialog-content {
-//     width: 75%;
-//     min-width: 300px;
-//     margin: auto;
-//     top: 50%;
-//     -webkit-transform: translateY(-50%);
-//     -ms-transform: translateY(-50%);
-//     transform: translateY(-50%);
-// }
-
-
-// .component-dialog-dialog.notice {
-//     position: relative;
-//     margin: 0;
-//     padding: 3px;
-//     background-color: inherit;
-// }
-// .component-dialog-dialog.notice .dialog-content {
-//     width: 200px;
-//     margin-right: 10px;
-//     top: 0px;
-//     transform: translateY(0%);
-// }
-// .component-dialog-dialog.confirm .dialog-content {}
-// .component-dialog-dialog.alert .dialog-content {}
-// .component-dialog-dialog.custom .dialog-content {}
