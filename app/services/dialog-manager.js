@@ -98,8 +98,10 @@ export default Ember.Object.extend(Ember.Evented, {
     alert: function(view, controller, dialogData) {
         // If comes dialog's data set it else set empty object to merge with default settings
         dialogData = Ember.typeOf(dialogData) === 'object' ? dialogData : {};
+        // Getting provided class name
+        var className = dialogData.className || '';
         // Merging incoming dialog data with defaults data
-        dialogData = Ember.$.extend({}, this.get('dialogData'), dialogData, {className: 'alert'});
+        dialogData = Ember.$.extend({}, this.get('dialogData'), dialogData, {className: ['alert', className].join(' ')});
         // Creating dialog `alert` type
         return this._openWithLayout('dialogs/alert', view, controller, dialogData);
     },
@@ -152,8 +154,10 @@ export default Ember.Object.extend(Ember.Evented, {
     confirm: function(view, controller, dialogData) {
         // If comes dialog's data set it else set empty object to merge with default settings
         dialogData = Ember.typeOf(dialogData) === 'object' ? dialogData : {};
+        // Getting provided class name
+        var className = dialogData.className || '';
         // Merging incoming dialog data with defaults data
-        dialogData = Ember.$.extend({}, this.get('dialogData'), dialogData, {className: 'confirm'});
+        dialogData = Ember.$.extend({}, this.get('dialogData'), dialogData, {className: ['confirm', className].join(' ')});
         // Creating dialog `confirm` type
         return this._openWithLayout('dialogs/confirm', view, controller, dialogData);
     },
@@ -215,8 +219,10 @@ export default Ember.Object.extend(Ember.Evented, {
     custom: function(view, controller, dialogData) {
         // If comes dialog's data set it else set empty object to merge with default settings
         dialogData = Ember.typeOf(dialogData) === 'object' ? dialogData : {};
+        // Getting provided class name
+        var className = dialogData.className || '';
         // Merging incoming dialog data with defaults data
-        dialogData = Ember.$.extend({}, this.get('dialogData'), dialogData, {className: 'custom'});
+        dialogData = Ember.$.extend({}, this.get('dialogData'), dialogData, {className: ['custom', className].join(' ')});
         // Creating dialog `custom` type
         return this._openWithLayout('dialogs/custom', view, controller, dialogData);
     },
@@ -257,8 +263,10 @@ export default Ember.Object.extend(Ember.Evented, {
         var name = this._generateDialogName();
         // If comes dialog's data set it else set empty object to merge with default settings
         dialogData = Ember.typeOf(dialogData) === 'object' ? dialogData : {};
+        // Getting provided class name
+        var className = dialogData.className || '';
         // Merging incoming dialog data with defaults data
-        dialogData = Ember.$.extend({name: name}, this.get('dialogData'), dialogData, {className: 'notice highest', substrate: false});
+        dialogData = Ember.$.extend({name: name}, this.get('dialogData'), dialogData, {className: ['notice', 'highest', className].join(' '), substrate: false});
         // var controller = Ember.Controller.extend({
         //   click: function() {
         //     console.log(123);
