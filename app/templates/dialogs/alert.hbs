@@ -1,8 +1,6 @@
 <div class="dialog-header">
     <button type="button" class="close" {{action "accept" target}}>×</button>
-    <h4 class="dialog-title">
-        {{ view.title }}
-    </h4>
+    <div class="dialog-title">{{ target.title }}</div>
 </div>
 <div class="dialog-body">
     {{yield}}
