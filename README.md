@@ -27,6 +27,16 @@ Include scripts and styles into page:
 <script type="text/javascript" src="/bower_components/ember-dialog/dist/ember.dialog.min.js"></script>
 ```
 
+### Ember-CLI
+
+Add few lines into your `Brocfile.js`:
+```javascript
+...
+app.import('bower_components/ember-dialog/dist/ember.dialog.min.css');
+app.import('bower_components/ember-dialog/dist/ember.dialog.min.js');
+...
+```
+
 
 ## Getting Started
 
