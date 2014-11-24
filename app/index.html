@@ -21,6 +21,7 @@
                 actions: {
                     accept: function(modal) {
                         manager.notice('Saved!');
+                        return true;
                     },
                     decline: function(modal) {
                         var p = manager.confirm('Are U sure?', null, {title: 'Question', substrate: true});
