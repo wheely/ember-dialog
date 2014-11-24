@@ -44,6 +44,7 @@ export default Ember.Component.extend({
         // z-index css property. This method will not be executed while current
         // method will not be finished.
         Ember.run.later(this, function() {
+            this.$().focus();
 
             // Biggest z-index
             var zindex = maxZIndex(),
@@ -56,7 +57,7 @@ export default Ember.Component.extend({
             dialog.css({'z-index': zindex + 1});
 
             // Trying to search input element or button to focus it
-            var firstInput = this.$('input:visible:first');
+            var firstInput = this.$().find('input:visible:first, button:visible:not(.close):first').first();
             if (firstInput.size()) {
                 firstInput.focus();
             }
@@ -134,10 +135,13 @@ export default Ember.Component.extend({
     */
     keyDown: function(e) {
         // console.log(this.get('name'), this.get('dialogManager.active'), this.get('isActive'));
-        if (e.keyCode === 27 && this.get('isActive')) {
-            // Escape key
-            this.decline();
-            return false;
+        if (this.get('isActive')) {
+            if (e.keyCode === 27) {
+                this.decline();   // Escape key
+            }
+            if (e.keyCode === 13) {
+                this.accept();    // Enter key
+            }
         }
     },
 
