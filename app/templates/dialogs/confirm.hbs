@@ -6,6 +6,6 @@
     {{yield}}
 </div>
 <div class="dialog-footer">
-    <button class="btn btn-primary" type="button" {{action target.acceptHandlerName target}}>{{target.acceptLabel}}</button>
-    <button class="btn btn-default" type="button" {{action target.declineHandlerName target}}>{{target.declineLabel}}</button>
+    <button {{bind-attr class=":btn target.acceptClass"}} type="button" {{action target.acceptHandlerName target}}>{{target.acceptLabel}}</button>
+    <button {{bind-attr class=":btn target.declineClass"}} type="button" {{action target.declineHandlerName target}}>{{target.declineLabel}}</button>
 </div>

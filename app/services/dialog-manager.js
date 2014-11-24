@@ -35,6 +35,8 @@ export default Ember.Object.extend(Ember.Evented, {
     dialogData: {
         acceptLabel: 'yes',
         declineLabel: 'no',
+        acceptClass: 'btn-primary',
+        declineClass: 'btn-default',
         acceptHandlerName: 'accept',
         declineHandlerName: 'decline',
         substrate: false,
@@ -480,7 +482,13 @@ export default Ember.Object.extend(Ember.Evented, {
             name = Ember.typeOf(dialogData.name) === 'string' ? dialogData.name : this._generateDialogName();
 
         // Creating controller of don't provided
-        controller = controller || Ember.Controller.create();
+        if (!(controller instanceof Ember.Controller) && Ember.typeOf(controller) === 'object') {
+            // Creating fake controller
+            controller = Ember.Controller.create(controller);
+        } else {
+            controller = controller || Ember.Controller.create();
+        }
+
 
         // Return ready view for insertion into dialog component.
         view = this._getView(view, controller);
