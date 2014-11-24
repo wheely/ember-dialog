@@ -102,7 +102,7 @@ export default Ember.Component.extend({
       @chainable
     */
     decline: function() {
-        Ember.Logger.log('✘ %cDecline action%c: ' + this.get('name'), 'font-weight: 900; color: #900;', null);
+        Ember.ENV.LOG_DIALOG && Ember.Logger.log('✘ %cDecline action%c: ' + this.get('name'), 'font-weight: 900; color: #900;', null);
         if (this.has('rejected')) {
             var callback = this.get('rejected');
             this.get('rejected').call(this, this);
@@ -118,7 +118,7 @@ export default Ember.Component.extend({
       @chainable
     */
     accept: function() {
-        Ember.Logger.log('✓ %cConfirm action%c ' + this.get('name'), 'font-weight: 900; color: #070;', null);
+        Ember.ENV.LOG_DIALOG && Ember.Logger.log('✓ %cConfirm action%c ' + this.get('name'), 'font-weight: 900; color: #070;', null);
         if (this.has('resolved')) {
             var callback = this.get('resolved');
             this.get('resolved').call(this, this);
