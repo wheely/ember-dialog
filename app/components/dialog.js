@@ -137,10 +137,10 @@ export default Ember.Component.extend({
         // console.log(this.get('name'), this.get('dialogManager.active'), this.get('isActive'));
         if (this.get('isActive')) {
             if (e.keyCode === 27) {
-                this.decline();   // Escape key
+                this.send('controller.' + this.get('declineHandlerName'), this);   // Escape key
             }
             if (e.keyCode === 13) {
-                this.accept();    // Enter key
+                this.send('controller.' + this.get('acceptHandlerName'), this);   // Enter key
             }
         }
     },
