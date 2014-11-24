@@ -18,7 +18,9 @@ export default Ember.Object.extend(Ember.Evented, {
       @type Object
     */
     defaults: {
-        ms: 5000
+        ms: 5000,
+        decline: 'decline',
+        accept: 'accept'
     },
 
     /**
@@ -33,6 +35,8 @@ export default Ember.Object.extend(Ember.Evented, {
     dialogData: {
         acceptLabel: 'yes',
         declineLabel: 'no',
+        acceptHandlerName: 'accept',
+        declineHandlerName: 'decline',
         substrate: false,
         title: '',
         className: ''
@@ -72,7 +76,7 @@ export default Ember.Object.extend(Ember.Evented, {
 
           // Function applied after close
           var closed = function() {
-              Ember.Logger.log('Dialog closed. User saw the text of it.');
+              Ember.ENV.LOG_DIALOG && Ember.Logger.log('Dialog closed. User saw the text of it.');
               // As we promted to do so
               window.location.reload();
           };
@@ -121,7 +125,7 @@ export default Ember.Object.extend(Ember.Evented, {
           var p = this.get("dialogManager").confirm(view, controller, {title: title, name: name});
 
           // Function applied after close with deletion
-          var done = function() { Ember.Logger.log('Driver deleted'); };
+          var done = function() { Ember.ENV.LOG_DIALOG && Ember.Logger.log('Driver deleted'); };
 
           // Function applied after close without deletion
           var decline = function(parentDialog) {
@@ -315,12 +319,23 @@ export default Ember.Object.extend(Ember.Evented, {
                 name: name
             };
         Ember.merge(data, dialogData || {});
-        Ember.Logger.log('%cDialogManager:%c Opening dialog named %s', 'font-weight: 900;', null, name);
+        Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Opening dialog named %s', 'font-weight: 900;', null, name);
         if (Ember.typeOf(dialog) === 'undefined') {
             // Dialog not found by the name and should to be created here.
-            Ember.Logger.log('%cDialogManager:%c Creating dialog named %s', 'font-weight: 900;', null, name);
+            Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Creating dialog named %s', 'font-weight: 900;', null, name);
             // Creating and register dialog
             dialog = container.lookupFactory('component:dialog').createWithMixins(data);
+            if (!Ember.isEqual(data.declineHandlerName, this.get('defaults.decline')) ||
+                !Ember.isEqual(data.acceptHandlerName, this.get('defaults.accept'))) {
+                var actions = {};
+                if (!Ember.isEqual(data.declineHandlerName, this.get('defaults.decline'))) {
+                    actions[data.declineHandlerName] = function(dialog) { this.decline(); };
+                }
+                if (!Ember.isEqual(data.acceptHandlerName, this.get('defaults.accept'))) {
+                    actions[data.acceptHandlerName] = function(dialog) { this.accept(); };
+                }
+                dialog.reopen({actions: actions});
+            }
             this.setDialog(name, dialog);
             if (Ember.typeOf(view) === 'string') {
                 view = this._getView(view, controller);
@@ -354,7 +369,7 @@ export default Ember.Object.extend(Ember.Evented, {
             var dialogsList = this.get('dialogsList');
             this.set('dialogsList', dialogsList.without(name));
             var dialog = this.getDialog(name);
-            Ember.Logger.log('%cDialogManager:%c Closing dialog named %s', 'font-weight: 900;', null, name);
+            Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Closing dialog named %s', 'font-weight: 900;', null, name);
             dialog.hide();
             // this._destroyModel(name);
             resolve(dialog);
@@ -380,7 +395,7 @@ export default Ember.Object.extend(Ember.Evented, {
       @param {String} instance  - The dialog instance
     */
     setDialog: function(name, instance) {
-        Ember.Logger.log('%cDialogManager:%c Register dialog named %s', 'font-weight: 900;', null, name);
+        Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Register dialog named %s', 'font-weight: 900;', null, name);
         return this.get('_dialogs').set(name, instance);
     },
 
