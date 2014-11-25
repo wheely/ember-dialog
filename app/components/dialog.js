@@ -134,13 +134,14 @@ export default Ember.Component.extend({
       @method keyDown
     */
     keyDown: function(e) {
-        // console.log(this.get('name'), this.get('dialogManager.active'), this.get('isActive'));
-        if (this.get('isActive')) {
+        var viewsController;
+        if (this.get("isActive")) {
+            viewsController = this.get('childViews')[0].get('controller');
             if (e.keyCode === 27) {
-                this.send('controller.' + this.get('declineHandlerName'), this);   // Escape key
+                viewsController.send(this.get("declineHandlerName"), this);
             }
             if (e.keyCode === 13) {
-                this.send('controller.' + this.get('acceptHandlerName'), this);   // Enter key
+                viewsController.send(this.get("acceptHandlerName"), this);
             }
         }
     },
