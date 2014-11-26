@@ -17,6 +17,8 @@ export default Ember.Component.extend({
     */
     isVisible: false,
 
+    fixedZIndex: false,
+
     /**
       The dialog is active now.
 
@@ -35,6 +37,7 @@ export default Ember.Component.extend({
       @private
     */
     _visibleDidChange: function() {
+
         // Element not visible - do not recalculate z-index for it
         if (!this.get('isVisible')) {
           return;
@@ -44,17 +47,24 @@ export default Ember.Component.extend({
         // z-index css property. This method will not be executed while current
         // method will not be finished.
         Ember.run.later(this, function() {
+
+            var firstInput, dialog, zindex;
+
             this.$().focus();
 
-            // Biggest z-index
-            var zindex = maxZIndex(),
 
-                // Component element (wrapper of dialog-element)
-                // Dialog element
-                dialog = this.$('.dialog-dialog');
+            // If z-index should be fixed - do not change it
+            if (!this.get("fixedZIndex")) {
+                // Biggest z-index
+                var zindex = maxZIndex(),
 
-            // Set z-index biggest then biggenest
-            dialog.css({'z-index': zindex + 1});
+                    // Component element (wrapper of dialog-element)
+                    // Dialog element
+                    dialog = this.$('.dialog-dialog');
+
+                // Set z-index biggest then biggenest
+                dialog.css({'z-index': zindex + 1});
+            }
 
             // Trying to search input element or button to focus it
             var firstInput = this.$().find('input:visible:first, button:visible:not(.close):first').first();
