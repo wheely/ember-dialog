@@ -8,7 +8,7 @@ This extension allows you to create dialogs, modal windows and other pop-up obje
 
 ### Simple
 
-Download files from the `dist/` directory of this repo, put these into `public` directory of your project and include into your page.
+Download files from `dist/` directory of this repo, put these into `public` directory of your project and then include them.
 ```html
 <link rel="stylesheet" type="text/css" href="/assets/ember.dialog.min.css">
 <script type="text/javascript" src="/assets/ember.dialog.min.js"></script>
@@ -21,7 +21,7 @@ Install package via bower:
 $ bower install --save ember-dialog
 ```
 
-Include scripts and styles into page:
+Include scripts and styles:
 ```javascript
 <link rel="stylesheet" type="text/css" href="/bower_components/ember-dialog/dist/ember.dialog.min.css">
 <script type="text/javascript" src="/bower_components/ember-dialog/dist/ember.dialog.min.js"></script>
@@ -29,7 +29,7 @@ Include scripts and styles into page:
 
 ### Ember-CLI
 
-You may use addon for ember: [ember-cli-dialog](https://github.com/ajile/ember-cli-dialog). Or you can add few lines into your `Brocfile.js`:
+You may use addon for ember: [ember-cli-dialog](https://github.com/ajile/ember-cli-dialog). Or you can add just a few lines into your `Brocfile.js`:
 ```javascript
 ...
 app.import('bower_components/ember-dialog/dist/ember.dialog.min.css');
@@ -42,7 +42,7 @@ app.import('bower_components/ember-dialog/dist/ember.dialog.min.js');
 
 ### Manager
 
-Dialog manager responsable for creation of new dialogs few types:
+Dialog manager responsable for creation of new modals few types:
 * `alert` - with one `accept` button
 * `confirm` - with two `accept` and `decline` buttons
 * `custom` - without buttons, header, footer (totally blank) - to redefine these in view's template
@@ -58,13 +58,12 @@ Dialog manager responsable for creation of new dialogs few types:
 * **setDialog** (name, instance)
 
 
-Dialog manager injected into all controllers by property name `dialogManager`.
-Few examples below.
+Dialog manager injected into controllers by property name `dialogManager`. Few examples below.
 
 ## Example usage
 
 ### Alert dialog
-Alert dialog have only one `accept` button on a board. Creation method will return `Promise` object, resolve function in it will be executed when person press button "OK" - which triggers event `accept`, that you may want to catch in controller that you may have to provide.
+Alert dialog has only one `accept` button on a board. Creation method will return `Promise` object, resolve function of it will be executed when person press button "OK" - which triggers event `accept`.
 
 **Simple use case**
 ```javascript
@@ -89,10 +88,10 @@ Ember.run.later(this, function() {
 ```
 
 ### Confirm dialog
-Responsable for output an message or view with few buttons: `decline` and `accept`. Events from buttons by default handled by dialog component. You able to redefine standard behaviour by handle these in controller, that you provided to creation method.
+Responsable for output an text message or a view with few buttons: `decline` and `accept`. Events from buttons by default handle by dialog component. You're able to redefine standard behaviour by handle these in controller, that you have provided to creation method.
 
 **Output simple message**
-Dialog Manager creates needle view for you. Also you may do not pass a controller, it's will be created as well.
+Dialog Manager creates view for you if it's haven't provided. Controller will be created as well.
 ```javascript
 var message = "Do you really want to do that?";
 var p = this.get('dialogManager').confirm(message, this);
@@ -115,7 +114,7 @@ this.get('dialogManager').confirm(view, controller);
 
 ### Custom dialog
 
-Custom dialog may be used when behaviour of the controls differed then standard (shipped by `alert` or `confirm`). For example if you need to create form-dialog window and make `accept` button to submit form and `decline` button to checks form changes before dialog will be closed, to prevent loose unsaved data.
+Custom dialog may be used when behaviour of the controls is differed then standard (shipped by `alert` or `confirm`). For example if you need to create form-dialog window and make `accept` button to submit form and `decline` button to checks form changes before dialog will be closed, to prevent loose unsaved data.
 
 **First of all you need to put these buttons into your form view.**
 
@@ -173,7 +172,7 @@ this.get('dialogManager').custom(view, controller, {title: "Create new"}).then(f
 ```
 
 ### Notice dialog
-Without any buttons on a board. Output only for a 5 seconds (by default) and then disappear.
+Without any buttons on a board. Outputs only for a 5 seconds (by default) and then disappears.
 
 **Usage**
 ```javascript
@@ -199,4 +198,4 @@ Ember.run.later(this, function() {
 
 ## How to Run Unit Tests
 
-Extension haven't yet unit tests
+Extension hasn't any tests
