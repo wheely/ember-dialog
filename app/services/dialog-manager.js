@@ -379,8 +379,10 @@ export default Ember.Object.extend(Ember.Evented, {
             dialog.hide();
             // this._destroyModel(name);
             resolve(dialog);
-            var nextDialog = this.getDialog(this.get('active'));
-            nextDialog.focus();
+            if (this.get("active")) {
+                var nextDialog = this.getDialog(this.get("active"));
+                nextDialog && nextDialog.focus()
+            }
         }));
     },
 
