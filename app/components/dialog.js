@@ -48,10 +48,7 @@ export default Ember.Component.extend({
         // method will not be finished.
         Ember.run.later(this, function() {
 
-            var firstInput, dialog, zindex;
-
-            this.$().focus();
-
+            var dialog, zindex;
 
             // If z-index should be fixed - do not change it
             if (!this.get("fixedZIndex")) {
@@ -66,11 +63,7 @@ export default Ember.Component.extend({
                 dialog.css({'z-index': zindex + 1});
             }
 
-            // Trying to search input element or button to focus it
-            var firstInput = this.$().find('input:visible:first, button:visible:not(.close):first').first();
-            if (firstInput.size()) {
-                firstInput.focus();
-            }
+            this.focus();
 
         }, 0);
 
@@ -149,11 +142,40 @@ export default Ember.Component.extend({
             viewsController = this.get('childViews')[0].get('controller');
             if (e.keyCode === 27) {
                 viewsController.send(this.get("declineHandlerName"), this);
+                return false;
             }
             if (e.keyCode === 13) {
                 viewsController.send(this.get("acceptHandlerName"), this);
+                return false;
             }
         }
+    },
+
+    /**
+      Handler for a click events. Close dialog on clicking on substrate.
+
+      @method keyDown
+    */
+    click: function(e) {
+        if (Ember.$(e.target).hasClass('substrate')) {
+            this.close();
+        }
+    },
+
+    /**
+      Focusing on a dialog-window.
+
+      @method focus
+    */
+    focus: function() {
+          var firstInput = this.$().find('input:visible:first, button:visible:not(.close):first').first();
+
+          // Trying to search input element or button to focus it
+          if (firstInput.size()) {
+              firstInput.focus();
+          } else {
+              this.$('.dialog-content').focus();
+          }
     },
 
     /**
