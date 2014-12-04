@@ -45,17 +45,21 @@ export default Ember.Object.extend(Ember.Evented, {
     },
 
     /**
-      Name of the active dialog. Use for determine which dialog will be closed on
+      Name of the active dialog. Use for determine which dialog will close on
       escape key-down handler.
 
       @property active
       @type String
     */
-    active: function() {
-        return this.get('dialogsList').slice(-1).pop();
-    }.property('dialogsList'),
+    active: Ember.computed.alias('dialogsList.lastObject'),
 
-    dialogsList: [],
+    /**
+      The list of dialogs names laid in order.
+
+      @property dialogsList
+      @type Ember.Array
+    */
+    dialogsList: Ember.makeArray(),
 
     /**
       Property contains all created models.
@@ -353,7 +357,7 @@ export default Ember.Object.extend(Ember.Evented, {
             dialog.appendTo(rootElement);
         }
         // Mark as active
-        setActive && this.get('dialogsList').push(name);  // jshint ignore: line
+        setActive && this.get('dialogsList').pushObject(name);  // jshint ignore: line
         return dialog.show();
     },
 
@@ -375,6 +379,8 @@ export default Ember.Object.extend(Ember.Evented, {
             dialog.hide();
             // this._destroyModel(name);
             resolve(dialog);
+            var nextDialog = this.getDialog(this.get('active'));
+            nextDialog.focus();
         }));
     },
 
