@@ -270,35 +270,30 @@ export default Ember.Object.extend(Ember.Evented, {
       @return {Ember.RSVP.Promise}          - Promise to close dialog
     */
     notice: function(view, ms, dialogData) {
-        var name = this._generateDialogName();
         // If comes dialog's data set it else set empty object to merge with default settings
         dialogData = Ember.typeOf(dialogData) === 'object' ? dialogData : {};
+        var name = dialogData.name || this._generateDialogName();
         // Getting provided class name
         var className = dialogData.className || '';
         // Merging incoming dialog data with defaults data
         dialogData = Ember.$.extend({name: name}, this.get('dialogData'), dialogData, {className: ['notice', 'highest', className].join(' '), substrate: false});
-        // var controller = Ember.Controller.extend({
-        //   click: function() {
-        //     console.log(123);
-        //   }
-        // }).create();
         var promise = this._openWithLayout('dialogs/notice', view, null, dialogData, false),
             bind = Ember.run.bind;
 
         // Close it on click
         this.getDialog(name).reopen({
             click: function() {
-                this.close();
+                this.accept();
             }
         });
 
         if (Ember.typeOf(ms) !== 'null' && ms !== Infinity) {
             ms = ms >> 0 || this.get('defaults.ms');   // jshint ignore: line
-            return new Ember.RSVP.Promise(bind(this, function(resolve, reject) {
+            return promise.then(function(resolve, reject) {
                 setTimeout(bind(this, function() {
-                    this.close(name).then(resolve, reject);
+                    this.accept(name).then(resolve, reject);
                 }), ms);
-            }));
+            }.bind(this));
         } else {
           return promise;
         }
@@ -464,10 +459,10 @@ export default Ember.Object.extend(Ember.Evented, {
             view = Ember.View.extend({ template: template, controller: controller });
         } else if (Ember.typeOf(view) === 'class') {
             view = Ember.copy(view);
+            view = Ember.View.extend({ controller: controller });
         } else {
             /*jshint multistr: true */
-            throw new Ember.Error('The given view unrecognized. Should be name of template \
-                                   or view instance.');
+            throw new Ember.Error('The given view unrecognized. Should be a text or name of template or view class.');
         }
         return view;
     },
