@@ -151,26 +151,21 @@ var message = "Do you really want to do that?",
 // Creating confirm modal-window
 this.get('dialogManager').confirm(view);
 ```
-**Output view with handle events from it in controller**
+**Output message with handlers events in controller**
 ```javascript
 var counter = 0;
 
 // Message to output
-var message = "Do you really want to do that?",
+var message = "Do you really want to delete user named <b>{{username}}</b>?",
 
-    // Template used in view
-    template = Ember.Handlebars.compile(message),
-    
-    // Creating view
-    view = Ember.View.extend({ template: template }),
-      
     // Controller to handle events
     controller = Ember.Controller.extend({
+        username: "Milkov Vladimir",
         actions: {
             'accept': function () {
 
                 alert("You R accepted confirm!");
-              
+
                 // Close window after 3 accepts
                 return ++counter >= 3;
             }
@@ -178,7 +173,7 @@ var message = "Do you really want to do that?",
     }).create();
 
 // Creating confirm modal-window
-this.get('dialogManager').confirm(view, controller);
+this.get('dialogManager').confirm(message, controller, {title:'Confirm'});
 ```
 
 ### Custom dialog
