@@ -371,8 +371,8 @@ export default Ember.Object.extend(Ember.Evented, {
             this.set('dialogsList', dialogsList.without(name));
             var dialog = this.getDialog(name);
             Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Closing dialog named %s', 'font-weight: 900;', null, name);
-            dialog.hide();
-            // this._destroyModel(name);
+            // dialog.hide();
+            this._destroyDialog(name);
             resolve(dialog);
             if (this.get("active")) {
                 var nextDialog = this.getDialog(this.get("active"));
@@ -426,7 +426,7 @@ export default Ember.Object.extend(Ember.Evented, {
       @chainable
       @param {String} name                         - The name of the dialog to identify.
     */
-    _destroyModel: function(name) {
+    _destroyDialog: function(name) {
         // Getting dialog from register by name or name is a dialog
         var dialog = Ember.typeOf(name) === 'string' ? this.getDialog(name) : name;
         if (dialog) {
