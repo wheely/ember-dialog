@@ -1,13 +1,18 @@
+@import "variables";
+
+
 .highest {
     z-index: 999999999!important;
 }
+
 .component-dialog-dialog {
+    width: 75%;
+    min-width: $dialog-min-width;
+    max-width: $dialog-max-width;
     left: 0;
     right: 0;
-    margin: auto;
     position: absolute;
-    width: 75%;
-    min-width: 300px;
+    margin: auto;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
@@ -16,6 +21,7 @@
     &.substrate {
         position: absolute;
         width: 100%;
+        max-width: inherit;
         height: 100%;
         min-height: 100%;
         margin: 0px;
@@ -32,7 +38,8 @@
 
         .dialog-content {
             width: 75%;
-            min-width: 300px;
+            min-width: $dialog-min-width;
+            max-width: $dialog-max-width;
             margin: auto;
             top: 50%;
             -webkit-transform: translateY(-50%);
@@ -81,8 +88,8 @@
         outline: 0;
 
         .dialog-header {
-            min-height: 16.43px;
-            padding: 15px;
+            min-height: 15px;
+            padding: $dialog-padding;
             .dialog-title {
                 font-weight: 900;
             }
@@ -96,11 +103,11 @@
             max-height: 400px;
             overflow: auto;
             position: relative;
-            padding: 15px;
+            padding: $dialog-padding;
         }
         .dialog-footer {
-            padding: 15px;
             text-align: right;
+            padding: $dialog-padding;
         }
     }
 }
