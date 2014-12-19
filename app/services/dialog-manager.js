@@ -278,10 +278,10 @@ export default Ember.Object.extend(Ember.Evented, {
         // Merging incoming dialog data with defaults data
         dialogData = Ember.$.extend({name: name}, this.get('dialogData'), dialogData, {className: ['notice', 'highest', className].join(' '), substrate: false});
         var promise = this._openWithLayout('dialogs/notice', view, null, dialogData, false),
-            bind = Ember.run.bind;
+            dialog = this.getDialog(name);
 
         // Close it on click
-        this.getDialog(name).reopen({
+        dialog.reopen({
             click: function() {
                 this.accept();
             }
@@ -289,10 +289,9 @@ export default Ember.Object.extend(Ember.Evented, {
 
         if (Ember.typeOf(ms) !== 'null' && ms !== Infinity) {
             ms = ms >> 0 || this.get('defaults.ms');   // jshint ignore: line
-            return promise.then(function(resolve, reject) {
-                setTimeout(bind(this, function() {
-                    this.accept(name).then(resolve, reject);
-                }), ms);
+            return new Ember.RSVP.Promise(function(resolve, reject) {
+                setTimeout(dialog.accept.bind(dialog), ms);
+                promise.then(resolve, reject);
             }.bind(this));
         } else {
           return promise;
