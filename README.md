@@ -189,13 +189,13 @@ Look at [JSBin gist](https://gist.github.com/ajile/39e94aa0d004adcf9fda).
     <div class="dialog-header">
         <h4 class="dialog-title">Adding new one</h4>
     </div>
-    <form {{action "accept" target on="submit"}}>
+    <form {{action "accept" dialog on="submit"}}>
         <div class="dialog-body">
             {{input value=username placeholder="Enter your name"}}
         </div>
         <div class="dialog-footer">
-            <button {{bind-attr class=":btn :btn-primary"}} type="submit">{{target.acceptLabel}}</button>
-            <button class="btn btn-default" type="button" {{action "decline" target}}>{{target.declineLabel}}</button>
+            <button {{bind-attr class=":btn :btn-primary"}} type="submit">{{dialog.acceptLabel}}</button>
+            <button class="btn btn-default" type="button" {{action "decline" dialog}}>{{dialog.declineLabel}}</button>
         </div>
     </form>
 </script>

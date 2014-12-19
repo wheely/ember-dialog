@@ -513,7 +513,7 @@ export default Ember.Object.extend(Ember.Evented, {
 
         // Declaring target on dialog actions. All events fists of all will be handled by
         // controller then will be passed to dialog component to make standard instruction.
-        controller.reopen({ target: dialog });
+        controller.reopen({ target: dialog, dialog: Ember.computed.alias('target').readOnly() });
 
         promise = new Ember.RSVP.Promise(function(resolve, reject) {
             dialog.reopen({
