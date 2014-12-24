@@ -1,0 +1,18 @@
+# Site settings
+title: ember-dialog
+highlighter: pygments
+email: v.v.milkov@gmail.com
+description: > # library to create ambitious modals
+baseurl: "/ember-dialog/" # the subpath of your site, e.g. /blog/
+url: "http://ajile.github.io" # the base hostname & protocol for your site
+twitter_username: v_milkov
+github_username:  ajile
+
+# Build settings
+markdown: kramdown
+
+collections:
+  docs:
+    output: true
+
+exclude: ["README.md"]
