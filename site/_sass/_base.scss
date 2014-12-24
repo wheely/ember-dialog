@@ -202,3 +202,30 @@ pre {
         }
     }
 }
+
+.table {
+    border-collapse: collapse;
+    &.arguments, &.methods {
+        margin-bottom: 20px;
+    }
+    tr {
+        td {
+            font-size: 14px;
+            border-bottom: 1px solid #999;
+            padding: 5px 25px 5px 0;
+            &:last-child { padding-right: 0px; }
+            &.param-name, &.args {
+                // vertical-align: top;
+            }
+            &.param-name {
+                font-weight: bolder;
+                white-space: nowrap;
+            }
+            &.args {
+                white-space: nowrap;
+                font-style: italic;
+            }
+        }
+        &:last-child { td {border-bottom: none;} }
+    }
+}
