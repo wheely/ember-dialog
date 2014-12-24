@@ -1,8 +1,8 @@
-# Ember.Dialog [![Build Status](https://secure.travis-ci.org/wheely/ember-dialog.svg)](http://travis-ci.org/wheely/ember-dialog)
+# Ember.Dialog [![Build Status](https://secure.travis-ci.org/wheely/ember-dialog.svg)](http://travis-ci.org/wheely/ember-dialog) [![license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/wheely/ember-dialog/blob/master/LICENSE)
 
 ## Introduction
 
-This extension allows you to create dialogs, modal windows and other pop-up objects. Please take a look at [demo page](http://wheely.github.io/ember-dialog/).
+This extension allows you to create dialogs, modal windows and other pop-up objects. Please take a look at [docs](http://wheely.github.io/ember-dialog/).
 
 ## Installation
 
