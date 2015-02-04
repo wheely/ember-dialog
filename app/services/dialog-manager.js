@@ -1,8 +1,8 @@
 export default Ember.Object.extend(Ember.Evented, {
 
     /**
-      Used to insertion of the dialog-windows if `namespace` of incoming `controller`
-      do not contain `rootElement` property.
+      Used to insert the dialog windows if `namespace` of incoming `controller`
+      does not contain `rootElement` property.
 
       @public
       @property rootElement
@@ -12,9 +12,11 @@ export default Ember.Object.extend(Ember.Evented, {
     rootElement: 'body',
 
     /**
+      A dict that contains default settings of a dialog manager.
+
       @public
       @property defaults
-      @attribute {Number} ms   - Milliseconds before close notice-dialog
+      @attribute {Number} ms   - Milliseconds before notice dialog closing
       @type Object
     */
     defaults: {
@@ -24,6 +26,8 @@ export default Ember.Object.extend(Ember.Evented, {
     },
 
     /**
+      A dict that contains default settings of a dialog component.
+
       @public
       @property dialogData
       @attribute {String} accept      - Text for "YES" button
@@ -45,8 +49,8 @@ export default Ember.Object.extend(Ember.Evented, {
     },
 
     /**
-      Name of the active dialog. Use for determine which dialog will close on
-      escape key-down handler.
+      Name of the active dialog is used to determine which dialog will be closed
+      on the `escape` key-down handler.
 
       @property active
       @type String
@@ -54,7 +58,7 @@ export default Ember.Object.extend(Ember.Evented, {
     active: Ember.computed.alias('dialogsList.lastObject'),
 
     /**
-      The list of dialogs names laid in order.
+      The list of dialog names laid in closing order.
 
       @property dialogsList
       @type Ember.Array
@@ -62,7 +66,8 @@ export default Ember.Object.extend(Ember.Evented, {
     dialogsList: Ember.makeArray(),
 
     /**
-      Property contains all created models.
+      Property contains all created modals.
+
       @private
       @property _dialogs
       @type Ember.Object
@@ -76,32 +81,32 @@ export default Ember.Object.extend(Ember.Evented, {
       ```javascript
           var expectation = 10000,
               name = 'occure-error',
-              view = 'Is an reason of this message. Application will be reloaded after \
+              view = 'Is a reason of this message. Application will be reloaded after \
                       you close this window',
               title = "Unexpected error";
 
-          // Function applied after close
+          // Function applied after closing
           var closed = function() {
-              Ember.ENV.LOG_DIALOG && Ember.Logger.log('Dialog closed. User saw the text of it.');
-              // As we promted to do so
+              Ember.ENV.LOG_DIALOG && Ember.Logger.log('Dialog closed. User read the text of it.');
+              // ...as we prompted to do so
               window.location.reload();
           };
 
-          // Show confirm message, get promise
-          var p = this.get("dialogManager").alert(name, view, this, {title:title, name:name}).then(closed);
+          // Show confirm message and get `promise`
+          var p = this.get("dialogManager").alert(name, view, this, {title: title, name: name}).then(closed);
 
           setTimeout(function(){
-              // Can't wait to long before user accept or decline confirm message. Close it
-              // after `expectation` seconds. We can do so because we have a name of the dialog.
+              // Can't wait too long before the user accepts or declines the confirm message. Close it
+              // after `expectation` seconds. We can do so because we have the name of the dialog.
               // After dialog close occured `resolve` callback.
               this.get("dialogManager").getDialog(name)
           }, expectation);
       ```
 
       @method alert
-      @param {String} name                  - The name of the dialog to identify.
+      @param {String} name                  - The name of the dialog to identify it.
       @param {String|Ember.View} view       - The content part.
-      @param {Ember.Controller} controller  - The controller to listen to view actions.
+      @param {Ember.Controller} controller  - The `controller` to listen to `view` actions.
       @param {String} title                 - Dialog title.
       @return {Ember.RSVP.Promise}          - Promise to close dialog
     */
@@ -227,37 +232,35 @@ export default Ember.Object.extend(Ember.Evented, {
       @return {Ember.RSVP.Promise}          - Promise to close dialog
     */
     custom: function(view, controller, dialogData) {
-        // If comes dialog's data set it else set empty object to merge with default settings
+        // If dialog data comes, set it otherwise set an empty object to merge with default settings
         dialogData = Ember.typeOf(dialogData) === 'object' ? dialogData : {};
         // Getting provided class name
         var className = dialogData.className || '';
-        // Merging incoming dialog data with defaults data
+        // Merging incoming dialog data with default data
         dialogData = Ember.$.extend({}, this.get('dialogData'), dialogData, {className: ['custom', className].join(' ')});
         // Creating dialog `custom` type
         return this._openWithLayout('dialogs/custom', view, controller, dialogData);
     },
 
     /**
-      Notice-dialog window disappear after given time.
-
-      Example:
+      Notice-dialog window disappears after given time.
 
       @example
       ```javascript
-          // Show template for a 1 seconds.
+          // Show template for 1 second.
           this.get("dialogManager").notice('permission_denied');
 
-          // Show template for a 5 seconds.
+          // Show template for 5 seconds.
           this.get("dialogManager").notice('permission_denied', 5000);
 
-          // Show simple message.
+          // Show a simple message.
           this.get("dialogManager").notice('You should have an permission!');
 
-          // Show view in a dialog.
+          // Show `view` in a dialog.
           var view = Ember.View.create(Ember.View.create({templateName: 'permission_denied'}));
           this.get("dialogManager").notice(view);
 
-          // Show dialog with callback.
+          // Show the dialog with the callback.
           this.get("dialogManager").notice('You should have an permission!').then(bind(this, function(){
               // Redirect to index route
               this.transitionTo('index');
@@ -266,16 +269,16 @@ export default Ember.Object.extend(Ember.Evented, {
 
       @method confirm
       @param {String|Ember.View} view       - The content part.
-      @param {String} ms                    - The name of the dialog to identify.
-      @return {Ember.RSVP.Promise}          - Promise to close dialog
+      @param {String} ms                    - Amount of milliseconds before dialog close-down.
+      @return {Ember.RSVP.Promise}          - A `promise` to close the dialog
     */
     notice: function(view, ms, dialogData) {
-        // If comes dialog's data set it else set empty object to merge with default settings
+        // If dialog data comes up, set it otherwise set an empty object to merge with default settings
         dialogData = Ember.typeOf(dialogData) === 'object' ? dialogData : {};
         var name = dialogData.name || this._generateDialogName();
         // Getting provided class name
         var className = dialogData.className || '';
-        // Merging incoming dialog data with defaults data
+        // Merging incoming dialog data with default data
         dialogData = Ember.$.extend({name: name}, this.get('dialogData'), dialogData, {className: ['notice', 'highest', className].join(' '), substrate: false});
         var promise = this._openWithLayout('dialogs/notice', view, null, dialogData, false),
             dialog = this.getDialog(name);
@@ -304,10 +307,9 @@ export default Ember.Object.extend(Ember.Evented, {
 
       @method open
       @param {String} name                         - The name of the dialog to identify.
-      @param {String|Ember.View} view              - The view or template name will be rendered into
+      @param {String|Ember.View} view              - The view or template name is rendered into the
                                                      dialog's layout
-      @param {String|Ember.Controller} controller  - The controller will listen actions
-                                                     from dialog
+      @param {String|Ember.Controller} controller  - The `controller` listens actions from dialog
       @return {Ember.RSVP.Promise}                 - Promise to open dialog
     */
     open: function(name, view, controller, dialogData, setActive) {
@@ -323,7 +325,7 @@ export default Ember.Object.extend(Ember.Evented, {
         if (Ember.typeOf(dialog) === 'undefined') {
             // Dialog not found by the name and should to be created here.
             Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Creating dialog named %s', 'font-weight: 900;', null, name);
-            // Creating and register dialog
+            // Creating and registering a dialog
             dialog = container.lookupFactory('component:dialog').createWithMixins(data);
             if (!Ember.isEqual(data.declineHandlerName, this.get('defaults.decline')) ||
                 !Ember.isEqual(data.acceptHandlerName, this.get('defaults.accept'))) {
@@ -339,38 +341,36 @@ export default Ember.Object.extend(Ember.Evented, {
             this.setDialog(name, dialog);
             if (Ember.typeOf(view) === 'string') {
                 view = this._getView(view, controller);
-                // Put view into dialog
+                // Putting view into a dialog
                 dialog.set('body', view);
             } else if (Ember.typeOf(view) === 'class') {
-                // dialog.setProperties({ body: view, controller: controller });
                 dialog.setProperties({ body: view });
             } else {
                 throw new Ember.Error('The given view unrecognized');
             }
-            // Put dialog into DOM
+            // Putting the dialog into the DOM
             dialog.appendTo(rootElement);
         }
-        // Mark as active
+        // Marking as active
         setActive && this.get('dialogsList').pushObject(name);  // jshint ignore: line
         return dialog.show();
     },
 
     /**
-      Close dialog window.
+      Close the dialog window.
 
       @method close
       @param {String} name                         - The name of the dialog to identify.
-      @return {Ember.RSVP.Promise}                 - Promise to close dialog
+      @return {Ember.RSVP.Promise}                 - Promise to close the dialog
     */
     close: function(name) {
-        // Return target to controller that was replaced to listen dialogs and view events.
+        // Returns `target` to `controller` that was replaced to listen to the dialogs and to views events.
         this.get('controllers:' + name).reopen({ target: this.get('targets:' + name) });
         return new Ember.RSVP.Promise(Ember.run.bind(this, function(resolve, reject) {
             var dialogsList = this.get('dialogsList');
             this.set('dialogsList', dialogsList.without(name));
             var dialog = this.getDialog(name);
-            Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Closing dialog named %s', 'font-weight: 900;', null, name);
-            // dialog.hide();
+            Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Closing the dialog named %s', 'font-weight: 900;', null, name);
             this._destroyDialog(name);
             resolve(dialog);
             if (this.get("active")) {
@@ -381,7 +381,7 @@ export default Ember.Object.extend(Ember.Evented, {
     },
 
     /**
-      Return model by name.
+      Returns the modal by the name.
 
       @method getDialog
       @param {String} name      - The name of the dialog
@@ -392,7 +392,7 @@ export default Ember.Object.extend(Ember.Evented, {
     },
 
     /**
-      Return model by name.
+      Sets the modal by the name.
 
       @method setDialog
       @param {String} name      - The name of the dialog
@@ -404,7 +404,7 @@ export default Ember.Object.extend(Ember.Evented, {
     },
 
     /**
-      Returns UUID random name of the dialog.
+      Returns UUID (random name of the dialog).
 
       @method _generateDialogName
       @private
@@ -418,41 +418,41 @@ export default Ember.Object.extend(Ember.Evented, {
     },
 
     /**
-      Destroy dialog.
+      Eliminates the dialog.
 
       @method _destroyDialog
       @private
       @chainable
-      @param {String} name                         - The name of the dialog to identify.
+      @param {String} name      - The name of the dialog to identify.
     */
     _destroyDialog: function(name) {
-        // Getting dialog from register by name or name is a dialog
+        // Get the dialog from the register by income name or name of the dialog
         var dialog = Ember.typeOf(name) === 'string' ? this.getDialog(name) : name;
         if (dialog) {
-            // Destroying dialog
+            // Eliminate dialog
             dialog.destroy();
           }
         return this;
     },
 
     /**
-      Returns view-object on template name argument or throw exception if template for it
-      doesn't found.
+      Returns the view-object by the template name argument or throw an exception if template for it
+      isn't found.
 
       @method _getView
       @private
       @param {String|Ember.View} view       - The content part.
-      @param {Object} container             - Where looking for a template.
+      @param {Object} controller             - Where to look for the template.
       @return {Ember.View}
     */
     _getView: function(view, controller) {
         var template = '',
             container = controller.container || this.container;
         if (Ember.typeOf(view) === 'string') {
-            // The view come as string. Needles to find it by name in the registry.
+            // The view comes as a string. Necessary to find it by the name in the registry.
             template = container.lookup("template:" + view);
-            // If template could not be found by the name. Given name is not a template's path
-            // it's a template by self.
+            // If a template cannot be found by the name, the name is not a
+            // template's path it's a template itself.
             template = template || Ember.Handlebars.compile(view);
             // Creating a view by template.
             view = Ember.View.extend({ template: template, controller: controller });
@@ -467,11 +467,11 @@ export default Ember.Object.extend(Ember.Evented, {
     },
 
     /**
-      Open dialog window with wrapper view by given layout.
+      Open a dialog window with `wrapper view` by given `layout`.
 
       @method openWithLayout
       @private
-      @param {String} layoutName            - The name of the layout that wrap view.
+      @param {String} layoutName            - The name of the layout that wraps view.
       @param {String} name                  - The name of the dialog to identify.
       @param {String|Ember.View} view       - The content part.
       @param {Ember.Controller} controller  - The controller to listen to view actions.
@@ -483,7 +483,7 @@ export default Ember.Object.extend(Ember.Evented, {
         var dialog, promise,
             name = Ember.typeOf(dialogData.name) === 'string' ? dialogData.name : this._generateDialogName();
 
-        // Creating controller of don't provided
+        // Creating controller if not provided
         if (!(controller instanceof Ember.Controller) && Ember.typeOf(controller) === 'object') {
             // Creating fake controller
             controller = Ember.Controller.create(controller);
@@ -495,7 +495,7 @@ export default Ember.Object.extend(Ember.Evented, {
         // Return ready view for insertion into dialog component.
         view = this._getView(view, controller);
 
-        // Data use in dialog's mid layout
+        // Data used in dialog's mid layout
         dialogData = dialogData || {};
 
         // Almost always mark new dialogs as active
@@ -510,8 +510,8 @@ export default Ember.Object.extend(Ember.Evented, {
         this.set('controllers:' + name, controller);
         this.set('targets:' + name, controller.target);
 
-        // Declaring target on dialog actions. All events fists of all will be handled by
-        // controller then will be passed to dialog component to make standard instruction.
+        // Declaring target on dialog actions. All events first of all are handled by
+        // controller then passed to a dialog component to make standard instruction.
         controller.reopen({ target: dialog, dialog: Ember.computed.alias('target').readOnly() });
 
         promise = new Ember.RSVP.Promise(function(resolve, reject) {
