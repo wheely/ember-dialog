@@ -107,10 +107,8 @@ export default Ember.Component.extend({
     */
     decline: function() {
         Ember.ENV.LOG_DIALOG && Ember.Logger.log('✘ %cDecline action%c: ' + this.get('name'), 'font-weight: 900; color: #900;', null);
-        if (this.has('rejected')) {
-            var callback = this.get('rejected');
-            this.get('rejected').call(this, this);
-        }
+        this.has('rejected') && this.get('rejected').call(this, this);
+        this.trigger('declined', this);
         this.close();
         return this;
     },
@@ -123,10 +121,8 @@ export default Ember.Component.extend({
     */
     accept: function() {
         Ember.ENV.LOG_DIALOG && Ember.Logger.log('✓ %cConfirm action%c ' + this.get('name'), 'font-weight: 900; color: #070;', null);
-        if (this.has('resolved')) {
-            var callback = this.get('resolved');
-            this.get('resolved').call(this, this);
-        }
+        this.has('resolved') && this.get('resolved').call(this, this);
+        this.trigger('accepted', this);
         this.close();
         return this;
     },
@@ -139,7 +135,7 @@ export default Ember.Component.extend({
     keyDown: function(e) {
         var viewsController;
         if (this.get("isActive")) {
-            viewsController = this.get('childViews')[0].get('controller');
+            viewsController = this.get("childViews").findBy('controller').get('controller');
             if (e.keyCode === 27) {
                 viewsController.send(this.get("declineHandlerName"), this);
                 return false;
@@ -191,7 +187,7 @@ export default Ember.Component.extend({
           @method decline
         */
         decline: function(dialog) {
-          this.decline();
+            this.decline();
         },
 
         /**
@@ -199,7 +195,7 @@ export default Ember.Component.extend({
           @method decline
         */
         accept: function(dialog) {
-          this.accept();
+            this.accept();
         }
 
     }
