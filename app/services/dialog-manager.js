@@ -515,10 +515,8 @@ export default Ember.Object.extend(Ember.Evented, {
         controller.reopen({ target: dialog, dialog: Ember.computed.alias('target').readOnly() });
 
         promise = new Ember.RSVP.Promise(function(resolve, reject) {
-            dialog.reopen({
-                resolved: resolve,
-                rejected: reject
-            });
+            dialog.resolved = function() { resolve && resolve(); };
+            dialog.rejected = function() { reject && reject(); };
         });
 
         return promise;
