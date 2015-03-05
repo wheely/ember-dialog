@@ -323,7 +323,7 @@ export default Ember.Object.extend(Ember.Evented, {
         if (Ember.typeOf(dialog) === 'undefined') {
             // Dialog not found by the name and should to be created here.
             Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Creating dialog named %s', 'font-weight: 900;', null, name);
-            // Creating and register dialog
+            // Creating and registering dialog
             dialog = container.lookupFactory('component:dialog').createWithMixins(data);
             if (!Ember.isEqual(data.declineHandlerName, this.get('defaults.decline')) ||
                 !Ember.isEqual(data.acceptHandlerName, this.get('defaults.accept'))) {
@@ -515,10 +515,8 @@ export default Ember.Object.extend(Ember.Evented, {
         controller.reopen({ target: dialog, dialog: Ember.computed.alias('target').readOnly() });
 
         promise = new Ember.RSVP.Promise(function(resolve, reject) {
-            dialog.reopen({
-                resolved: resolve,
-                rejected: reject
-            });
+            dialog.resolved = function() { resolve && resolve(); };
+            dialog.rejected = function() { reject && reject(); };
         });
 
         return promise;
