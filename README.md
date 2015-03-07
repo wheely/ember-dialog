@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This extension allows you to create dialogs, modal windows and other pop-up objects. Please take a look at [docs](http://wheely.github.io/ember-dialog/).
+This extension allows you to create dialog windows, see the [docs](http://wheely.github.io/ember-dialog/) for more details.
 
 ## Installation
 
