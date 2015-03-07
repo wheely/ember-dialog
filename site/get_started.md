@@ -5,24 +5,32 @@ date:   2014-12-24 12:25:40
 categories: jekyll update
 ---
 
-Сперва вам нужно установить ember-dialog. Это можно сделать любым удобным для Вас способом, ознакомьтесь с разделом <a href="./installation.html">установки</a>.
+First of all you need to get the `ember-dialog` installed by the suggested ways from the <a href="./installation.html">installation page</a>.
 
-После устновки в контроллерах вашего приложения станет доступно свойство dialogManager.
+After the installment, a property named `dialogManager` will appear in your `controllers` and `routes` so you could create a dialogs of different types (see below).
+
+Dialog manager operates by `view` and `controller` instances to show dialog for user. Its creates a proper `component`, that wraps view (as a layout) and listens to the events from it. It proxies the events to the controller which, in its turn, sends the events back if it doesn't handle them itself. Components take care of window closing. If an event doesn't come back to the component, the controller should close it by itself.
+
+In controller or routes you can get a `dialog manager` like this one:
 
 {% highlight javascript %}
 var manager = this.get('dialogManager');
 {% endhighlight %}
 
 
-## Методы менеджера диалогов
-У менеджера доступны следующие методы:
+## Dialog manager methods
+
+The manager has several methods that provide the creation of dialogs of different types:
 
 <table class="table methods">
-    <tr><td class="param-name">alert</td><td>Показывает окно с одной единственной кнопкой, которая при нажатии вызывает handler `accept`</td></tr>
-    <tr><td class="param-name">confirm</td><td>Показывает окно с двумя кнопками, одна вызывает handler `accept`, другая `decline`</td></tr>
-    <tr><td class="param-name">custom</td><td>Показывает окно без кнопок. Их вы должны определить во шаблоне, который помещается в диалоговое окно</td></tr>
-    <tr><td class="param-name">notice</td><td>Показывает окно без кнопок с минимальными отступами, в правом верхнем углу, которое само усчезает через отведенное время (по дефолту 5 секунд). Подразумевается, что Вы сами подправите css как Вам нужно.</td></tr>
+    <tr><td class="param-name">alert</td><td>Shows the window with a single button that fires the `accept` event.</td></tr>
+    <tr><td class="param-name">confirm</td><td>Shows the window with a couple of buttons. One of them fires the `accept` event, the other one - the `decline` event.</td></tr>
+    <tr><td class="param-name">custom</td><td>This modal-window type uses an empty template to give an opportunity to redefine its content. This may be very handy when you want to amend DOM of the modal or the behavior connected with certain amendments.</td></tr>
+    <tr><td class="param-name">notice</td><td>This kind of dialog window doesn't have any buttons onboard, as well as other elements. By default it shows up in the upper-right corner (redefine it in `css` if needed). The modal-window of this type disappears after certain time (5 sec by default).</td></tr>
 </table>
+
+These methods return `Ember.RSVP.Promise` that may be used for manual window closing. About `Promise` object you may read in the offical Ember documentation.
+
 
 ### alert
 

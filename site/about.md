@@ -4,6 +4,7 @@ title:  "About"
 date:   2014-12-24 12:25:40
 categories: jekyll update
 ---
+
 Ember-dialog used to create a modal dialog windows. Has a wide range of use: confirms, alerts, popup forms, notices, etc.
 
 ## Особенности
