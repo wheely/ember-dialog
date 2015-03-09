@@ -42,13 +42,13 @@ app.import('bower_components/ember-dialog/dist/ember.dialog.min.js');
 
 ### Manager
 
-Dialog manager responsable for creation of new modals few types:
+Dialog manager responsible for creation of new modals of the following types:
 
 | Type    | Specialty                                              |
 |---------|--------------------------------------------------------|
 | alert   | with one `accept` button                               |
 | confirm | with two buttons: `accept` and `decline`               |
-| custom  | without any buttons, header and footer (totally blank) |
+| custom  | without any buttons, header and footer (totaly blank) |
 | notice  | without any buttons with TTL                           |
 
 #### Methods
@@ -59,17 +59,17 @@ Dialog manager responsable for creation of new modals few types:
 * **close** (name)
 * **getDialog** (name)
 
-Dialog manager injected into controllers by property name `dialogManager`, also available as a service `dialog:manager` as well.
-- The `view` arg can be an `String`, `Ember.View` class or `template name`.
+Dialog manager injected into controllers by property named `dialogManager`, also available as a service `dialog:manager`.
+- The `view` arg can be a `String`, `Ember.View` class or `template name`.
 - The `controller` arg can be `Object` or `Ember.Controller` instance.
-- The `dialogData` is an `Object`. Look [at here](https://github.com/ajile/ember-dialog/blob/master/app/services/dialog-manager.js#L35) for more info.
+- The `dialogData` is an `Object`. Look [here](https://github.com/ajile/ember-dialog/blob/master/app/services/dialog-manager.js#L35) for more info.
 
 Few examples below.
 
 ## Example usage
 
 ### Alert dialog
-Alert dialog has only one `accept` button on a board. Creation method will return `Promise` object, resolve function of it will be executed when person press button "OK" - which triggers event `accept`.
+Alert dialog has only one `accept` button on board. Creation method will return `Promise` object, resolve function of it will be executed when a person presses the "OK" button - which triggers event `accept`.
 
 **Simple use case**
 ```javascript
@@ -103,7 +103,7 @@ var name = "my-little-alert",
         acceptLabel : "yes, of course"
     };
 
-// Manager creates a modal and return a primise object which resolve on accept-close.
+// Manager creates a modal and returns a `promise` object which resolves on `accept`-close.
 var promise = this.get('dialogManager').alert(message, controller, options);
 
 // Execute after successful closed
@@ -111,17 +111,17 @@ promise.then(function() {
     alert("You are informative!");
 });
 
-// Having a name of the modal we can close it at anywhere
+// Having a name of the modal we can close it anywhere
 Ember.run.later(this, function() {
    this.get('dialogManager').getDialog(name).close();
 }, 10000);
 ```
 
 ### Confirm dialog
-Responsable for output an text message or a view with few buttons: `decline` and `accept`. Events from buttons by default handle by dialog component. You're able to redefine standard behaviour by handle these in controller, that you have provided to creation method.
+Responsible for output a text message or a view with two buttons: `decline` and `accept`. Events from buttons by default are handled by dialog component. You're able to redefine standard behavior by handling these in controller, that you have provided for the creation method.
 
 **Output simple message**
-Dialog Manager creates view for you if it's haven't provided. Controller will be created as well.
+Dialog Manager creates view for you if it is not provided. Controller is created as well.
 ```javascript
 // Message to output
 var message = "Do you really want to do that?",
@@ -178,9 +178,9 @@ this.get('dialogManager').confirm(message, controller, {title:'Confirm'});
 
 ### Custom dialog
 
-Custom dialog may be used when behaviour of the controls is differed then standard (shipped by `alert` or `confirm`). For example if you need to create form-dialog window and make `accept` button to submit form and `decline` button to checks form changes before dialog will be closed, to prevent loose unsaved data.
+Custom dialog may be used when behavior of the controls differs form the standard (shipped by `alert` or `confirm`). For example if you need to create a form-dialog window and make an `accept` button to submit the form and a `decline` button to check the form changes before the dialog will be closed, to prevent the unsaved data loss.
 
-Look at [JSBin gist](https://gist.github.com/ajile/39e94aa0d004adcf9fda).
+Look at the [JSBin gist](https://gist.github.com/ajile/39e94aa0d004adcf9fda).
 
 **First of all you need to put these buttons into your form view.**
 
@@ -201,7 +201,7 @@ Look at [JSBin gist](https://gist.github.com/ajile/39e94aa0d004adcf9fda).
 </script>
 ```
 
-**After that declare handlers in controller:**
+**After that, define the handlers in controller:**
 
 ```javascript
 var App = window.App = Ember.Application.create();
@@ -229,7 +229,7 @@ App.ApplicationController = Em.Controller.extend({
     }
 });
 
-// Controller responsable for user changes
+// Controller responsible for user changes
 App.UserController = Ember.Controller.extend({
 
     // Field tied with input
@@ -262,12 +262,13 @@ App.UserController = Ember.Controller.extend({
 ```
 
 ### Notice dialog
-Without any buttons on a board. Outputs only for a 5 seconds (by default) and then disappears.
+
+Has no buttons onboard. Shows up only for 5 seconds (by default) and then disappears.
 
 **Usage**
 ```javascript
-this.get('dialogManager').notice("This message auto disappear after 5 sec.");
-this.get('dialogManager').notice("This message auto disappear after 1 sec.", 1000);
+this.get('dialogManager').notice("This message auto disappear in 5 sec.");
+this.get('dialogManager').notice("This message auto disappear in 1 sec.", 1000);
 ```
 
 **Advanced usage**
@@ -278,7 +279,7 @@ var name = 'controllable-notice',
     // Dialog's text
     message = "This message auto disappear after 60 sec or after another action.",
 
-    // Show notice-dialog for a 60s (with given name to find it later)
+    // Show notice-dialog for 60s (with given name to find it later)
     promise = this.get('dialogManager').notice(message, 60000, { name: name });
 
 promise.then(function() {
@@ -292,6 +293,6 @@ Ember.run.later(dialog, dialog.accept, 5000);
 ```
 
 
-## How to Run Unit Tests
+## How to run unit tests
 
-Extension hasn't any tests
+Extension hasn't had any tests yet.
