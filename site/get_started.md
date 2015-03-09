@@ -29,12 +29,12 @@ The manager has several methods that provide the creation of dialogs of differen
     <tr><td class="param-name">notice</td><td>This kind of dialog window doesn't have any buttons onboard, as well as other elements. By default it shows up in the upper-right corner (redefine it in `css` if needed). The modal-window of this type disappears after certain time (5 sec by default).</td></tr>
 </table>
 
-These methods return <a href="http://emberjs.com/api/classes/RSVP.Promise.html">Ember.RSVP.Promise</a> that may be used for realise post factum logic. In addition to these four types of windows you could create an another one, by extending dialog-manager service, the instruction is described on `customising & translations` page.
+These methods return <a href="http://emberjs.com/api/classes/RSVP.Promise.html">Ember.RSVP.Promise</a> that may be used to realise post factum logic. In addition to these four types of windows you can create another one, by extending dialog-manager service, the instruction is on `customising & translations` page.
 
 
 ### Alert
 
-Dialog-window has got just one button which fires `accept` event. May be used to notify user about an errors, warnings and information messages.
+Dialog-window has got just one button which fires `accept` event. May be used to notify a user about errors, warnings and information messages.
 
 <table class="table arguments">
     <tr>
@@ -44,7 +44,7 @@ Dialog-window has got just one button which fires `accept` event. May be used to
             <div>String</div>
         </td>
         <td>
-            Representation object, inserts into content part of the dialog's layout. Controller, if it provided, connects to it to listening events. String value is transforming into the template-function, wrapped by auto-created `view`.
+            Representation object which is inserted into the content part of the dialog's layout. Controller, if provided, is connecting to listen to the events. String value is transforming into the template-function, wrapped by auto-created `view`.
         </td>
     </tr>
     <tr>
@@ -53,7 +53,7 @@ Dialog-window has got just one button which fires `accept` event. May be used to
             <div><a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a></div>
         </td>
         <td>
-            This argument isn't required. `Controller` is connecting to `view`, thus provides data to view and gets able to listen events.
+            This argument isn't required. `Controller` is connecting to `view`, thus providing data to view and to be able to listen to the events.
         </td>
     </tr>
     <tr>
@@ -79,7 +79,7 @@ Dialog-window with a couple of buttons. One of them fires the `accept` event, th
             <div>String</div>
         </td>
         <td>
-            Representation object, inserts into content part of the dialog's layout. Controller, if it provided, connects to it to listening events. String value is transforming into the template-function, wrapped by auto-created `view`.
+            Representation object which is inserted into the content part of the dialog's layout. Controller, if provided, is connecting to listen to the events. String value is transforming into the template-function, wrapped by auto-created `view`.
         </td>
     </tr>
     <tr>
@@ -88,7 +88,7 @@ Dialog-window with a couple of buttons. One of them fires the `accept` event, th
             <div><a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a></div>
         </td>
         <td>
-            This argument isn't required. `Controller` is connecting to `view`, thus provides data to view and gets able to listen events.
+            This argument isn't required. `Controller` is connecting to `view`, thus providing data to view and to be able to listen to the events.
         </td>
     </tr>
     <tr>
@@ -114,7 +114,7 @@ The dialog-window creates without any buttons, you may define these by yourself.
             <div>String</div>
         </td>
         <td>
-            Representation object, inserts into content part of the dialog's layout. Controller, if it provided, connects to it to listening events. String value is transforming into the template-function, wrapped by auto-created `view`.
+            Representation object which is inserted into the content part of the dialog's layout. Controller, if provided, is connecting to listen to the events. String value is transforming into the template-function, wrapped by auto-created `view`.
         </td>
     </tr>
     <tr>
@@ -123,7 +123,7 @@ The dialog-window creates without any buttons, you may define these by yourself.
             <div><a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a></div>
         </td>
         <td>
-            This argument isn't required. `Controller` is connecting to `view`, thus provides data to view and gets able to listen events.
+            This argument isn't required. `Controller` is connecting to `view`, thus providing data to view and to be able to listen to the events.
         </td>
     </tr>
     <tr>
@@ -149,7 +149,7 @@ Creates dialog window without any controls. Its appear in the upper-right corner
             <div>String</div>
         </td>
         <td>
-            Representation object, inserts into content part of the dialog's layout. Controller, if it provided, connects to it to listening events. String value is transforming into the template-function, wrapped by auto-created `view`.
+            Representation object which is inserted into the content part of the dialog's layout. Controller, if provided, is connecting to listen to the events. String value is transforming into the template-function, wrapped by auto-created `view`.
         </td>
     </tr>
     <tr>
