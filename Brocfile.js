@@ -114,7 +114,7 @@ var appJsAMD = concat(appJsAMD, {
     header: '/** Copyright Wheely Inc. 2014 **/', // (optional)
 });
 
-loader = pickFiles('vendor', {srcDir: '/', files: ['*.js'], destDir: '/assets'});
+vendors = pickFiles('vendor', {srcDir: '/', files: ['*.js'], destDir: '/assets'});
 
 
 
@@ -123,4 +123,4 @@ loader = pickFiles('vendor', {srcDir: '/', files: ['*.js'], destDir: '/assets'})
 /////////////////////////////////////////////////////////////////////
 var html = pickFiles(app, { srcDir: '/ember-dialog', files: ['index.html'], destDir : '/'});
 
-module.exports = mergeTrees([appJsAMD, appCss, html, loader])
+module.exports = mergeTrees([appJsAMD, appCss, html, vendors])

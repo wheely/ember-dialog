@@ -339,11 +339,12 @@ export default Ember.Object.extend(Ember.Evented, {
                 dialog.reopen({actions: actions});
             }
             this.setDialog(name, dialog);
+
             if (Ember.typeOf(view) === 'string') {
                 view = this._getView(view, controller);
                 // Putting view into a dialog
                 dialog.set('body', view);
-            } else if (Ember.typeOf(view) === 'class') {
+            } else if (Ember.typeOf(view) === 'class' || Ember.typeOf(view) === 'instance') {
                 dialog.setProperties({ body: view });
             } else {
                 throw new Ember.Error('The given view unrecognized');
@@ -446,19 +447,38 @@ export default Ember.Object.extend(Ember.Evented, {
       @return {Ember.View}
     */
     _getView: function(view, controller) {
-        var template = '',
+        var template = '', viewObject,
             container = controller.container || this.container;
         if (Ember.typeOf(view) === 'string') {
+<<<<<<< HEAD
             // The view comes as a string. Necessary to find it by the name in the registry.
             template = container.lookup("template:" + view);
             // If a template cannot be found by the name, the name is not a
             // template's path it's a template itself.
+=======
+
+            // At first looking for a view with a given name
+            viewObject = container.lookup("view:" + view);
+
+            // The view come as string. Needles to find it by name in the registry.
+            template = container.lookup("template:" + view);
+
+            // The view was found - use it as a dialog's body
+            if (viewObject instanceof Ember.View) {
+                if (!viewObject.get('template') && !viewObject.get('templateName') && template) {
+                    viewObject.set('templateName', view);
+                }
+                return viewObject.reopen({ controller: controller });
+            }
+
+            // If template could not be found by the name. Given name is not a template's path
+            // it's a template by self.
+>>>>>>> View support
             template = template || Ember.Handlebars.compile(view);
             // Creating a view by template.
             view = Ember.View.extend({ template: template, controller: controller });
         } else if (Ember.typeOf(view) === 'class') {
-            view = Ember.copy(view);
-            view = Ember.View.extend({ controller: controller });
+            view = view.extend({ controller: controller });
         } else {
             /*jshint multistr: true */
             throw new Ember.Error('The given view unrecognized. Should be a text or name of template or view class.');
@@ -515,10 +535,8 @@ export default Ember.Object.extend(Ember.Evented, {
         controller.reopen({ target: dialog, dialog: Ember.computed.alias('target').readOnly() });
 
         promise = new Ember.RSVP.Promise(function(resolve, reject) {
-            dialog.reopen({
-                resolved: resolve,
-                rejected: reject
-            });
+            dialog.resolved = function() { resolve && resolve(); };
+            dialog.rejected = function() { reject && reject(); };
         });
 
         return promise;
