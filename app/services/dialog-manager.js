@@ -450,12 +450,6 @@ export default Ember.Object.extend(Ember.Evented, {
         var template = '', viewObject,
             container = controller.container || this.container;
         if (Ember.typeOf(view) === 'string') {
-<<<<<<< HEAD
-            // The view comes as a string. Necessary to find it by the name in the registry.
-            template = container.lookup("template:" + view);
-            // If a template cannot be found by the name, the name is not a
-            // template's path it's a template itself.
-=======
 
             // At first looking for a view with a given name
             viewObject = container.lookup("view:" + view);
@@ -473,7 +467,6 @@ export default Ember.Object.extend(Ember.Evented, {
 
             // If template could not be found by the name. Given name is not a template's path
             // it's a template by self.
->>>>>>> View support
             template = template || Ember.Handlebars.compile(view);
             // Creating a view by template.
             view = Ember.View.extend({ template: template, controller: controller });
