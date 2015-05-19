@@ -1,0 +1,26 @@
+{
+    "name": "ember-dialog-bower/ember-dialog",
+    "description": "A data persistence library for Ember.js.",
+    "type": "component",
+    "license": "MIT",
+    "require": {
+        "components/ember": "~1.8.1"
+    },
+    "extra": {
+        "component": {
+            "scripts": [
+                "ember-dialog.js"
+            ],
+            "files": [
+                "ember-dialog.min.js",
+                "ember-dialog.prod.js"
+            ],
+            "shim": {
+                "exports": "Ember",
+                "deps": [
+                    "ember"
+                ]
+            }
+        }
+    }
+}

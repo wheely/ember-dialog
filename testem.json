@@ -1,0 +1,14 @@
+{
+  "test_page": "dist/index.html",
+  "serve_files": [
+    "dist/**/*.js",
+    "tests/**/*"
+  ],
+  "routes": {
+    "/ember-dialog.js": "dist/ember-dialog.js",
+    "/tests/tests.js": "dist/tests.js"
+  },
+  "launch_in_ci": [
+    "PhantomJS"
+  ]
+}

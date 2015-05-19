@@ -1,7 +1,21 @@
 language: node_js
+sudo: false
+cache:
+  directories:
+  - node_modules
 node_js:
-  - "0.10"
-before_script:
-  - npm install -g grunt-cli
-  - npm install -g bower
-  - bower install
+- '0.10'
+before_install:
+- npm config set spin false
+- npm install -g npm@^2
+install:
+- npm install
+script:
+- npm run-script test
+after_success:
+- npm run-script build:production
+- ./bin/bower-ember-dialog-build
+env:
+  global:
+  - BROCCOLI_ENV="production"
+  - secure: AId2fmCn1pLzAIFs4LsI13eL2WV70U0HQVZ8sUxZKSwMkzlWnwfcqkuVeYLSkLctgu5031no0LKO77chQxT/Pu5WkmiKkeXtnvIcAhwMp/7XV1pIH1V3/aL/kuAQ4bd5A94dndFb+QjCyH1cpDFTHho7ibDgwLMPWyA4GkPL8AU=
