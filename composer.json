@@ -1,5 +1,5 @@
 {
-    "name": "ember-dialog-bower/ember-dialog",
+    "name": "wheely/ember-dialog",
     "description": "A data persistence library for Ember.js.",
     "type": "component",
     "license": "MIT",

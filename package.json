@@ -1,77 +1,19 @@
 {
   "name": "ember-dialog",
   "version": "2.0.0-beta",
-  "namespace": "Dialog",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wheely/ember-dialog.git"
-  },
-  "license": "MIT",
+  "description": "A data persistence library for Ember.js.",
   "keywords": [
-    "ember-addon",
-    "dialog",
-    "modal",
-    "popup"
+    "ember"
   ],
-  "main": "lib/ember-addon/index.js",
-  "ember-addon": {
-    "main": "lib/ember-addon/index.js"
+  "main": "./ember-dialog.js",
+  "dependencies": {
+    "ember": ">= 1.8.1 < 2.0.0"
   },
-  "files": [
-    "lib/ember-addon"
-  ],
-  "scripts": {
-    "build": "ember build",
-    "build:production": "ember build --environment=production",
-    "prepublish": "bower install && npm run-script build:production",
-    "start": "ember serve",
-    "publish-build": "npm run build:production && ./bin/publish-to-s3.js",
-    "test": "npm run-script build:production && npm run-script test:local",
-    "test:local": "testem -R dot ci",
-    "test:beta": "testem -f config/testem-beta.json -R dot ci",
-    "test:canary": "testem -f config/testem-canary.json -R dot ci",
-    "test:stable": "testem -f config/testem-stable.json -R dot ci"
-  },
-  "devDependencies": {
-    "aws-sdk": "~2.0.0-rc8",
-    "bower": "~1.3",
-    "broccoli": "^0.16.2",
-    "broccoli-compile-modules": "^1.1.0",
-    "broccoli-concat": "0.0.12",
-    "broccoli-defeatureify": "^0.3.0",
-    "broccoli-ember-hbs-template-compiler": "^1.7.0",
-    "broccoli-env": "0.0.1",
-    "broccoli-es3-safe-recast": "0.0.8",
-    "broccoli-es6-module-transpiler": "^0.5.0",
-    "broccoli-es6-transpiler": "^0.1.0",
-    "broccoli-file-creator": "^0.1.0",
-    "broccoli-file-mover": "~0.2.0",
-    "broccoli-filter": "^0.1.14",
-    "broccoli-jscs": "0.0.14",
-    "broccoli-jshint": "^0.5.1",
-    "broccoli-merge-trees": "^0.1.4",
-    "broccoli-render-template": "0.0.3",
-    "broccoli-replace": "~0.2.0",
-    "broccoli-sass": "^0.6.6",
-    "broccoli-static-compiler": "^0.2.1",
-    "broccoli-stew": "^0.2.1",
-    "broccoli-uglify-js": "^0.1.3",
-    "broccoli-wrap": "0.0.2",
-    "broccoli-yuidoc": "^1.3.0",
-    "defeatureify": "~0.1.4",
-    "ejs": "^1.0.0",
-    "ember-cli": "^0.1.15",
-    "ember-cli-htmlbars": "^0.7.6",
-    "ember-inflector": "^1.5.0",
-    "ember-publisher": "0.0.7",
-    "ember-template-compiler": "^1.9.0-alpha",
-    "es6-module-transpiler": "^0.9.5",
-    "es6-module-transpiler-amd-formatter": "^0.2.4",
-    "es6-module-transpiler-package-resolver": "^1.0.1",
-    "git-repo-version": "0.0.2",
-    "handlebars": "^2.0.0",
-    "jscs": "^1.12.0",
-    "testem": "^0.6.19",
-    "yuidocjs": "~0.3.46"
+  "jspm": {
+    "main": "ember-dialog",
+    "shim": {
+      "ember-dialog": { "deps": ["ember"], "exports": "DS" },
+      "ember-dialog.prod": { "deps": ["ember"], "exports": "DS" }
+    }
   }
 }

@@ -2,34 +2,8 @@
   window.EmberDev = window.EmberDev || {};
 
   EmberDev.afterEach = function() {
-      // if (Ember && Ember.View) {
-      //   var viewIds = [], id;
-      //   for (id in Ember.View.views) {
-      //     if (Ember.View.views[id] != null) {
-      //       viewIds.push(id);
-      //     }
-      //   }
 
-      //   if (viewIds.length > 0) {
-      //     deepEqual(viewIds, [], "Ember.View.views should be empty");
-      //     Ember.View.views = [];
-      //   }
-      // }
-
-      // if (Ember && Ember.TEMPLATES) {
-      //   var templateNames = [], name;
-      //   for (name in Ember.TEMPLATES) {
-      //     if (Ember.TEMPLATES[name] != null) {
-      //       templateNames.push(name);
-      //     }
-      //   }
-
-      //   if (templateNames.length > 0) {
-      //     deepEqual(templateNames, [], "Ember.TEMPLATES should be empty");
-      //     Ember.TEMPLATES = {};
-      //   }
-      // }
-    };
+  };
 
    window.globalFailedTests  = [];
       window.globalTestResults = null;
