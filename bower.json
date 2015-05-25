@@ -1,6 +1,6 @@
 {
   "name": "ember-dialog",
-  "version": "2.0.0-beta",
+  "version": "2.0.1-0",
   "main": "ember-dialog.js",
   "dependencies": {
     "ember": ">= 1.8.1 < 2.0.0"
