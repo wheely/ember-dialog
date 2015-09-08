@@ -373,6 +373,7 @@ export default Ember.Object.extend(Ember.Evented, {
             var dialog = this.getDialog(name);
             Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Closing the dialog named %s', 'font-weight: 900;', null, name);
             this._destroyDialog(name);
+	    this.cleanDialog(name);
             resolve(dialog);
             if (this.get("active")) {
                 var nextDialog = this.getDialog(this.get("active"));
@@ -401,9 +402,22 @@ export default Ember.Object.extend(Ember.Evented, {
     */
     setDialog: function(name, instance) {
         Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c Register dialog named %s', 'font-weight: 900;', null, name);
+	//delete this.get('_dialogs').name;
         return this.get('_dialogs').set(name, instance);
     },
 
+    /**
+      clean the modal from the name list.
+
+      @method setDialog
+      @param {String} name      - The name of the dialog
+      @param {String} instance  - The dialog instance
+    */
+    cleanDialog: function(name) {
+        Ember.ENV.LOG_DIALOG && Ember.Logger.log('%cDialogManager:%c delete dialog named %s index.', 'font-weight: 900;', null, name);
+        return this.get('_dialogs').set(name, undefined);
+    },
+    
     /**
       Returns UUID (random name of the dialog).
 
