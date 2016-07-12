@@ -1,0 +1,17 @@
+<div class="dialog-dialog component-dialog-dialog {{className}} {{if substrate "substrate"}}">
+  <div class="dialog-content" tabindex="-1">
+
+    <div class="dialog-header">
+      <button type="button" class="close" {{action "decline"}}>×</button>
+      <div class="dialog-title">{{ title }}</div>
+    </div>
+
+    <div class="dialog-body">{{yield}}</div>
+
+    <div class="dialog-footer">
+      <button class="btn {{acceptClass}}" type="button" {{action "accept"}}>{{acceptLabel}}</button>
+      <button class="btn {{declineClass}}" type="button" {{action "decline"}}>{{declineLabel}}</button>
+    </div>
+
+  </div>
+</div>
