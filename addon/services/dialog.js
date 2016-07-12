@@ -15,8 +15,8 @@ export default Ember.Service.extend(Ember.Evented, {
     declineLabel: 'no',
     acceptClass: 'btn-primary',
     declineClass: 'btn-default',
-    acceptHandlerName: 'accept',
-    declineHandlerName: 'decline',
+    acceptHandler: 'accept',
+    declineHandler: 'decline',
     title: '',
     className: ''
   },
@@ -46,10 +46,10 @@ export default Ember.Service.extend(Ember.Evented, {
     presenter.one("accepted", presenter => this.declined(presenter));
   },
 
-  show(layoutName, templateName, context = {}, options = {}) {
+  show(layoutName, templateName, context, options = {}) {
 
     // Getting presenter class to create its instance that we'll show.
-    var Presenter = this.container.lookupFactory("dialog:presenter");
+    var Presenter = this.container.lookupFactory("component:presenter");
 
     Presenter = Presenter.extend(ContextMixin);
 
@@ -61,7 +61,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
     // Creating instance
     const presenter = Presenter.create(options);
-    presenter.context.set("contextObject", context);
+    presenter.context.set("contextObject", context || Ember.Object.create());
 
     // Show it to user
     Ember.run(() => presenter.appendTo(this.get("rootElement")));
@@ -80,6 +80,10 @@ export default Ember.Service.extend(Ember.Evented, {
 
   confirm(template, context, options) {
     return this.show(Configuration["ember-dialog"].layoutPath + "/confirm", template, context, options);
+  },
+
+  blank(template, context, options) {
+    return this.show(Configuration["ember-dialog"].layoutPath + "/blank", template, context, options);
   }
 
 });

@@ -10,8 +10,15 @@ module.exports = {
   },
 
   included: function(app, parentAddon) {
-    this._super.included(app);
+    var target = (parentAddon || app);
+    target.options = target.options || {};
+    this._super.included(target);
     app.import('vendor/ember-dialog/register-version.js');
+  },
+
+  // @see https://github.com/ember-cli/ember-cli/issues/4918
+  hintingEnabled: function() {
+    return false;
   }
 
 };
