@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ContextMixin from '../../../mixins/context';
+import ContextMixin from 'ember-dialog/mixins/context';
 import { module, test } from 'qunit';
 
 module('Unit | Mixin | context');

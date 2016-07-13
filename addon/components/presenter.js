@@ -1,6 +1,10 @@
 import Ember from 'ember';
 import { max } from "ember-dialog/utils/zindex";
 
+/**
+ * @module ember-dialog/components/presenter
+ * @augments Ember.Component
+ */
 export default Ember.Component.extend({
 
   resolve: null,
