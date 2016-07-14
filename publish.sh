@@ -4,7 +4,7 @@ rm -rf gh-pages/docs
 mv docs gh-pages/
 cd gh-pages
 git init
-git remote add docs git@github.com:ajile/ember-dialog.git
+git remote add docs git@github.com:wheely/ember-dialog.git
 git fetch docs
 git checkout --orphan gh-pages
 git add .
