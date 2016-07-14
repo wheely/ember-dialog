@@ -26,11 +26,14 @@
   ],
   "templates": {
     "cleverLinks": false,
-    "monospaceLinks": false
+    "monospaceLinks": false,
+    "theme": "cosmo",
+    "systemName": "ember-dialog",
+    "sort": "version, since, longname"
   },
   "opts": {
     "encoding": "utf8",
-    "template": "node_modules/ember-cli-jsdoc/jsdocTemplates/default",
+    "template": "node_modules/ink-docstrap/template",
     "destination": "docs",
     "recurse": true,
     "access": "all",
