@@ -1,28 +1,6 @@
 # ember-dialog
 
-## About
-
-An Ember Addon that able you to easily create dialog windows and control their closing.
-
-![](http://dl2.joxi.net/drive/2016/07/14/0007/2363/473403/03/5f20c42c19.png)
-
-Состоих из сервиса, который доступен из любого объекта и из компонента который представляет само модальное окно.
-
-Принцип работы простой. Сервис получает команду показать модальное окно (show, alert, confirm или blank), по которой создает экземпляр класса компонента с нужными layout и template, рендерит его и крепит к body. В этот момент им также создается Promise, "ручки" которого кладутся в объект компонента. Промис возвращается. Объект компонента имеет на борту 2а экшена: одно для "успешного закрытия" - accept, другое для "неуспешного" - decline. Экшены доступны внутри шаблона и могут быть вызваны, скажем по клику на кнопку (layout или template). При вызове action выполняется один из методов промиса и отстреливается независимое событие "accepted" или "declined", слушая которые диалоговый сервис уничтожает объект - он открепляется от DOM.
-
-Для пользователя сервис работает следующим образом. Скажем нужно пользователю показать предупреждение. Для этого вызывается метод диалогового сервиса "show", с указанием пути до лейаута (нам нужно с одной кнопкой, т.е. alert, об этом подробнее ниже) и путем до шаблона который надо показать в модальном окне. Метод создает и показывает диалоговое окно и возвращает Promise, который станет зарезолвленным или зарежекченным по закрытию диалогового окна, в зависимости от того какую кнопку нажал пользователь. В общем все довольно просто.
-
-```javascript
-// The `dialog/alert` is predefined layout template (with only "accept" button)
-// The `messages/hello` is template that you'd like to show.
-// Notice: this template should be found in your project by path `app/templates/messages/hello`
-const layoutName = "dialog/alert";
-const templateName = "messages/hello";
-const promise = this.get("dialog").show(layoutName, templateName);
-promise.then(() => {
-  console.log(`Message shown`);
-});
-```
+Old version (ember-cli-dialog and ember-dialog below v2) outdated and will not be supported.
 
 ## Installation
 
@@ -32,25 +10,65 @@ Installing the library is as easy as:
 ember install ember-dialog
 ```
 
+## About
+
+<img align="right" src="http://dl2.joxi.net/drive/2016/07/14/0007/2363/473403/03/5f20c42c19.png">
+
+An Ember Addon that able you to easily create dialog windows and control their closing. It consists of a service that is available from any object and a component which is a dialog-window itself.
+
+The principle of work is simple. Service is instructed to display a modal window (`show`, `alert`, `confirm` or `blank` methods), by which creates a component instance with required layout and template, renders it, and then attaches to the body. At this point, it also creates the Promise, "handles" which are placed in the component object and returns it. The component has on aboard 2 actions: one for `resolved` closing, another one for `rejected` closing. Actions available within the template and can be called, for instance by clicking on the button (in the layout or in the template). When you call the action is executed one of the Promise methods and triggering independent "accepted" or "declined" event. Listening this events the dialog sevice distroying component object and dettach it from the DOM.
+
+Let's say you want to ask user confirm an action. You should call `show` method of the dialog service with a layout path (you needed dialog window with two buttons - `confirm` layout what you need) and a path to template that you want to show in the modal window. Method creates and shows dialog window and returns a Promise, that will become resolved or rejected when window will be closed, depended on which button user clicked.
+
+```javascript
+// The `dialog/confirm` - predefined layout template
+// The `messages/hello` - template that you'd like to show.
+// Notice: this template should be found in your project by path `app/templates/messages/hello`
+const layoutName = "dialog/confirm";
+const templateName = "messages/hello";
+const promise = this.get("dialog").show(layoutName, templateName);
+
+const yes = () => { console.log(`yes pressed`); };
+const no = () => { console.log(`no pressed`); };
+
+promise.then(yes, no);
+```
+
 ## Dialog types (predefined layouts)
 
-На борту ember-dialog есть следующие лейауты: `alert`, `confirm` and `blank`.
+ember-dialog has next layouts on aboard: `alert`, `confirm` and `blank`.
 
 ### Alert
 
-Этот лейаут имеет лишь одну кнопку "yes", которая с успехом закрывает модальное окно. Также имеется крестик для закрытия, по нажатию на который окно также зыкрывается с успехом. Т.е. промис объект этого диалогового окна резолвится при его закрытии. Может использоваться для показа пользователю какой-то информации. Подробнее можете прочитать [в документации](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-alert__anchor).
+This layout has only 'yes' - button clicking on which the modal window closes as `resolved`. It also has X-button which closes modal window as `resolved`. The `promise` object always resolved on modal closing. May be used for showing an information to the user. See [docs](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-alert__anchor).
 
 ### Confirm
 
-На практике наиболее используемый лейаут. Имеет на борту 2-е кнопки, которые закрывают модальное окно. Одна кнопка закрывает окно с успехом, другая с режектом. Также имеется крестик закрытия - он закрывает модальное окно с режектом (по понятным причинам). Подробнее можете прочитать [в документации](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-confirm__anchor).
+In practice, the most widely used layout. It has 2 buttons, which closes dialog window. One of them closes window as `resolved`, another one closes as `rejected`. It also has X-button which closes window as `rejected` (for obvious reasons). See [docs](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-confirm__anchor).
 
 ### Blank
 
-Самый простой лейаут модального окна. У него нет ни кнопок, ни крестика...в общем ничего. Может быть использован для показа пользователя кастомного интерфейса с собственной логикой отображения элементов закрытия окна. На практике часто используется для отображения различных форм, который на событие onsubmit шлют запрос на его закрытие. Удобно использовать в связке с формами ember-validation (usecase появится позже). Подробнее можете прочитать [в документации](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-blank__anchor).
+The most simple layout. It has nothing on aboard. May be used for creating custom dialog windows with its own logic of showing elements and closing. In practice often used for showing forms, in this cases accept closing carried on submit action. Convenient to use in conjunction with ember-validation (TBD:Usecase). See [docs](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-blank__anchor).
 
 ## Styles
 
-TBD
+Styles were written on sass language, you're able to include them into you project.
+
+Add path to `sassOptions.includePaths` in your `ember-cli-build.js`:
+
+```javascript
+var app = new EmberApp(defaults, {
+  sassOptions: {
+    includePaths: [ 'node_modules/ember-dialog/addon/styles' ]
+  }
+});
+```
+
+Include them in your `app/styles/app.scss`:
+
+```sass
+@import "ember-dialog";
+```
 
 ## Usage
 
@@ -221,4 +239,3 @@ export default Dialog.extend({
 
 });
 ```
-
