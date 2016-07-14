@@ -87,6 +87,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
   /**
    * @method
+   * @fires module:ember-dialog/services/dialog~destroyed
    * @param {module:ember-dialog/components/presenter} presenter
    */
   destroyPresenter(presenter) {
@@ -117,7 +118,7 @@ export default Ember.Service.extend(Ember.Evented, {
      *
      * });
      *
-     * @event module:ember-dialog/services/dialog~destroy
+     * @event module:ember-dialog/services/dialog~destroyed
      * @type {module:ember-dialog/components/presenter}
      */
     Ember.run.scheduleOnce("destroy", this, () => { this.trigger("destroyed", presenter); });
@@ -230,8 +231,8 @@ export default Ember.Service.extend(Ember.Evented, {
    * @param {String} templateName     - Path to template that will be shown in the dialog window.
    *                                    In the template is available `presenter` object as `this`
    *                                    and context that passed on creation as `contextObject`.
-   * @param {Object} [context]
-   * @param {Object} [options={}]
+   * @param {Object} [context]        - An onject available in the template as `contextObject`.
+   * @param {Object} [options={}]     - An object pass to presenter on creating.
    * @return {external:Ember/RSVP/Promise}
    */
   show(layoutName, templateName, context, options = {}) {
@@ -291,7 +292,7 @@ export default Ember.Service.extend(Ember.Evented, {
   /**
    * @example
    * <caption>
-   * It is sugar. The method wraps `show` method with predefined layout.
+   * It is sugar. The [show]{@link module:ember-dialog/services/dialog~show} method with predefined layout.
    * </caption>
    *
    * export default Ember.Controller({
@@ -317,7 +318,7 @@ export default Ember.Service.extend(Ember.Evented, {
   /**
    * @example
    * <caption>
-   * It is sugar. The method wraps `show` method with predefined layout.
+   * It is sugar. The [show]{@link module:ember-dialog/services/dialog~show} method with predefined layout.
    * </caption>
    *
    * export default Ember.Controller({
@@ -343,7 +344,7 @@ export default Ember.Service.extend(Ember.Evented, {
   /**
    * @example
    * <caption>
-   * It is sugar. The method wraps `show` method with predefined layout.
+   * It is sugar. The [show]{@link module:ember-dialog/services/dialog~show} method with predefined layout.
    * </caption>
    *
    * export default Ember.Controller({
