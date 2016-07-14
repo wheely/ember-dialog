@@ -125,10 +125,111 @@ export default Ember.Service.extend(Ember.Evented, {
   },
 
   /**
+   * @example
+   * <caption>
+   * Simple usage - post factum handling. It's the common case when you needed
+   * just get result of the dialog closing. For example show user an inform
+   * message or ask him to confirm an action.
+   * </caption>
+   *
+   * export default Ember.Controller({
+   *
+   *   success() {
+   *     // Showing user modal with message that record was successfully deleted.
+   *     // Showing template `app/templates/messages/success-deletion.hbs`.
+   *     this.get("dialog").show("dialog/alert", "messages/success-deletion");
+   *   },
+   *
+   *   deleteRecord(record) {
+   *     // Showing user a dialog window to confirm act. Template to show the
+   *     // user `app/templates/messages/areyousure.hbs`. The template
+   *     // should have few buttons: "Ok" and "Cancel". "Ok" button evaluates
+   *     // `accept` action, "Cancel" evaluates `decline` action.
+   *     const promise = this.get("dialog").show("dialog/confirm", "messages/areyousure");
+   *
+   *     // User pressed "Ok" button - promise resolved in this case
+   *     promise.then(() => { record.deleteRecord(); return record.deleteRecord(); });
+   *
+   *     // Record was successfully deleted
+   *     promise.then(() => { this.success(); });
+   *
+   *     return promise;
+   *   }
+   *
+   * });
+   *
+   *
+   * @example <caption>Passing a context to the template that will be shown to
+   * user in the dialog.</caption>
+   *
+   * export default Ember.Controller({
+   *
+   *   username: Ember.computed.alias("session.username"),
+   *
+   *   hello() {
+   *     const username = this.get("username");
+   *
+   *     // Showing user simple personal greeting. The username passed in
+   *     // context object. This object's put into the `contextObject`
+   *     // presenter's property and become available in the template.
+   *     this.get("dialog").show("dialog/alert", "messages/hello", { username });
+   *   }
+   *
+   * });
+   *
+   * @example <caption>The template in this case will look like.</caption>
+   *
+   * Hello, {{contextObject.username}}!
+   *
+   *
+   * @example <caption>With context you're able to pass an action names of the
+   * context that will be executed at first, before executing `accept` and
+   * `decline` handlers of the dialog (presenter).</caption>
+   *
+   * export default Ember.Controller({
+   *
+   *   showForm() {
+   *     const options = { actionName: "save" };
+   *
+   *     // Passing current controller as context and the name of it's action
+   *     // on `accept`.
+   *     const promise = this.get("dialog").show("dialog/confirm", "messages/user-form", this, options);
+   *
+   *     promise.then(() => {
+   *       console.log("Model saved");
+   *     });
+   *   },
+   *
+   *   actions: {
+   *
+   *     save(presenter) {
+   *       const model = this.get("model");
+   *
+   *       if ( Ember.isBlank(model.get("username")) ) {
+   *         this.get("dialog").show("dialog/alert", "messages/error");
+   *         return;
+   *       }
+   *
+   *       // "Manually" closing `presenter`
+   *       model.save(() => presenter.accept());
+   *     }
+   *
+   *   }
+   *
+   * });
+   *
    * @method
    * @fires module:ember-dialog/services/dialog~created
-   * @param {String} layoutName
-   * @param {String} templateName
+   * @param {String} layoutName       - Path to layout that used to showing message. Predefined layouts:
+   *                                    `dialog/alert`, `dialog/confirm` and `dialog/blank`. Alert
+   *                                    layout has only one button and can be closed as accepted only.
+   *                                    Confirm layout has two buttons and can be close as accepted or
+   *                                    declined. The blank layout hasn't any buttons at all and can
+   *                                    be closed as accepted or declined. In any layouts available
+   *                                    actions: 'accept' and 'decline'.
+   * @param {String} templateName     - Path to template that will be shown in the dialog window.
+   *                                    In the template is available `presenter` object as `this`
+   *                                    and context that passed on creation as `contextObject`.
    * @param {Object} [context]
    * @param {Object} [options={}]
    * @return {external:Ember/RSVP/Promise}
@@ -188,6 +289,21 @@ export default Ember.Service.extend(Ember.Evented, {
   },
 
   /**
+   * @example
+   * <caption>
+   * It is sugar. The method wraps `show` method with predefined layout.
+   * </caption>
+   *
+   * export default Ember.Controller({
+   *
+   *   expired() {
+   *     try { 1/0 } catch (e) {
+   *       this.get("dialog").alert("messages/fatal-error", { text: e.message });
+   *     }
+   *   }
+   *
+   * });
+   *
    * @method
    * @param {String} templateName
    * @param {Object} [context]
@@ -199,6 +315,21 @@ export default Ember.Service.extend(Ember.Evented, {
   },
 
   /**
+   * @example
+   * <caption>
+   * It is sugar. The method wraps `show` method with predefined layout.
+   * </caption>
+   *
+   * export default Ember.Controller({
+   *
+   *   remove() {
+   *     const yes = () => { console.log("yes"); },
+   *           no = () => { console.log("no"); }
+   *     this.get("dialog").confirm("messages/yousure").then(yes, no);
+   *   }
+   *
+   * });
+   *
    * @method
    * @param {String} templateName
    * @param {Object} [context]
@@ -210,6 +341,19 @@ export default Ember.Service.extend(Ember.Evented, {
   },
 
   /**
+   * @example
+   * <caption>
+   * It is sugar. The method wraps `show` method with predefined layout.
+   * </caption>
+   *
+   * export default Ember.Controller({
+   *
+   *   showForm() {
+   *     this.get("dialog").blank("forms/edit-user", this);
+   *   }
+   *
+   * });
+   *
    * @method
    * @param {String} templateName
    * @param {Object} [context]
