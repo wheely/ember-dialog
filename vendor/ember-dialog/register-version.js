@@ -1,1 +1,1 @@
-Ember.libraries.register('Ember Dialog', '3.0.0-rc.2');
+Ember.libraries.register('Ember Dialog', '3.0.0-rc.3');

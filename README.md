@@ -14,7 +14,7 @@ ember install ember-dialog
 
 <img align="right" src="http://dl2.joxi.net/drive/2016/07/14/0007/2363/473403/03/5f20c42c19.png">
 
-An Ember Addon that able you to easily create dialog windows and control their closing. It consists of a service that is available from any object and a component which is a dialog-window itself.
+An Ember Addon that able you to easily create **routable** dialog windows and control their closing. It consists of a service that is available from any object and a component which is a dialog-window itself.
 
 The principle of work is simple. Service is instructed to display a modal window (`show`, `alert`, `confirm` or `blank` methods), by which creates a component instance with required layout and template, renders it, and then attaches to the body. At this point, it also creates the Promise, "handles" which are placed in the component object and returns it. The component has on aboard 2 actions: one for `resolved` closing, another one for `rejected` closing. Actions available within the template and can be called, for instance by clicking on the button (in the layout or in the template). When you call the action is executed one of the Promise methods and triggering independent "accepted" or "declined" event. Listening this events the dialog sevice distroying component object and dettach it from the DOM.
 
