@@ -1,7 +1,15 @@
 import Ember from 'ember';
 
+/**
+ * @module ember-dialog/mixins/context
+ * @augments Ember.Mixin
+ */
 export default Ember.Mixin.create({
 
+  /**
+   * @property {Function} accept
+   * @property {Function} decline
+   */
   actions: {
 
     accept() {

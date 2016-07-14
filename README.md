@@ -1,26 +1,241 @@
-# Ember-dialog
+# ember-dialog
 
-This README outlines the details of collaborating on this Ember addon.
+Old version (ember-cli-dialog and ember-dialog below v2) outdated and will not be supported.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+Installing the library is as easy as:
 
-## Running
+```shell
+ember install ember-dialog
+```
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+## About
 
-## Running Tests
+<img align="right" src="http://dl2.joxi.net/drive/2016/07/14/0007/2363/473403/03/5f20c42c19.png">
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+An Ember Addon that able you to easily create dialog windows and control their closing. It consists of a service that is available from any object and a component which is a dialog-window itself.
 
-## Building
+The principle of work is simple. Service is instructed to display a modal window (`show`, `alert`, `confirm` or `blank` methods), by which creates a component instance with required layout and template, renders it, and then attaches to the body. At this point, it also creates the Promise, "handles" which are placed in the component object and returns it. The component has on aboard 2 actions: one for `resolved` closing, another one for `rejected` closing. Actions available within the template and can be called, for instance by clicking on the button (in the layout or in the template). When you call the action is executed one of the Promise methods and triggering independent "accepted" or "declined" event. Listening this events the dialog sevice distroying component object and dettach it from the DOM.
 
-* `ember build`
+Let's say you want to ask user confirm an action. You should call `show` method of the dialog service with a layout path (you needed dialog window with two buttons - `confirm` layout what you need) and a path to template that you want to show in the modal window. Method creates and shows dialog window and returns a Promise, that will become resolved or rejected when window will be closed, depended on which button user clicked.
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+```javascript
+// The `dialog/confirm` - predefined layout template
+// The `messages/hello` - template that you'd like to show.
+// Notice: this template should be found in your project by path `app/templates/messages/hello`
+const layoutName = "dialog/confirm";
+const templateName = "messages/hello";
+const promise = this.get("dialog").show(layoutName, templateName);
+
+const yes = () => { console.log(`yes pressed`); };
+const no = () => { console.log(`no pressed`); };
+
+promise.then(yes, no);
+```
+
+## Dialog types (predefined layouts)
+
+ember-dialog has next layouts on aboard: `alert`, `confirm` and `blank`.
+
+### Alert
+
+This layout has only 'yes' - button clicking on which the modal window closes as `resolved`. It also has X-button which closes modal window as `resolved`. The `promise` object always resolved on modal closing. May be used for showing an information to the user. See [docs](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-alert__anchor).
+
+### Confirm
+
+In practice, the most widely used layout. It has 2 buttons, which closes dialog window. One of them closes window as `resolved`, another one closes as `rejected`. It also has X-button which closes window as `rejected` (for obvious reasons). See [docs](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-confirm__anchor).
+
+### Blank
+
+The most simple layout. It has nothing on aboard. May be used for creating custom dialog windows with its own logic of showing elements and closing. In practice often used for showing forms, in this cases accept closing carried on submit action. Convenient to use in conjunction with ember-validation (TBD:Usecase). See [docs](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-blank__anchor).
+
+## Styles
+
+Styles were written on sass language, you're able to include them into you project.
+
+Add path to `sassOptions.includePaths` in your `ember-cli-build.js`:
+
+```javascript
+var app = new EmberApp(defaults, {
+  sassOptions: {
+    includePaths: [ 'node_modules/ember-dialog/addon/styles' ]
+  }
+});
+```
+
+Include them in your `app/styles/app.scss`:
+
+```sass
+@import "ember-dialog";
+```
+
+## Usage
+
+### Showing user a simple message
+
+```javascript
+export default Ember.Controller({
+
+  showDialog() {
+    // Will be used `app/templates/error-message.hbs`
+    this.get("dialog").alert("error-message");
+  }
+
+});
+```
+
+
+### Showing user a simple message to confirm action
+
+```javascript
+export default Ember.Controller({
+
+  showDialog() {
+
+    const yes = () => { console.log("Yes"); };
+    const no = () => { console.log("No"); };
+
+    // Will be used `app/templates/messages/are-you-sure.hbs`
+    this.get("dialog").confirm("messages/are-you-sure").then(yes, no);
+
+  }
+
+});
+```
+
+
+### Binding data in the dialog
+
+Controller:
+```javascript
+export default Ember.Controller({
+
+  now: now Date(),
+
+  model: { username: "ajile" },
+
+  showDialog() {
+
+    // Will be used `app/templates/messages/hello.hbs`
+    this.get("dialog").alert("messages/hello", this);
+
+  }
+
+});
+```
+
+Template `messages/hello.hbs`:
+```handlebar
+<div>Hello, {{contextObject.model.username}}! Now: {{contextObject.now}}. Click <button onclick={{action "accept"}}>the button</button> to close the dialog.</div>
+```
+
+
+### Interrupt closing of the dialog window
+
+```javascript
+export default Ember.Controller({
+
+  count: 0,
+
+  showDialog() {
+    // Will be used `app/templates/messages/click-counter.hbs`
+    this.get("dialog").alert("messages/click-counter", null, {
+      acceptHandler: "yesHandler"
+    });
+  },
+
+  actions: {
+    yesHandler(presenter) {
+      const count = this.get("count");
+      if (count < 5) {
+        console.log("Count less then five");
+        this.set("count", ++count);
+      } else {
+        presenter.accept();
+      }
+    }
+  }
+
+});
+```
+
+### Manual closing dialog window
+
+```javascript
+export default Ember.Controller({
+
+  showDialog() {
+
+    // Any created dialog will be closed in 1s
+    this.get("dialog").on("created", (presenter) => {
+      Ember.run.later(presenter, presenter.accept, 1000);
+    });
+
+    // Will be used `app/templates/messages/something.hbs`
+    this.get("dialog").alert("messages/something");
+
+  }
+
+});
+```
+
+### Creating new layouts
+
+Controller:
+
+```javascript
+export default Ember.Controller({
+
+  showDialog() {
+    // Will be used `app/templates/dialog-layouts/delete.hbs` as layout and
+    // `app/templates/messages/are-you-sure.hbs` as template.
+    this.get("dialog").show("dialog-layouts/delete", "messages/delete-user");
+  }
+
+});
+```
+
+Template `dialog-layouts/delete.hbs`:
+```handlebar
+<h1 style="color: #F00;">Confirm Deletion</h1>
+<div class="body">
+  {{yield}}
+</div>
+<button class="danger" onclick={{action "accept"}}>DELETE!</button>
+<button onclick={{action "decline"}}>Cancel</button>
+```
+
+Template `messages/delete-user.hbs`:
+```handlebar
+Really?
+```
+
+The result:
+```html
+<h1 style="color: #F00;">Confirm Deletion</h1>
+<div class="body">
+  Really?
+</div>
+<button class="danger" onclick="function(){...}">DELETE!</button>
+<button onclick="function(){...}">Cancel</button>
+```
+
+### Extend dialog manager
+
+Execute `ember g service dialog`.
+
+File `app/services/dialog.js`:
+```javascript
+import Dialog from "ember-dialog/services/dialog";
+
+export default Dialog.extend({
+
+  confirmDelete() {
+    const args = Array.prototype.slice.apply(arguments);
+    args.unshift("dialog-layouts/delete");
+    this.show(...args);
+  }
+
+});
+```
