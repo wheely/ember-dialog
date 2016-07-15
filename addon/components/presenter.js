@@ -8,6 +8,27 @@ import { max } from "ember-dialog/utils/zindex";
 export default Ember.Component.extend({
 
   /**
+   * Dialog service puts given `context` into this property. It is available
+   * from a dialog template.
+   *
+   * @example
+   * <caption>
+   * For example you may pass a context on creation the dialog and then get it
+   * from a template.
+   * </caption>
+   * export default Ember.Controller({
+   *   show() {
+   *     this.get("dialog").show("dialog/alert", "message-template", { foo: 123 });
+   *   }
+   * });
+   *
+   * @example
+   * <caption>
+   * Context that was passed on creation of the dialog is available in the
+   * template as `contextObject`.
+   * </caption>
+   * <div>Foo: {{contextObject.foo}}</div>
+   *
    * @type {Object}
    */
   contextObject: {},
