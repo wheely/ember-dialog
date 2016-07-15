@@ -1,4 +1,5 @@
 {{outlet}}
 
 
-<a href="javascript: void(0);" onclick={{action "test"}}>Show dialog</a>
+<div><a href="javascript: void(0);" onclick={{action "test"}}>Show dialog (from controller)</a></div>
+<div><a href="javascript: void(0);" onclick={{action dialog.alert "test-message" this (hash title="The title" acceptHandler="accept")}}>Show dialog (from template)</a></div>

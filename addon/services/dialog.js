@@ -245,7 +245,7 @@ export default Ember.Service.extend(Ember.Evented, {
     // const registry = this.container._registry;
     // const isExists = registry.resolver("template:" + templateName);
 
-    options = Ember.merge(this.get("defaults"), options);
+    options = Ember.merge(Ember.copy(this.get("defaults")), options);
     options = Ember.merge(options, { layoutName, templateName });
 
     // Creating instance
@@ -312,7 +312,9 @@ export default Ember.Service.extend(Ember.Evented, {
    * @return {external:Ember/RSVP/Promise}
    */
   alert(templateName, context, options) {
-    return this.show(Configuration["ember-dialog"].layoutPath + "/alert", templateName, context, options);
+    var scope = this;
+    if (!this.show) { scope = this.get("dialog"); }
+    return scope.show(Configuration["ember-dialog"].layoutPath + "/alert", templateName, context, options);
   },
 
   /**

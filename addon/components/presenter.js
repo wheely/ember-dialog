@@ -22,6 +22,8 @@ export default Ember.Component.extend({
    */
   reject: null,
 
+  substrate: true,
+
   /**
    * Name of the action that evaluated on `contextObject` when user accepting
    * dialog window.

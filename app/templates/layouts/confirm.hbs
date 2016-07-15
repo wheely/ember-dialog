@@ -2,15 +2,15 @@
   <div class="dialog-content" tabindex="-1">
 
     <div class="dialog-header">
-      <button type="button" class="close" {{action "decline"}}>×</button>
+      <button type="button" class="dialog-close" {{action "decline"}}></button>
       <div class="dialog-title">{{ title }}</div>
     </div>
 
     <div class="dialog-body">{{yield}}</div>
 
     <div class="dialog-footer">
-      <button class="btn" type="button" {{action "accept"}}>Yes</button>
-      <button class="btn" type="button" {{action "decline"}}>No</button>
+      <button class="btn btn__accept" type="button" {{action "accept"}}>Yes</button>
+      <button class="btn btn__decline" type="button" {{action "decline"}}>No</button>
     </div>
 
   </div>
