@@ -54,7 +54,7 @@ The most simple layout. It has nothing on aboard. May be used for creating custo
 
 Styles were written on sass language, you're able to include them into you project.
 
-Add path to `sassOptions.includePaths` in your `ember-cli-build.js`:
+Add path to `sassOptions.includePaths` in your `ember-cli-build.js` (example below).
 
 ```javascript
 var app = new EmberApp(defaults, {
@@ -70,9 +70,15 @@ Include them in your `app/styles/app.scss`:
 @import "ember-dialog";
 ```
 
+If you have your own style of the dialog windows you may use just structure styles:
+
+```sass
+@import "ember-dialog/structure";
+```
+
 ## Usage
 
-### Showing user a simple message
+### Showing user a simple message from controller
 
 ```javascript
 export default Ember.Controller({
@@ -83,6 +89,13 @@ export default Ember.Controller({
   }
 
 });
+```
+
+
+### Showing user a simple message from template
+
+```hbs
+  <button onclick={{action dialog.alert "confirm-delete" this (hash acceptHandler=(action "deleteRecord"))}}>Delete record</button>
 ```
 
 
@@ -126,7 +139,7 @@ export default Ember.Controller({
 ```
 
 Template `messages/hello.hbs`:
-```handlebar
+```hbs
 <div>Hello, {{contextObject.model.username}}! Now: {{contextObject.now}}. Click <button onclick={{action "accept"}}>the button</button> to close the dialog.</div>
 ```
 
@@ -197,7 +210,7 @@ export default Ember.Controller({
 ```
 
 Template `dialog-layouts/delete.hbs`:
-```handlebar
+```hbs
 <h1 style="color: #F00;">Confirm Deletion</h1>
 <div class="body">
   {{yield}}
@@ -207,7 +220,7 @@ Template `dialog-layouts/delete.hbs`:
 ```
 
 Template `messages/delete-user.hbs`:
-```handlebar
+```hbs
 Really?
 ```
 
@@ -239,3 +252,9 @@ export default Dialog.extend({
 
 });
 ```
+
+## Cookbook
+
+### Creating form dialog
+
+TBD

@@ -1,0 +1,104 @@
+$dialog-padding: 10px;
+$dialog-min-width: 300px;
+$dialog-max-width: 500px;
+
+.component-dialog-dialog {
+  min-width: $dialog-min-width;
+  max-width: $dialog-max-width;
+
+  &.substrate {
+    background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.3) 100%);
+
+    .dialog-content {
+      min-width: $dialog-min-width;
+      max-width: $dialog-max-width;
+    }
+  }
+
+  .dialog-content {
+    background-color: #fff;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 0 0 9px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 9px rgba(255, 255, 255, 0.2);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+
+    .dialog-header {
+      min-height: 15px;
+      padding: $dialog-padding;
+      .dialog-title {
+        font-weight: 900;
+      }
+      .dialog-close {
+        margin: 0;
+        padding: 0;
+        border: none;
+        outline: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        background-color: rgba(0, 0, 0, 0);
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 2;
+        height: 45px;
+        width: 45px;
+        cursor: pointer;
+      }
+      .dialog-close::after, .dialog-close::before {
+        position: absolute;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        background-color: #000;
+        content: '';
+      }
+      .dialog-close::before {
+        top: 20px;
+        left: 12px;
+        width: 21px;
+        height: 1px;
+      }
+      .dialog-close::after {
+        top: 10px;
+        left: 22px;
+        height: 21px;
+        width: 1px;
+      }
+    }
+    .dialog-body {
+      max-height: 400px;
+      overflow: auto;
+      padding: $dialog-padding;
+    }
+    .dialog-footer {
+      text-align: right;
+      padding: $dialog-padding;
+    }
+  }
+  .btn {
+    webkit-font-smoothing: antialiased;
+    moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    border: none;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 0 rgba(0,0,0,.2);
+    min-width: 89px;
+    max-width: 100%;
+    padding: 0 8px;
+    height: 34px;
+    cursor: pointer;
+    line-height: 34px;
+    text-align: center;
+    color: #fff;
+    transition: background-color .1s ease;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .btn__accept {
+    background-color: #0e64cc;
+  }
+}
