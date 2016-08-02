@@ -1,0 +1,19 @@
+<h1 class="w-title __w-first">Первое диалоговое окно</h1>
+
+<p>Во всех контроллерах после установки ember-dialog появляется свойство `dialog`, которое является ссылкой на сервис диалоговых окон - через который создаются все диалоговые окна.</p>
+
+<p>Чтобы создать наше первое диалоговое окно давайте создадим контроллер, роут и шаблон. Для этого перейдите в корень вашего проекта и запустите команды:</p>
+
+<pre data-src="examples/cookbook/creating/generate-things.bash"></pre>
+
+<p>Ember создаст для вас роут, шаблон и контроллер. Давайте теперь откроем созданный нами контроллер (он должен находиться здесь: <code>app/controllers/example.js</code>) и внесем в него следующие изменения:</p>
+
+<pre data-src="examples/cookbook/creating/controller-1.javascript" data-line="5-12" class="line-numbers"></pre>
+
+<p>При заходе на url <code>http://127.0.0.1:4200/example</code> мы увидим дефолтное alert окно с текстом "Hello world!". Выполнение js кода было приостановлено до тех пор пока окно не будет закрыто. Выглядит окно так:</p>
+
+<img src="/assets/default-alert.png">
+
+<p>Давайте изменим</p>
+
+<pre data-src="examples/cookbook/creating/controller-2.javascript" data-line="5-12" class="line-numbers"></pre>
