@@ -1,6 +1,6 @@
 {
   "name": "ember-dialog",
-  "version": "3.0.0-rc.4",
+  "version": "3.0.0-rc.5",
   "description": "Ember Dialog is a simplest way to create dialogs",
   "directories": {
     "doc": "doc",
