@@ -1,5 +1,27 @@
-{{outlet}}
-
-
-<div><a href="javascript: void(0);" onclick={{action "test"}}>Show dialog (from controller)</a></div>
-<div><a href="javascript: void(0);" onclick={{action dialog.alert "test-message" this (hash title="The title" acceptHandler="accept")}}>Show dialog (from template)</a></div>
+<div class="w-page">
+  <div class="w-page_container">
+    <div class="w-header">
+      <div class="container">
+      <div class="w-header_project">ember-dialog</div>
+      </div>
+    </div>
+    <div class="w-app-nav">
+      <div class="container">
+        <div class="w-app-nav_table">
+          <div class="w-app-nav_cell-items">
+            <div class="w-app-nav_container">
+              <nav role="navigation" class="w-app-nav_group w-app-nav_group__main w-app-nav_group__menu">
+                <div class="w-app-nav_item">{{#link-to 'getting-started' activeClass="__w-state-selected" class="w-app-nav_link w-link"}}Getting started{{/link-to}}</div>
+                <div class="w-app-nav_item">{{#link-to 'cookbook' activeClass="__w-state-selected" class="w-app-nav_link w-link"}}Cookbook{{/link-to}}</div>
+                <div class="w-app-nav_item"><a href="/docs" class="w-app-nav_link w-link">Docs</a></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-page_content">
+      {{outlet}}
+    </div>
+  </div>
+</div>

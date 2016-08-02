@@ -2,9 +2,9 @@ import Ember from "ember";
 
 export default Ember.Controller.extend({
 
-  init() {
-    return Ember.run.later(this, () => this.send("test"), 0), this._super(...arguments);
-  },
+  // init() {
+  //   return Ember.run.later(this, () => this.send("test"), 0), this._super(...arguments);
+  // },
 
   actions: {
 

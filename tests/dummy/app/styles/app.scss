@@ -1,3 +1,4 @@
+@import "wheely";
 @import 'addon/styles/ember-dialog';
 
 ul {
@@ -7,4 +8,17 @@ ul {
 p {
     margin-bottom: 14px;
     margin-top: 0;
+}
+
+
+.left-nav {
+  ul {
+    padding-left: 0;
+    .w-link {
+      display: block;
+      padding: 5px 4px;
+      margin-bottom: 2px;
+      background: #F6F6F6;
+    }
+  }
 }

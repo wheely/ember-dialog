@@ -110,6 +110,7 @@
       "CLDR"            : true,
       "Raven"           : true,
       "sprintf"         : true,
-      "Inputmask"       : true
+      "Inputmask"       : true,
+      "Prism"           : true
     }
 }

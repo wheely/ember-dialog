@@ -43,6 +43,9 @@ export default Ember.Component.extend({
    */
   reject: null,
 
+  /**
+   * @type {Boolean}
+   */
   substrate: true,
 
   /**

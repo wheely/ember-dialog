@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import ContextMixin from 'ember-dialog/mixins/context';
 import Configuration from 'ember-dialog/configuration';
+import hbs from 'htmlbars-inline-precompile';
 
 const { guidFor } = Ember;
 
@@ -221,32 +222,40 @@ export default Ember.Service.extend(Ember.Evented, {
    *
    * @method
    * @fires module:ember-dialog/services/dialog~created
-   * @param {String} layoutName       - Path to layout that used to showing message. Predefined layouts:
-   *                                    `dialog/alert`, `dialog/confirm` and `dialog/blank`. Alert
-   *                                    layout has only one button and can be closed as accepted only.
-   *                                    Confirm layout has two buttons and can be close as accepted or
-   *                                    declined. The blank layout hasn't any buttons at all and can
-   *                                    be closed as accepted or declined. In any layouts available
-   *                                    actions: 'accept' and 'decline'.
-   * @param {String} templateName     - Path to template that will be shown in the dialog window.
-   *                                    In the template is available `presenter` object as `this`
-   *                                    and context that passed on creation as `contextObject`.
-   * @param {Object} [context]        - An onject available in the template as `contextObject`.
-   * @param {Object} [options={}]     - An object pass to presenter on creating.
+   * @param {String|HTMLBarTemplate} layout    - Path to layout that used to showing message. Predefined layouts:
+   *                                             `dialog/alert`, `dialog/confirm` and `dialog/blank`. Alert
+   *                                             layout has only one button and can be closed as accepted only.
+   *                                             Confirm layout has two buttons and can be close as accepted or
+   *                                             declined. The blank layout hasn't any buttons at all and can
+   *                                             be closed as accepted or declined. In any layouts available
+   *                                             actions: 'accept' and 'decline'.
+   * @param {String|HTMLBarTemplate} template  - Path to template that will be shown in the dialog window.
+   *                                             In the template is available `presenter` object as `this`
+   *                                             and context that passed on creation as `contextObject`.
+   * @param {Object} [context]                 - An onject available in the template as `contextObject`.
+   * @param {Object} [options={}]              - An object pass to presenter on creating.
    * @return {external:Ember/RSVP/Promise}
    */
-  show(layoutName, templateName, context, options = {}) {
+  show(layout, template, context, options = {}) {
 
     // Getting presenter class to create its instance that we'll show.
     var Presenter = this.container.lookupFactory("component:presenter");
 
     Presenter = Presenter.extend(ContextMixin);
 
-    // const registry = this.container._registry;
-    // const isExists = registry.resolver("template:" + templateName);
-
     options = Ember.merge(Ember.copy(this.get("defaults")), options);
-    options = Ember.merge(options, { layoutName, templateName });
+
+    if (Ember.typeOf(layout) === "object") {
+      options = Ember.merge(options, { layout });
+    } else {
+      options = Ember.merge(options, { layoutName: layout });
+    }
+
+    if (Ember.typeOf(template) === "object") {
+      options = Ember.merge(options, { _template: template });
+    } else {
+      options = Ember.merge(options, { templateName: template });
+    }
 
     // Creating instance
     const presenter = Presenter.create(options);
@@ -285,7 +294,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
     return new Ember.RSVP.Promise((resolve, reject) => {
       presenter.reopen({ resolve, reject });
-    });
+    }, "Dialog #" + guidFor(presenter) + " promise");
 
   },
 
@@ -306,15 +315,15 @@ export default Ember.Service.extend(Ember.Evented, {
    * });
    *
    * @method
-   * @param {String} templateName
+   * @param {String} template
    * @param {Object} [context]
    * @param {Object} [options]
    * @return {external:Ember/RSVP/Promise}
    */
-  alert(templateName, context, options) {
+  alert(template, context, options) {
     var scope = this;
     if (!this.show) { scope = this.get("dialog"); }
-    return scope.show(Configuration["ember-dialog"].layoutPath + "/alert", templateName, context, options);
+    return scope.show(Configuration["ember-dialog"].layoutPath + "/alert", template, context, options);
   },
 
   /**
@@ -334,13 +343,13 @@ export default Ember.Service.extend(Ember.Evented, {
    * });
    *
    * @method
-   * @param {String} templateName
+   * @param {String} template
    * @param {Object} [context]
    * @param {Object} [options]
    * @return {external:Ember/RSVP/Promise}
    */
-  confirm(templateName, context, options) {
-    return this.show(Configuration["ember-dialog"].layoutPath + "/confirm", templateName, context, options);
+  confirm(template, context, options) {
+    return this.show(Configuration["ember-dialog"].layoutPath + "/confirm", template, context, options);
   },
 
   /**
@@ -358,13 +367,13 @@ export default Ember.Service.extend(Ember.Evented, {
    * });
    *
    * @method
-   * @param {String} templateName
+   * @param {String} template
    * @param {Object} [context]
    * @param {Object} [options]
    * @return {external:Ember/RSVP/Promise}
    */
-  blank(templateName, context, options) {
-    return this.show(Configuration["ember-dialog"].layoutPath + "/blank", templateName, context, options);
+  blank(template, context, options) {
+    return this.show(Configuration["ember-dialog"].layoutPath + "/blank", template, context, options);
   }
 
 });

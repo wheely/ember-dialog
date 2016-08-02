@@ -8,11 +8,11 @@ module.exports = function(environment) {
     locationType: 'auto',
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' http://localhost:33630 http://127.0.0.1:33630 http://localhost:2100 http://127.0.0.1:2100",
-      'font-src': "'self' data:",
+      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' http://localhost:33630 http://127.0.0.1:33630 http://localhost:2100 http://127.0.0.1:2100 http://cdnjs.cloudflare.com",
+      'font-src': "'self' data: https://fonts.gstatic.com",
       'connect-src': "'self' ws://*:33630 http://localhost:2100 ws://localhost:2100",
       'img-src': "'self' data:",
-      'style-src': "'self' 'unsafe-inline'",
+      'style-src': "'self' 'unsafe-inline' http://cdnjs.cloudflare.com",
       'media-src': "'self'"
     },
     EmberENV: {

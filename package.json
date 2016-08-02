@@ -43,6 +43,7 @@
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
     "ember-try": "~0.0.8",
+    "frontend-basis": "wheely/frontend-basis#v3.0.0",
     "ink-docstrap": "^1.2.1"
   },
   "keywords": [
