@@ -1,7 +1,9 @@
 #!/bin/bash
-BASE_URL="ember-dialog" LOCATION_TYPE="hash" ember ember-cli-jsdoc
-rm -rf gh-pages/docs
-mv docs gh-pages/
+# ember build
+# BASE_URL="ember-dialog" LOCATION_TYPE="hash" ember ember-cli-jsdoc
+rm -rf gh-pages/*
+cp -r dist/* gh-pages/
+# mv docs gh-pages/
 cd gh-pages
 git init
 git remote add docs git@github.com:wheely/ember-dialog.git
