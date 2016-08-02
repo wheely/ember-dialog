@@ -1,15 +1,9 @@
 import Ember from "ember";
+import hbs from 'htmlbars-inline-precompile';
 
 export default Ember.Controller.extend({
-
-  init() {
-    this._super(...arguments);
-    this.showGreeting();
-  },
-
-  showGreeting() {
-    const dialog = this.get("dialog");
-    dialog.alert("messages/hello-world");
-  }
-
+  username: "Vladimir Milkov",
+  showGreeting: Ember.on('init', function() {
+    this.get("dialog").alert(hbs`Hello, {{contextObject.username}}`, this);
+  })
 });

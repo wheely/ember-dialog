@@ -6,13 +6,9 @@ export default Ember.Controller.extend({
   actions: {
 
     showAlert() {
-
-      const template = hbs`Hello world {{title}} <span onclick={{action "showConfirm" target=contextObject}}>click</span>`;
-      const context = this;
-      const options = { title: "23151235" };
-
-      this.get("dialog").alert(template, context, options);
-
+      const promise = this.get("dialog").alert("test-message", this, {
+        title: "Alert"
+      });
     },
 
     showConfirm() {

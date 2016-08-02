@@ -1,14 +1,8 @@
 import Ember from "ember";
 
 export default Ember.Controller.extend({
-
-  init() {
-    this._super(...arguments);
-    this.showGreeting();
-  },
-
-  showGreeting() {
-    alert("Hello world!");
-  }
-
+  username: "Vladimir Milkov",
+  showGreeting: Ember.on('init', function() {
+    alert("Hello, " + this.get("username"));
+  })
 });
