@@ -1,8 +1,8 @@
 #!/bin/bash
 # ember build
 # BASE_URL="ember-dialog" LOCATION_TYPE="hash" ember ember-cli-jsdoc
-rm -rf gh-pages/*
-cp -r dist/* gh-pages/
+# rm -rf gh-pages/*
+cp -R dist/* gh-pages/
 # mv docs gh-pages/
 cd gh-pages
 git init
