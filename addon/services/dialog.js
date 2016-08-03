@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import ContextMixin from 'ember-dialog/mixins/context';
 import Configuration from 'ember-dialog/configuration';
-import hbs from 'htmlbars-inline-precompile';
 
 const { guidFor } = Ember;
 

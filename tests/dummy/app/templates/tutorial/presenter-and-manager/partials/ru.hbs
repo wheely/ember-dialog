@@ -1,0 +1,57 @@
+<h1 class="w-title __w-first">Presenter и Dialog Manager</h1>
+
+<p>Addon ember-dialog состоит из 3х частей: из компонента (presenter), сервиса (dialog manager) и набора основных layouts. Модальные окна создаются через сервис (см. Dialog Manager). Примеры создания диалоговых окон можете посмотреть на странице {{#link-to 'tutorial.creating'}}создание первого окна{{/link-to}}.</p>
+
+<h2 class="w-subtitle" name="presenter">Presenter</h2>
+
+<p>Компонент диалогового окна, создается с казанием layout и template.</p>
+
+<h2 class="w-subtitle">Dialog Manager</h2>
+
+<p>Сервис через который создаются и удаляются модельные окна, является singleton. Он доступен изо всех контроллеров (имя свойства `dialog`) по-умолчанию и может быть injected в любой класс, находящийся в регистре приложения. Основным методом для создания окна является <a href="docs/module-ember-dialog_services_dialog.html#-inner-show__anchor" class="w-link">show</a>.</p>
+
+<table class="w-table">
+    <tr class="w-table_tr">
+      <th class="w-table_th">Аргумент</th>
+      <th class="w-table_th">Тип</th>
+      <th class="w-table_th">Комментарий</th>
+    </tr>
+    <tr class="w-table_tr">
+      <td class="w-table_td">layout</td>
+      <td class="w-table_td" nowrap="nowrap">String | Object</td>
+      <td class="w-table_td">Может быть передан как путь до шаблона или как предкомпилированный шаблон.</td>
+    </tr>
+    <tr class="w-table_tr">
+      <td class="w-table_td">template</td>
+      <td class="w-table_td" nowrap="nowrap">String | Object</td>
+      <td class="w-table_td">
+        <p class="__w-first">Может быть передан как путь до шаблона или как предкомпилированный шаблон.</p>
+        <p>Передача пути до шаблона: <pre data-language="javascipt">dialog.show("dialog/alert", "messages/error-message");</pre></p>
+        <p>В модельном окне будет показано содержимое шаблона, который находится тут: <code>app/templates/messages/error-message</code>.</p>
+        <p class="__w-last">Передача предкомпилированного шаблона:
+          <pre data-language="javascipt">import hbs from 'htmlbars-inline-precompile';
+dialog.show("dialog/alert", hbs`Hello world!`);</pre>
+        </p>
+      </td>
+    </tr>
+    <tr class="w-table_tr">
+      <td class="w-table_td">context *</td>
+      <td class="w-table_td">Object</td>
+      <td class="w-table_td">
+        <p class="__w-first">Объект, который кладется в специальное свойство компонента диалогового окна - <code>contextObject</code>. Любое свойство объекта или функцию можно получить из шаблона или лейаута.</p>
+        <p class="__w-last">Пример: <code data-language="handlebar">&#x007B;&#x007B;contextObject.model.first_name&#x007D;&#x007D;</code></p>
+      </td>
+    </tr>
+    <tr class="w-table_tr">
+      <td class="w-table_td">options *</td>
+      <td class="w-table_td">Object</td>
+      <td class="w-table_td">
+        <p class="__w-first">Объект с которым создается Presenter, влияет на поведение диалогового окна. Также поскольку свойства объекта кладутся в Presenter - они доступны из шаблона.</p>
+        <p>Пример если создать диалоговое окно так: <pre data-language="javascipt">dialog.show("dialog/alert", "message", null, { username: "Vladimir Milkov" });</pre></p>
+        <p>В шаблоне можно вывести username так: <pre data-language="javascipt">&#x007B;&#x007B;username&#x007D;&#x007D;</pre></p>
+        <p class="__w-last">Так как по объекту создается Presenter можно изменить свойства модального окна (см. Presenter).</p>
+      </td>
+    </tr>
+</table>
+
+<h2 class="w-subtitle">Жизненный цикл диалогового окна</h2>
