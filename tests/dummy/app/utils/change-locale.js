@@ -1,4 +1,5 @@
 /* global Prism */
+import Ember from "ember";
 
 export default function() {
   if (Prism) {

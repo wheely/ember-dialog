@@ -96,7 +96,7 @@ var Locale = Ember.Service.extend(Ember.Evented, {
   */
   _update: Ember.observer("languageCode", function() {
     storage.languageCode = this.get('languageCode');
-    Config.LOG_LOCALE && Ember.Logger.log("LOG_LOCALE: The language code has been changed to", storage.languageCode);
+    Config.LOG_LOCALE && Ember.Logger.log("LOG_LOCALE: The language code has been changed to", storage.languageCode);  // jshint ignore: line
   }),
 
   /**
