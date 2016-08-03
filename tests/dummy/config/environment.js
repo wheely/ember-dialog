@@ -11,7 +11,7 @@ module.exports = function(environment) {
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' http://localhost:33630 http://127.0.0.1:33630 http://localhost:2100 http://127.0.0.1:2100 http://cdnjs.cloudflare.com",
       'font-src': "'self' data: https://fonts.gstatic.com",
       'connect-src': "'self' ws://*:33630 http://localhost:2100 ws://localhost:2100",
-      'img-src': "'self' data:",
+      'img-src': "'self' data: https://s3.amazonaws.com",
       'style-src': "'self' 'unsafe-inline' http://cdnjs.cloudflare.com",
       'media-src': "'self'"
     },

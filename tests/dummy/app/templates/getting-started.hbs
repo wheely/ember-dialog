@@ -1,38 +1,7 @@
 <div class="container">
   <div class="w-body-item">
 
-    <h2 class="w-subtitle __w-first">Installation</h2>
-
-    <div class="row">
-      <div class="col-sm-12">
-        <p>Installing the library is as easy as:</p>
-        <pre data-src="examples/getting-started/installation-1.bash"></pre>
-        <p>You will see something like this:</p>
-        <pre data-src="examples/getting-started/installation-2.bash"></pre>
-      </div>
-    </div>
-
-
-    <h2 class="w-subtitle">Get started</h2>
-    <div class="row">
-      <div class="col-sm-12">
-
-        <p>An Ember Addon able you to easily create dialog windows and control their closing. It consists of a service that is available from any object and a component which is a dialog-window itself.</p>
-
-        <p>So how does it look? Please look: <a class="w-link w-link__pseudo" onclick={{action "showAlert"}}>alert</a>, <a class="w-link w-link__pseudo" onclick={{action "showConfirm"}}>confirm</a> and <a class="w-link w-link__pseudo" onclick={{action "showBlank"}}>blank</a> dialog window.</p>
-
-        <p>The principle of work is simple. Service is instructed to display a modal window (`show`, `alert`, `confirm` or `blank` methods), creates a component instance with required layout and template, then renders it, and attaches it to the body. At this point, it also creates a Promise, "handles" of which puts into the component and returns it. The component has 2 actions on aboard: one for `resolved` closing, another one for `rejected` closing. Actions available within the template and can be called, for instance by clicking on the button (in the layout or in the template). When you call an action, one of the Promise's method is executed and triggered independent "accepted" or "declined" event. The dialog service when gets the event destroys component object and detaches it from the DOM.</p>
-
-        <p>Let's say you want to ask user confirm an action. You should call `show` method of the dialog service with a layout path (you needed dialog window with two buttons - `confirm` layout what you need) and a path to template that you want to show the user in the modal window. Method creates and shows dialog window and returns a Promise, that will become resolved or rejected when window closed (it's depend on which button user has clicked).</p>
-
-        <pre data-src="examples/getting-started/example-1.javascript" data-line="7" class="line-numbers"></pre>
-
-        <p>There is simple ways to create dialogs different types:</p>
-
-        <pre data-src="examples/getting-started/example-2.javascript" class="line-numbers"></pre>
-
-      </div>
-    </div>
+    {{partial (concat "getting-started/partials/" locale.languageCode)}}
 
   </div>
 </div>

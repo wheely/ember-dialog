@@ -2,11 +2,21 @@ import Ember from "ember";
 
 export default Ember.Controller.extend({
 
+  isOpened: false,
+
   // init() {
   //   return Ember.run.later(this, () => this.send("test"), 0), this._super(...arguments);
   // },
 
   actions: {
+
+    toggleLanguage() {
+      this.toggleProperty("isOpened");
+    },
+
+    changeLocale(languageCode) {
+      this.get('locale').setLanguageCode(languageCode);
+    },
 
     test() {
 

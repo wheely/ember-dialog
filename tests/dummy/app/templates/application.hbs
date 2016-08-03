@@ -2,8 +2,32 @@
   <div class="w-page_container">
     <div class="w-header">
       <div class="container">
-      <div class="w-header_project">ember-dialog</div>
+        <div class="w-header_project">ember-dialog</div>
+
+        <div class="w-header_nav">
+          <div class="w-header_nav-right">
+            <div class="w-header_nav-item">
+
+              <div class="w-dropdown {{if isOpened '__w-state-opened'}}">
+                <span class="w-flag" data-country-code="{{locale.language.code}}"></span>
+                <a {{action "toggleLanguage"}} class="w-link__inverse w-link__inverse-pseudo w-link {{if isOpened '__w-state-selected'}} {{if isOpened '__w-state-clickable'}}">{{t (concat "language." locale.language.code)}}</a>
+                <ul class="w-dropdown_list">
+                  {{#each locale.languages as |lang|}}
+                    <li class="w-dropdown_item {{page.dropdownItemClassName}}">
+                      <a class="w-dropdown_link" {{action 'changeLocale' lang.code}}>
+                        {{t (concat "language." lang.code)}}
+                      </a>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div>
+
     </div>
     <div class="w-app-nav">
       <div class="container">
@@ -11,9 +35,10 @@
           <div class="w-app-nav_cell-items">
             <div class="w-app-nav_container">
               <nav role="navigation" class="w-app-nav_group w-app-nav_group__main w-app-nav_group__menu">
-                <div class="w-app-nav_item">{{#link-to 'getting-started' activeClass="__w-state-selected" class="w-app-nav_link w-link"}}Getting started{{/link-to}}</div>
-                <div class="w-app-nav_item">{{#link-to 'cookbook' activeClass="__w-state-selected" class="w-app-nav_link w-link"}}Cookbook{{/link-to}}</div>
-                <div class="w-app-nav_item"><a href="docs" class="w-app-nav_link w-link">Docs</a></div>
+                <div class="w-app-nav_item">{{#link-to 'getting-started' activeClass="__w-state-selected" class="w-app-nav_link w-link"}}{{t "navigation.getting_started"}}{{/link-to}}</div>
+                <div class="w-app-nav_item">{{#link-to 'tutorial' activeClass="__w-state-selected" class="w-app-nav_link w-link"}}{{t "navigation.tutorial"}}{{/link-to}}</div>
+                {{!-- <div class="w-app-nav_item">{{#link-to 'cookbook' activeClass="__w-state-selected" class="w-app-nav_link w-link"}}{{t "navigation.cookbook"}}{{/link-to}}</div> --}}
+                <div class="w-app-nav_item"><a href="docs" class="w-app-nav_link w-link">{{t "navigation.docs"}}</a></div>
               </nav>
             </div>
           </div>
