@@ -4,8 +4,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'dummy',
     environment: environment,
-    baseURL: '/',
-    locationType: 'auto',
+    baseURL: process.env.BASE_URL || '/',
+    locationType: process.env.LOCATION_TYPE || 'auto',
     contentSecurityPolicy: {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' http://localhost:33630 http://127.0.0.1:33630 http://localhost:2100 http://127.0.0.1:2100 http://cdnjs.cloudflare.com",

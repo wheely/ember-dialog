@@ -34,21 +34,23 @@ const no = () => { console.log(`no pressed`); };
 promise.then(yes, no);
 ```
 
+For more information and demos, visit the [site](http://wheely.github.io/ember-dialog/).
+
 ## Dialog types (predefined layouts)
 
 ember-dialog has next layouts on aboard: `alert`, `confirm` and `blank`.
 
 ### Alert
 
-This layout has only 'yes' - button clicking on which the modal window closes as `resolved`. It also has X-button which closes modal window as `resolved`. The `promise` object always resolved on modal closing. May be used for showing an information to the user. See [docs](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-alert__anchor).
+This layout has only 'yes' - button clicking on which the modal window closes as `resolved`. It also has X-button which closes modal window as `resolved`. The `promise` object always resolved on modal closing. May be used for showing an information to the user. See [docs](http://wheely.github.io/ember-dialog/docs/module-ember-dialog_services_dialog.html#-inner-alert__anchor).
 
 ### Confirm
 
-In practice, the most widely used layout. It has 2 buttons, which closes dialog window. One of them closes window as `resolved`, another one closes as `rejected`. It also has X-button which closes window as `rejected` (for obvious reasons). See [docs](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-confirm__anchor).
+In practice, the most widely used layout. It has 2 buttons, which closes dialog window. One of them closes window as `resolved`, another one closes as `rejected`. It also has X-button which closes window as `rejected` (for obvious reasons). See [docs](http://wheely.github.io/ember-dialog/docs/module-ember-dialog_services_dialog.html#-inner-confirm__anchor).
 
 ### Blank
 
-The most simple layout. It has nothing on aboard. May be used for creating custom dialog windows with its own logic of showing elements and closing. In practice often used for showing forms, in this cases accept closing carried on submit action. Convenient to use in conjunction with ember-validation (TBD:Usecase). See [docs](http://ajile.github.io/ember-dialog/module-ember-dialog_services_dialog.html#-inner-blank__anchor).
+The most simple layout. It has nothing on aboard. May be used for creating custom dialog windows with its own logic of showing elements and closing. In practice often used for showing forms, in this cases accept closing carried on submit action. Convenient to use in conjunction with ember-validation (TBD:Usecase). See [docs](http://wheely.github.io/ember-dialog/docs/module-ember-dialog_services_dialog.html#-inner-blank__anchor).
 
 ## Styles
 
