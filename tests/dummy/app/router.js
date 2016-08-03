@@ -13,13 +13,20 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('getting-started', { path: '/' });
   this.route('cookbook', function () {
-    this.route('customization');
-    this.route('prevent-closing');
-    this.route('forms');
+    this.route('animation');
+    this.route('how-to-make-dialog-drag-n-dropable');
+    this.route('showing-server-errors');
+    this.route('creating-notices');
+    this.route('working-with-forms');
   });
   this.route('tutorial', function () {
     this.route('creating');
     this.route('presenter-and-manager');
+    this.route('advanced-creating-dialog');
+    this.route('interrupt-closing');
+    this.route('listening-events');
+    this.route('creating-dialog-templates');
+    this.route('customizing-dialog');
   });
 });
 
