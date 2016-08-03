@@ -1,4 +1,4 @@
-# ember-dialog [![Build Status](https://travis-ci.org/wheely/ember-dialog.svg?branch=master)](https://travis-ci.org/wheely/ember-dialog)
+# ember-dialog [![Build Status](https://travis-ci.org/wheely/ember-dialog.svg?branch=master)](https://travis-ci.org/wheely/ember-dialog) [![license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/wheely/ember-dialog/blob/master/LICENSE.md)
 
 Old version (ember-cli-dialog and ember-dialog below v2) outdated and will not be supported.
 
