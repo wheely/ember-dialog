@@ -3,10 +3,12 @@ import hbs from 'htmlbars-inline-precompile';
 
 export default Ember.Controller.extend({
 
-  actions: {
+  count: 0,
 
+  actions: {
     showDialog() {
-      const promise = this.get("dialog").confirm(hbs`Press yes.`, this, {
+      this.set("count", 0);
+      const promise = this.get("dialog").confirm(hbs`You pressed 3/{{contextObject.count}} times`, this, {
 
         // This action of this controller will be executed when user press `yes` button.
         acceptHandler: "acceptClicked",
@@ -23,13 +25,13 @@ export default Ember.Controller.extend({
 
     acceptClicked(presenter) {
       // Closing dialog window
-      presenter.accept();
+      this.get("count") >= 2 && presenter.accept();
+      this.incrementProperty("count");
     },
 
     declineClicked(presenter) {
       this.get("dialog").alert(hbs`You can't decline this modal window. Please, press yes button.`);
     }
-
   }
 
 });
