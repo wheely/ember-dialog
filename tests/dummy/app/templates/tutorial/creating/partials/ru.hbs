@@ -49,7 +49,7 @@
 
 <pre data-src="examples/tutorial/creating/controller-4.javascript"></pre>
 
-<p>Хорошей практикой для своих проектов я выбрал использование специальной директории для шаблонов-сообщений: <code>/messages/</code>. Рекомендую вам поступить также.</p>
+<p>Хорошей практикой для своих проектов я выбрал использование специальной директории для шаблонов-сообщений: <code>/messages/</code>. Рекомендую вам поступить так же.</p>
 
 
 <h2 class="w-subtitle">Прокидывание данных в диалоговое окно</h2>
@@ -74,3 +74,5 @@
 <pre data-src="examples/tutorial/creating/controller-7.javascript"></pre>
 
 <p><button class="w-btn" onclick={{action "showDialog"}}>Проверьте сами</button></p>
+
+<p>Но что делать если в контроллере используются несколько диалоговых окон? Нужно задать имя обработчка закрытия для каждого диалогового окна, как это сделать можете почитать на странице {{#link-to 'tutorial.interrupt-closing'}}{{t "tutorial.interrupt_closing"}}{{/link-to}}.</p>
