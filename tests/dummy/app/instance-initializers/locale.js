@@ -14,7 +14,6 @@ export function initialize(application) {
   registry.register('service:locale', LocaleService, { singleton: true });
   registry.injection('controller', 'locale', 'service:locale');
   registry.injection('route', 'locale', 'service:locale');
-  registry.injection('session', 'locale', 'service:locale');
   registry.injection('component', 'locale', 'service:locale');
   registry.injection('model', 'locale', 'service:locale');
 
