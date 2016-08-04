@@ -14,7 +14,7 @@
 
 <p>При заходе на url <code>http://127.0.0.1:4200/example</code> вы увидите дефолтное alert окно с текстом "Hello world!". Выполнение js кода было приостановлено до тех пор пока окно не будет закрыто. Выглядит окно так (ну вы и сами знаете ;)):</p>
 
-<div style="text-align: center"><img src="assets/default-alert.png"></div>
+<div style="text-align: center; overflow: hidden;"><img src="assets/default-alert.png"></div>
 
 <p>Чтобы создать ember-dialog модальное окно нужно изменить код следующим образом:</p>
 
@@ -22,7 +22,7 @@
 
 <p>Вы увидите следующее:</p>
 
-<div style="text-align: center"><img src="assets/dialog-alert.png"></div>
+<div style="text-align: center; overflow: hidden;"><img src="assets/dialog-alert.png"></div>
 
 <p>Попробуйте сами: <a class="w-link w-link__pseudo" onclick={{action "simpleAlert"}}>показать простой alert</a>, <a class="w-link w-link__pseudo" onclick={{action "dialogAlert"}}>показать диалоговое окно с лейаутом alert</a>.</p>
 
