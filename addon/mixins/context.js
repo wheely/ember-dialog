@@ -4,6 +4,26 @@ import Ember from 'ember';
  * @module ember-dialog/mixins/context
  * @augments Ember.Mixin
  */
+
+const { run } = Ember;
+
+function makeArgsArray(args, obj) {
+  const argsArray = Array.prototype.slice.apply(args);
+  argsArray.unshift(obj);
+  return argsArray;
+}
+
+export function execAction(actionName, args) {
+  const context = this.context.get("contextObject");
+  actionName = this.get(actionName + "Handler");
+  args = makeArgsArray(args, this);
+  if (context._actions && context._actions[actionName]) {
+    context._actions[actionName].apply(context, args);
+  } else {
+    this[actionName].apply(this);
+  }
+}
+
 export default Ember.Mixin.create({
 
   /**
@@ -13,27 +33,11 @@ export default Ember.Mixin.create({
   actions: {
 
     accept() {
-      const acceptHandler = this.get("acceptHandler");
-      const context = this.context.get("contextObject");
-      if (context._actions && context._actions[acceptHandler]) {
-        let args = Array.prototype.slice.apply(arguments);
-            args.unshift(this);
-        context._actions[acceptHandler].apply(context, args);
-      } else {
-        this.accept();
-      }
+      execAction.call(this, "accept", arguments);
     },
 
     decline() {
-      const declineHandler = this.get("declineHandler");
-      const context = this.context.get("contextObject");
-      if (context._actions && context._actions[declineHandler]) {
-        let args = Array.prototype.slice.apply(arguments);
-            args.unshift(this);
-        context._actions[declineHandler].apply(context, args);
-      } else {
-        this.decline();
-      }
+      execAction.call(this, "decline", arguments);
     }
 
   }
