@@ -31,12 +31,10 @@ export default Ember.Service.extend(Ember.Evented, {
   dialogs: Ember.A(),
 
   /**
-   * @property {String} title       Dialog window's title
    * @property {String} className   CSS class name
    * @protected
    */
   defaults: {
-    title: '',
     className: ''
   },
 

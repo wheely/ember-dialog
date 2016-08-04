@@ -2,10 +2,6 @@
 
 <p>Addon ember-dialog состоит из 3х частей: из компонента (presenter), сервиса (dialog manager) и набора основных layouts. Модальные окна создаются через сервис (см. Dialog Manager). Примеры создания диалоговых окон можете посмотреть на странице {{#link-to 'tutorial.creating'}}создание первого окна{{/link-to}}.</p>
 
-<h2 class="w-subtitle" name="presenter">Presenter</h2>
-
-<p>Компонент диалогового окна, создается с казанием layout и template.</p>
-
 <h2 class="w-subtitle">Dialog Manager</h2>
 
 <p>Сервис через который создаются и удаляются модельные окна, является singleton. Он доступен изо всех контроллеров (имя свойства `dialog`) по-умолчанию и может быть injected в любой класс, находящийся в регистре приложения. Основным методом для создания окна является <a href="docs/module-ember-dialog_services_dialog.html#-inner-show__anchor" class="w-link">show</a>.</p>
@@ -53,5 +49,40 @@ dialog.show("dialog/alert", hbs`Hello world!`);</pre>
       </td>
     </tr>
 </table>
+
+<br>
+<p>Рассмотрим пример вызова диалогового окна:</p>
+
+<h2 class="w-subtitle">Controller</h2>
+<pre data-src="examples/tutorial/presenter-and-manager/controller-1.javascript"></pre>
+<h2 class="w-subtitle">Layout</h2>
+<pre data-src="examples/tutorial/presenter-and-manager/layout-1.html"></pre>
+<h2 class="w-subtitle">Template</h2>
+<pre data-src="examples/tutorial/presenter-and-manager/template-1.html"></pre>
+
+<p>
+  <button class="w-btn" onclick={{action "showGreeting"}}>Запустить пример</button>
+</p>
+
+<p>Вместо пути до шаблона можно использовать hbs функцию, так:</p>
+
+<h2 class="w-subtitle">Controller</h2>
+<pre data-src="examples/tutorial/presenter-and-manager/controller-2.javascript" data-line="10"></pre>
+
+<p>Но я не рекомендую злоупотреблять таким подходом - он может использоваться в тестах. Лучше делать так:</p>
+
+<pre data-src="examples/tutorial/presenter-and-manager/controller-3.javascript" data-line="2,10"></pre>
+
+<p>
+  <div style="border: 1px solid #EEE; padding: 10px">
+    <p class="__w-last">{{partial "tutorial/presenter-and-manager/partials/partial-1"}}</p>
+  </div>
+</p>
+
+<p><button class="w-btn" onclick={{action "showPartial1"}}>Попробуйте сами</button></p>
+
+<h2 class="w-subtitle" name="presenter">Presenter</h2>
+
+<p>Компонент диалогового окна, создается с казанием layout и template.</p>
 
 <h2 class="w-subtitle">Жизненный цикл диалогового окна</h2>

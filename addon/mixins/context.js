@@ -15,6 +15,7 @@ function makeArgsArray(args, obj) {
 
 export function execAction(actionName, args) {
   const context = this.context.get("contextObject");
+  // @todo: Magic concatenation
   actionName = this.get(actionName + "Handler");
   args = makeArgsArray(args, this);
   if (context._actions && context._actions[actionName]) {
