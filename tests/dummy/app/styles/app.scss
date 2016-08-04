@@ -1,6 +1,14 @@
 @import "wheely";
 @import 'addon/styles/ember-dialog';
 
+.w-title {
+  font-size: 24px;
+}
+
+.w-subtitle {
+  font-size: 16px;
+}
+
 p {
     margin-bottom: 14px;
     margin-top: 0;

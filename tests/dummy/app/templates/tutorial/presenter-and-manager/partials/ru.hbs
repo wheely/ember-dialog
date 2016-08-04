@@ -2,10 +2,6 @@
 
 <p>Addon ember-dialog состоит из 3х частей: из компонента (presenter), сервиса (dialog manager) и набора основных layouts. Модальные окна создаются через сервис (см. Dialog Manager). Примеры создания диалоговых окон можете посмотреть на странице {{#link-to 'tutorial.creating'}}создание первого окна{{/link-to}}.</p>
 
-<h2 class="w-subtitle" name="presenter">Presenter</h2>
-
-<p>Компонент диалогового окна, создается с казанием layout и template.</p>
-
 <h2 class="w-subtitle">Dialog Manager</h2>
 
 <p>Сервис через который создаются и удаляются модельные окна, является singleton. Он доступен изо всех контроллеров (имя свойства `dialog`) по-умолчанию и может быть injected в любой класс, находящийся в регистре приложения. Основным методом для создания окна является <a href="docs/module-ember-dialog_services_dialog.html#-inner-show__anchor" class="w-link">show</a>.</p>
@@ -54,4 +50,102 @@ dialog.show("dialog/alert", hbs`Hello world!`);</pre>
     </tr>
 </table>
 
-<h2 class="w-subtitle">Жизненный цикл диалогового окна</h2>
+<br>
+<p>Рассмотрим пример вызова диалогового окна:</p>
+
+<h2 class="w-subtitle">Controller</h2>
+<pre data-src="examples/tutorial/presenter-and-manager/controller-1.javascript"></pre>
+<h2 class="w-subtitle">Layout</h2>
+<pre data-src="examples/tutorial/presenter-and-manager/layout-1.html"></pre>
+<h2 class="w-subtitle">Template</h2>
+<pre data-src="examples/tutorial/presenter-and-manager/template-1.html"></pre>
+
+<p><button class="w-btn" onclick={{action "showGreeting"}}>Запустить пример</button> (диалоговое окно появится справа внизу).</p>
+
+<p>
+  <div class="w-notification w-notification__success">
+    <div class="w-notification_text">Обратите внимание, что вы можете перемещаться по сайту - окно будет оставаться на месте. Круто, не правда ли? :)</div>
+  </div>
+</p>
+
+<p>Вместо пути до шаблона можно использовать hbs функцию, так:</p>
+
+<h2 class="w-subtitle">Controller</h2>
+<pre data-src="examples/tutorial/presenter-and-manager/controller-2.javascript" data-line="10"></pre>
+
+<p>Но я не рекомендую злоупотреблять таким подходом - он может использоваться в тестах. Лучше делать так:</p>
+
+<pre data-src="examples/tutorial/presenter-and-manager/controller-3.javascript" data-line="2,10"></pre>
+
+<p>
+  <div style="border: 1px solid #EEE; padding: 10px">
+    <p class="__w-last">{{partial "tutorial/presenter-and-manager/partials/partial-1"}}</p>
+  </div>
+</p>
+
+<p><button class="w-btn" onclick={{action "showPartial1"}}>Попробуйте сами</button></p>
+
+<p>В ember-addon предусмотренно 3 базовых layouts:</p>
+
+<p><b>Alert layout</b> - имеет на борту всего одну кнопку (ok) и крестик закрытия - при закрытии Promise резолвится. Может быть использовано для показа пользователю каких-то сообщений.</p>
+<p><b>Confirm layout</b> - имеет на борту две кнопки (yes, no) и крестик закрытия - при закрытии через крестик или по кнопке no - Promise становится rejected, при закрытии через кнопку yes - становится resolved. Может быть использовано для подтверждения пользователем какого-то действия.</p>
+<p><b>Blank layout</b> - совершенно пустое модальное окно. Может быть использовано для показа форм, у которых action accept вызывается на submit формы. Подробнее об этом читайте на странице {{#link-to 'cookbook.working-with-forms'}}{{t "cookbook.working_with_forms"}}{{/link-to}}.</p>
+
+
+<table class="w-table">
+    <tr class="w-table_tr">
+      <th class="w-table_th">Аргумент</th>
+      <th class="w-table_th">Тип</th>
+      <th class="w-table_th">Комментарий</th>
+    </tr>
+    <tr class="w-table_tr">
+      <td class="w-table_td">template</td>
+      <td class="w-table_td" nowrap="nowrap">String | Object</td>
+      <td class="w-table_td">
+        <p class="__w-first">Может быть передан как путь до шаблона или как предкомпилированный шаблон.</p>
+        <p>Передача пути до шаблона: <pre data-language="javascipt">dialog.show("dialog/alert", "messages/error-message");</pre></p>
+        <p>В модельном окне будет показано содержимое шаблона, который находится тут: <code>app/templates/messages/error-message</code>.</p>
+        <p class="__w-last">Передача предкомпилированного шаблона:
+          <pre data-language="javascipt">import hbs from 'htmlbars-inline-precompile';
+dialog.show("dialog/alert", hbs`Hello world!`);</pre>
+        </p>
+      </td>
+    </tr>
+    <tr class="w-table_tr">
+      <td class="w-table_td">context *</td>
+      <td class="w-table_td">Object</td>
+      <td class="w-table_td">
+        <p class="__w-first">Объект, который кладется в специальное свойство компонента диалогового окна - <code>contextObject</code>. Любое свойство объекта или функцию можно получить из шаблона или лейаута.</p>
+        <p class="__w-last">Пример: <code data-language="handlebar">&#x007B;&#x007B;contextObject.model.first_name&#x007D;&#x007D;</code></p>
+      </td>
+    </tr>
+    <tr class="w-table_tr">
+      <td class="w-table_td">options *</td>
+      <td class="w-table_td">Object</td>
+      <td class="w-table_td">
+        <p class="__w-first">Объект с которым создается Presenter, влияет на поведение диалогового окна. Также поскольку свойства объекта кладутся в Presenter - они доступны из шаблона.</p>
+        <p>Пример если создать диалоговое окно так: <pre data-language="javascipt">dialog.show("dialog/alert", "message", null, { username: "Vladimir Milkov" });</pre></p>
+        <p>В шаблоне можно вывести username так: <pre data-language="javascipt">&#x007B;&#x007B;username&#x007D;&#x007D;</pre></p>
+        <p class="__w-last">Так как по объекту создается Presenter можно изменить свойства модального окна (см. Presenter).</p>
+      </td>
+    </tr>
+</table>
+
+<h2 class="w-subtitle" name="presenter">Presenter</h2>
+
+<p>Компонент диалогового окна, создается с указанием layout и template. Его свойств могут быть получены из них и влиять на внешний вид диалогового окна. Аттрибуты компонента можно изменить или дополнить при создании, путем передачи в метод show аргумента options. Таким образом внешний вид диалогового окна может определяться при его создании, как в контроллере который запрашивает его создание, так и менеджером, который его создает. Более подробно об этом вы можете почитать на странице {{#link-to 'tutorial.advanced-creating-dialog'}}{{t "tutorial.advanced_creating_dialog"}}{{/link-to}}.</p>
+
+<p>При создании диалогового окна может быть изменен `contextObject` компонента путем передачи в метод show аргумента context (см. выше). Поскольку на практике диалоговые окна создаются из actions контроллера (но не только), как правило контектом указывается сам контроллер.</p>
+
+<p><b>Controller</b></p>
+<pre data-src="examples/tutorial/presenter-and-manager/controller-4.javascript"></pre>
+
+<p><b>Template: messages/foo</b></p>
+<pre data-src="examples/tutorial/presenter-and-manager/template-4.html"></pre>
+
+<p>Какая же разница между context и options. Все что передается в <code>options</code> "мержится" в компонент, а <code>context</code> записывается в конкретное свойство компонента. Также в <code>options</code> могут быть переданы специальные названия <code>actions</code>, будут выполняться при закрытии диалогового окна (<code>acceptHandler</code> и <code>declineHandler</code>), тем самым в этих <code>actions</code> можно реализовать логику по которой окно будет закрываться. Подробнее о прерывании закрытия вы можете почитать на странице {{#link-to 'tutorial.interrupt-closing'}}{{t "tutorial.interrupt_closing"}}{{/link-to}}. Здесь приведу лишь пример из которого, я надеюсь станет ясно для чего это нужно и как работает:</p>
+
+<p><b>Controller</b></p>
+<pre data-src="examples/tutorial/presenter-and-manager/controller-5.javascript"></pre>
+
+<p>Узнать как работает перекрытие вы можете изучив метод <a href="docs/module-ember-dialog_services_dialog.html#-inner-show__anchor" class="w-link">show у Dialog Manager</a>.</p>
