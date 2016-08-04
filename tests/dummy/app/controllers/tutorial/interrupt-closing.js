@@ -25,11 +25,11 @@ export default Ember.Controller.extend({
 
     acceptClicked(presenter) {
       // Closing dialog window
-      this.get("count") >= 2 && presenter.accept();
+      this.get("count") >= 2 && presenter.accept(); // jshint ignore: line
       this.incrementProperty("count");
     },
 
-    declineClicked(presenter) {
+    declineClicked() {
       this.get("dialog").alert(hbs`You can't decline this modal window. Please, press yes button.`);
     }
   }

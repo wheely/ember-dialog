@@ -1,3 +1,41 @@
 <h1 class="w-title __w-first">{{t "tutorial.listening_events"}}</h1>
 
-TBD
+<h2 class="w-subtitle">События Dialog Manager:</h2>
+
+<table class="w-table">
+  <tr class="w-table_tr">
+    <th class="w-table_th">Имя</th>
+    <th class="w-table_th">Комментарий</th>
+  </tr>
+  <tr class="w-table_tr">
+    <td class="w-table_td">created (<a href="docs/module-ember-dialog_components_presenter.html" class="w-link">Presenter</a>)</td>
+    <td class="w-table_td">Событие отстреливается после создания нового диалогового окна.</td>
+  </tr>
+  <tr class="w-table_tr">
+    <td class="w-table_td">destroyed (<a href="docs/module-ember-dialog_components_presenter.html" class="w-link">Presenter</a>)</td>
+    <td class="w-table_td">Событие отстреливается после закрытия диалогового окна.</td>
+  </tr>
+</table>
+
+<p>События могут использоваться для управления диалоговым окном и его поведением из вне. К примеру при потере соединения с сервером по WebSocket используя события можно показать пользователю соотвествующее сообщение и убрать его после того как соединение было установлено.</p>
+
+<p>Также на основе событий можно создать особенный тип диалогового окна - notices, которые исчезают через какое-то время (см. {{#link-to 'cookbook.creating-notices'}}{{t "cookbook.creating_notices"}}{{/link-to}}).</p>
+
+<pre data-src="examples/tutorial/listening-events/controller-1.javascript"></pre>
+
+<h2 class="w-subtitle">События Presenter:</h2>
+
+<table class="w-table">
+  <tr class="w-table_tr">
+    <th class="w-table_th">Имя</th>
+    <th class="w-table_th">Комментарий</th>
+  </tr>
+  <tr class="w-table_tr">
+    <td class="w-table_td">accepted (<a href="docs/module-ember-dialog_components_presenter.html" class="w-link">Presenter</a>)</td>
+    <td class="w-table_td">Событие отстреливается после создания нового диалогового окна.</td>
+  </tr>
+  <tr class="w-table_tr">
+    <td class="w-table_td">declined (<a href="docs/module-ember-dialog_components_presenter.html" class="w-link">Presenter</a>)</td>
+    <td class="w-table_td">Событие отстреливается после закрытия диалогового окна.</td>
+  </tr>
+</table>

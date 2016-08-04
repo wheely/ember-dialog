@@ -12,11 +12,11 @@ export default {
   tutorial: {
     creating_first_dialog: `Creating Your First Dialog`,
     presenter_and_manager: `Presenter and Manager`,
-    advanced_creating_dialog: `Advanced Creating Dialog documentation`,
-    interrupt_closing: `Interrupt Closing documentation`,
-    listening_events: `Listening Events documentation`,
-    creating_dialog_templates: `Creating Dialog Templates documentation`,
-    customizing_dialog: `Customizing dialog documentation`,
+    advanced_creating_dialog: `Advanced Creating Dialog`,
+    interrupt_closing: `Interrupt Closing`,
+    listening_events: `Listening Events`,
+    creating_dialog_templates: `Creating Dialog Templates`,
+    customizing_dialog: `Customizing dialog`,
   },
   cookbook: {
     animation: `Animation`,

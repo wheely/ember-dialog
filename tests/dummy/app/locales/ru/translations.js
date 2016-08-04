@@ -12,7 +12,7 @@ export default {
   tutorial: {
     creating_first_dialog: `Создание первого окна`,
     presenter_and_manager: `Presenter и Manager`,
-    advanced_creating_dialog: `Расширенное создание диалоговых окон`,
+    advanced_creating_dialog: `Наследование Dialog Manager`,
     interrupt_closing: `Прерывание закрытия`,
     listening_events: `События`,
     creating_dialog_templates: `Создание Шаблонов`,
