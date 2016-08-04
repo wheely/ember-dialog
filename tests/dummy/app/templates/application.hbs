@@ -14,7 +14,7 @@
                 <ul class="w-dropdown_list">
                   {{#each locale.languages as |lang|}}
                     <li class="w-dropdown_item {{page.dropdownItemClassName}}">
-                      <a class="w-dropdown_link" {{action 'changeLocale' lang.code}}>
+                      <a class="w-dropdown_link" {{action 'setLanguageCode' lang.code}}>
                         {{t (concat "language." lang.code)}}
                       </a>
                     </li>

@@ -138,7 +138,9 @@ var Locale = Ember.Service.extend(Ember.Evented, {
     @param {String} code  An [language code]{@link module:service/locale.Locale#language} (e.g. 'en', 'ru' etc.)
   */
   setLanguageCode: function(code) {
+    console.log(code);
     this.set('languageCode', code);
+    console.log(this.get('languageCode'));
   },
 
   /**
