@@ -1,4 +1,5 @@
 /* jshint node: true */
+/* jshint ignore:start */
 "use strict";
 
 module.exports = {
