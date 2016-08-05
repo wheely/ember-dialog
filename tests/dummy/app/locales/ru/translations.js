@@ -16,7 +16,7 @@ export default {
     interrupt_closing: `Прерывание закрытия`,
     listening_events: `События`,
     creating_dialog_templates: `Шаблоны`,
-    customizing_dialog: `Кастомизация диалоговых окон`,
+    customizing_dialog: `Стили и кастомизация`,
   },
   cookbook: {
     animation: `Создание анимации`,

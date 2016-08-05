@@ -5,11 +5,11 @@ module.exports = {
 
   name: 'ember-dialog',
 
-  isDevelopingAddon: function() {
+  isDevelopingAddon() {
     return true;
   },
 
-  included: function(app, parentAddon) {
+  included(app, parentAddon) {
     var target = (parentAddon || app);
     target.options = target.options || {};
     this._super.included(target);
@@ -17,7 +17,7 @@ module.exports = {
   },
 
   // @see https://github.com/ember-cli/ember-cli/issues/4918
-  hintingEnabled: function() {
+  hintingEnabled() {
     return false;
   }
 
