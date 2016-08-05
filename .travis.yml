@@ -4,10 +4,10 @@ cache:
   directories:
   - node_modules
 node_js:
-- '0.10'
+- '4.4.3'
 before_install:
 - npm config set spin false
-- npm install -g npm@^2
+- npm install -g npm@^2.15.1
 - npm install -g bower
 - npm install -g ember
 - npm install -g istanbul
