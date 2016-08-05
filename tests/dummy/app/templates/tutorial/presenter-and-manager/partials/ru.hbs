@@ -56,9 +56,9 @@ dialog.show("dialog/alert", hbs`Hello world!`);</pre>
 <h2 class="w-subtitle">Controller</h2>
 <pre data-src="examples/tutorial/presenter-and-manager/controller-1.javascript"></pre>
 <h2 class="w-subtitle">Layout</h2>
-<pre data-src="examples/tutorial/presenter-and-manager/layout-1.html"></pre>
+<pre data-src="examples/tutorial/presenter-and-manager/layout-1.handlebars"></pre>
 <h2 class="w-subtitle">Template</h2>
-<pre data-src="examples/tutorial/presenter-and-manager/template-1.html"></pre>
+<pre data-src="examples/tutorial/presenter-and-manager/template-1.handlebars"></pre>
 
 <p><button class="w-btn" onclick={{action "showGreeting"}}>Запустить пример</button> (диалоговое окно появится справа внизу).</p>
 
@@ -85,12 +85,7 @@ dialog.show("dialog/alert", hbs`Hello world!`);</pre>
 
 <p><button class="w-btn" onclick={{action "showPartial1"}}>Попробуйте сами</button></p>
 
-<p>В ember-addon предусмотренно 3 базовых layouts:</p>
-
-<p><b>Alert layout</b> - имеет на борту всего одну кнопку (ok) и крестик закрытия - при закрытии Promise резолвится. Может быть использовано для показа пользователю каких-то сообщений.</p>
-<p><b>Confirm layout</b> - имеет на борту две кнопки (yes, no) и крестик закрытия - при закрытии через крестик или по кнопке no - Promise становится rejected, при закрытии через кнопку yes - становится resolved. Может быть использовано для подтверждения пользователем какого-то действия.</p>
-<p><b>Blank layout</b> - совершенно пустое модальное окно. Может быть использовано для показа форм, у которых action accept вызывается на submit формы. Подробнее об этом читайте на странице {{#link-to 'cookbook.working-with-forms'}}{{t "cookbook.working_with_forms"}}{{/link-to}}.</p>
-
+<p>В ember-addon предусмотренно 3 базовых layouts: alert, confirm и blank. Ознакомиться с ними вы можете на странице {{#link-to 'tutorial.creating-dialog-templates'}}{{t "tutorial.creating_dialog_templates"}}{{/link-to}}.</p>
 
 <table class="w-table">
     <tr class="w-table_tr">
@@ -141,7 +136,7 @@ dialog.show("dialog/alert", hbs`Hello world!`);</pre>
 <pre data-src="examples/tutorial/presenter-and-manager/controller-4.javascript"></pre>
 
 <p><b>Template: messages/foo</b></p>
-<pre data-src="examples/tutorial/presenter-and-manager/template-4.html"></pre>
+<pre data-src="examples/tutorial/presenter-and-manager/template-4.handlebars"></pre>
 
 <p>Какая же разница между context и options. Все что передается в <code>options</code> "мержится" в компонент, а <code>context</code> записывается в конкретное свойство компонента. Также в <code>options</code> могут быть переданы специальные названия <code>actions</code>, будут выполняться при закрытии диалогового окна (<code>acceptHandler</code> и <code>declineHandler</code>), тем самым в этих <code>actions</code> можно реализовать логику по которой окно будет закрываться. Подробнее о прерывании закрытия вы можете почитать на странице {{#link-to 'tutorial.interrupt-closing'}}{{t "tutorial.interrupt_closing"}}{{/link-to}}. Здесь приведу лишь пример из которого, я надеюсь станет ясно для чего это нужно и как работает:</p>
 

@@ -15,7 +15,7 @@ export default {
     advanced_creating_dialog: `Advanced Creating Dialog`,
     interrupt_closing: `Interrupt Closing`,
     listening_events: `Listening Events`,
-    creating_dialog_templates: `Creating Dialog Templates`,
+    creating_dialog_templates: `Layouts and Templates`,
     customizing_dialog: `Customizing dialog`,
   },
   cookbook: {

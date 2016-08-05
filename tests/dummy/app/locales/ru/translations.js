@@ -15,7 +15,7 @@ export default {
     advanced_creating_dialog: `Наследование Dialog Manager`,
     interrupt_closing: `Прерывание закрытия`,
     listening_events: `События`,
-    creating_dialog_templates: `Создание Шаблонов`,
+    creating_dialog_templates: `Шаблоны`,
     customizing_dialog: `Кастомизация диалоговых окон`,
   },
   cookbook: {

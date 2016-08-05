@@ -1,3 +1,62 @@
+<style type="text/css">
+.scheme-image {
+  max-width: 100%
+}
+</style>
+
 <h1 class="w-title __w-first">{{t "tutorial.creating_dialog_templates"}}</h1>
 
-TBD
+<p>Для создания диалогового окна требуется 2 вида шаблонов: layout и template. Layout отвечает за внешний вид окна, именно в нем содержатся элементы управления (имеет на борту нужные кнопки). Также определяет тип диалогового окна. Template это само тело окна, в нем также могут определяться элементы управления, поскольку окружение у layout и template одно и то же.</p>
+
+<p>Зачем же нужно такое разделение? У проекта могут быть типовые диалоговые окна: для информирования пользователя о чем-то, показа ошибок, предупреждений, для подтверждения каких-то действия, различные нотисы (в углу страницы), диалоговые окна с формами и т.д. И чтобы избежать дублирования кода (который отвечает за тип окна) нужно использовать layouts.</p>
+
+<p>О том как стилизовать диалоговые окна вы можете узнать на странице {{#link-to 'tutorial.customizing-dialog' class='w-link'}}{{t "tutorial.customizing_dialog"}}{{/link-to}}.</p>
+
+<p>Схематично диалоговое окно можно представить следующим образом:</p>
+
+<br>
+<div style="text-align: left; overflow: hidden;"><img src="assets/schemes/layout-and-template.svg" class="scheme-image"></div>
+
+<h2 class="w-subtitle">Layout</h2>
+
+<p>Лейаут отвечает за внешний вид окна (то как оно показывается, где показывается), набор UI элементов. Ember dialog имеет на борту 3-и layouts:</p>
+
+<p><b>Alert layout</b>. Имеет на борту всего одну кнопку (ok) и крестик закрытия - при закрытии Promise резолвится. Может быть использовано для показа пользователю каких-то сообщений.</p>
+
+<div style="text-align: left; overflow: hidden;"><img src="assets/schemes/alert.svg" class="scheme-image"></div>
+
+<p><b>Confirm layout</b>. Имеет на борту две кнопки (yes, no) и крестик закрытия - при закрытии через крестик или по кнопке no - Promise становится rejected, при закрытии через кнопку yes - становится resolved. Может быть использовано для подтверждения пользователем какого-то действия.</p>
+
+<div style="text-align: left; overflow: hidden;"><img src="assets/schemes/confirm.svg" class="scheme-image"></div>
+
+<p><b>Blank layout</b>. Совершенно пустое модальное окно. Может быть использовано для показа форм, у которых action accept вызывается на submit формы. Подробнее об этом читайте на странице {{#link-to 'cookbook.working-with-forms'}}{{t "cookbook.working_with_forms"}}{{/link-to}}. Элементы зыкрытия в таком случае должны находиться в теле модального окна</p>
+
+<div style="text-align: left; overflow: hidden;"><img src="assets/schemes/blank.svg" class="scheme-image"></div>
+
+<h2 class="w-subtitle">Создание собственного layout</h2>
+
+<p>По аналогии с приведенными выше layouts вы можете создать свои собственные.</p>
+
+<p>Например layout модального окна со значком info.</p>
+<div style="text-align: left; overflow: hidden;"><img src="assets/schemes/information.svg" class="scheme-image"></div>
+
+<p>Или более сложные варианты, например layout notice диалогового окна. Ниже схематично представление его layout. Как такой вид окна сделать вы можете узнать на странице {{#link-to 'cookbook.creating-notices' class='w-link'}}{{t "cookbook.creating_notices"}}{{/link-to}}.</p>
+<div style="text-align: left; overflow: hidden;"><img src="assets/schemes/notice.svg" class="scheme-image"></div>
+
+<p>Итак как создавать layouts и их использовать. Layout - это простой шаблон, как вы понимаете, он должен находиться в директории <code>app/templates</code>. Для того чтобы показать диалоговое окно с созданным layout путь до него нужно указать первым аргументом при вызове метода show {{#link-to 'tutorial.presenter-and-manager' class='w-link'}}Dialog Manager{{/link-to}}.</p>
+
+<p>Например давайте создадим новый вид диалогового окна, которое будет выводиться в левом верхнем углу страницы, с красным background, назовем его <code>red-corner-dialog</code>. Для этого в директории шаблонов создадим файл <code>red-corner-dialog.hbs</code>.</p>
+
+<p><b>Файл app/templates/red-corner-dialog.hbs</b></p>
+
+<pre data-src="examples/tutorial/creating-dialog-templates/template-1.handlebars"></pre>
+<pre data-src="examples/tutorial/creating-dialog-templates/styles-1.scss"></pre>
+
+<p>В контроллере показ (создание) диалогового окна тогда будет выглядеть так:</p>
+
+<pre data-src="examples/tutorial/creating-dialog-templates/controller-1.javascript"></pre>
+
+<p><button class="w-btn" onclick={{action "showDialog"}}>Запустить пример</button></p>
+
+
+<h2 class="w-subtitle">Template</h2>
