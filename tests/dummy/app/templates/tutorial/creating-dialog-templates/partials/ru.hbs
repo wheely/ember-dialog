@@ -1,3 +1,23 @@
 <h1 class="w-title __w-first">{{t "tutorial.creating_dialog_templates"}}</h1>
 
-TBD
+<p>Для создания диалогового окна требуется 2 вида шаблонов: layout и template. Layout отвечает за внешний вид окна, именно в нем содержатся элементы управления (имеет на борту нужные кнопки). Также определяет тип диалогового окна. Template это само тело окна, в нем также могут определяться элементы управления, поскольку окружение у layout и template одно и то же.</p>
+
+<p>Зачем же нужно такое разделение? У проекта могут быть типовые диалоговые окна: для информирования пользователя о чем-то, показа ошибок, предупреждений, для подтверждения каких-то действия, различные нотисы (в углу страницы), диалоговые окна с формами и т.д. И чтобы избежать дублирования кода (который отвечает за тип окна) нужно использовать layouts.</p>
+
+<p>Схематично диалоговое окно можно представить следующим образом:</p>
+
+<br>
+<div style="text-align: center; overflow: hidden;"><img src="assets/schemes/layout-and-template.svg" width="100%"></div>
+
+<h2 class="w-subtitle">Layout</h2>
+
+<p>Чтобы лучше понять что такое layout посмотрите какие варианты могут быть:</p>
+
+<div style="text-align: left; overflow: hidden;"><img src="assets/schemes/confirm.svg" width="500px"></div>
+<br>
+<div style="text-align: left; overflow: hidden;"><img src="assets/schemes/alert.svg" width="500px"></div>
+<br>
+<div style="text-align: left; overflow: hidden;"><img src="assets/schemes/blank.svg" width="356px"></div>
+<br>
+
+<h2 class="w-subtitle">Template</h2>
