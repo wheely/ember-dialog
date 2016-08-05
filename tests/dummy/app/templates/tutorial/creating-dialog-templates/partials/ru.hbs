@@ -40,7 +40,7 @@
 <p>Например layout модального окна со значком info.</p>
 <div style="text-align: left; overflow: hidden;"><img src="assets/schemes/information.svg" class="scheme-image"></div>
 
-<p>Или более сложные варианты, например layout notice диалогового окна. Ниже схематично представление его layout. Как такой вид окна сделать вы можете узнать на странице {{#link-to 'cookbook.creating-notices' class='w-link'}}{{t "cookbook.creating_notices"}}{{/link-to}}.</p>
+<p>Или более сложные варианты, например layout notice диалогового окна. Ниже схематично представление его layout. Как такой вид диалоговых окон сделать вы можете узнать на странице {{#link-to 'cookbook.creating-notices' class='w-link'}}{{t "cookbook.creating_notices"}}{{/link-to}}.</p>
 <div style="text-align: left; overflow: hidden;"><img src="assets/schemes/notice.svg" class="scheme-image"></div>
 
 <p>Итак как создавать layouts и их использовать. Layout - это простой шаблон, как вы понимаете, он должен находиться в директории <code>app/templates</code>. Для того чтобы показать диалоговое окно с созданным layout путь до него нужно указать первым аргументом при вызове метода show {{#link-to 'tutorial.presenter-and-manager' class='w-link'}}Dialog Manager{{/link-to}}.</p>
@@ -58,5 +58,22 @@
 
 <p><button class="w-btn" onclick={{action "showDialog"}}>Запустить пример</button></p>
 
+<p>Или вы можете упрятать этот лейаут в специальный метод, отнаследовав Dialog Manager.</p>
+
+<p><b>Файл app/services/dialog.js</b></p>
+
+<pre data-src="examples/tutorial/creating-dialog-templates/example-1.javascript"></pre>
+
+<p>И тогда в контроллере вы сможете делать так:</p>
+
+<pre data-src="examples/tutorial/creating-dialog-templates/controller-2.javascript"></pre>
+
+<p>Схемотично это диалоговое окно выглядит так:</p>
+
+<div style="text-align: left; overflow: hidden;"><img src="assets/schemes/red-corner-dialog.svg" class="scheme-image"></div>
 
 <h2 class="w-subtitle">Template</h2>
+
+<p>Это тело диалогового окна, у него такой же скоуп как и у layout. В нем также как и в layout могут быть элементы управления диалоговым окном (т.е. быть произведен вызов <code>accept</code> и <code>decline</code> actions). Если при создании окна был указан context, он будет также как и в layout доступен в специальной переменной <code>contextObject</code>. Благодаря <code>contextObject</code> возможно связывать данные с шаблоном, а также вызывать различные <code>actions</code> context.</p>
+
+<p>Template, как правило используется для показа простого текста, но позволяет выводить более сложные структуры, такие как формы (см. {{#link-to 'cookbook.working-with-forms' class="w-link"}}{{t "cookbook.working_with_forms"}}{{/link-to}}).</p>
