@@ -2,6 +2,8 @@
 
 Old version (ember-cli-dialog and ember-dialog below v2) outdated and will not be supported.
 
+Tutorials, Cookbook and documentation you can find on the [site](http://wheely.github.io/ember-dialog/).
+
 ## Installation
 
 Installing the library is as easy as:
