@@ -24,3 +24,12 @@ p {
     }
   }
 }
+
+.red-corner-dialog {
+  top: 0;
+  margin: initial;
+  transform: inherit;
+  position: fixed;
+  padding: 10px;
+  .dialog-content { background: #F00; padding: 10px; }
+}
