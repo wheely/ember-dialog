@@ -1,19 +1,6 @@
 @import "wheely";
 @import 'addon/styles/ember-dialog';
 
-.w-title {
-  font-size: 24px;
-}
-
-.w-subtitle {
-  font-size: 16px;
-}
-
-p {
-    margin-bottom: 14px;
-    margin-top: 0;
-}
-
 .left-nav {
   ul {
     padding-left: 0;
@@ -42,5 +29,25 @@ p {
       top: 0;
       transform: inherit;
     }
+  }
+}
+
+.w-page_content {
+  @include size('padding-bottom', 'size_xl');
+
+  :not(pre) > code[class*=language-], 
+  pre[class*=language-] {
+    @include size('margin', 'size_l 0');
+  }
+
+  .prism-show-language {
+
+    .prism-show-language-label {
+      @include size('top', 'size_l');
+    }
+  }
+
+  p {
+    @extend .w-paragraph;
   }
 }
