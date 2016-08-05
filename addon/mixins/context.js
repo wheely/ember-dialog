@@ -5,8 +5,6 @@ import Ember from 'ember';
  * @augments Ember.Mixin
  */
 
-const { run } = Ember;
-
 function makeArgsArray(args, obj) {
   const argsArray = Array.prototype.slice.apply(args);
   argsArray.unshift(obj);
