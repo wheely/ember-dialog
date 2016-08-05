@@ -10,11 +10,13 @@ before_install:
 - npm install -g npm@^2
 - npm install -g bower
 - npm install -g ember
+- npm install -g istanbul
 install:
 - npm install
 - bower install
 script:
 - npm run-script test
+- istanbul cover *.js && cat ./coverage/lcov.info | CODACY_PROJECT_TOKEN="ca5159a3391d43db90a053c83cb34eea" ./node_modules/.bin/codacy-coverage
 after_success:
 - npm run-script build:production
 env:

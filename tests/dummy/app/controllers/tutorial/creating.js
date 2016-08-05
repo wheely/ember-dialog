@@ -19,6 +19,7 @@ export default Ember.Controller.extend({
     },
 
     confirmDeletion() {
+      asad = 123
       const promise = this.get("dialog").confirm(hbs`Are you sure?`);
       promise.then(() => { alert("Remove"); });
       promise.catch(() => { alert("Cancel"); });
