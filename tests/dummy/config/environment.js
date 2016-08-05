@@ -3,7 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: "dummy",
-    environment: environment,
+    environment: environment || "development",
     baseURL: process.env.BASE_URL || "/",
     locationType: process.env.LOCATION_TYPE || "auto",
     contentSecurityPolicy: {
@@ -46,10 +46,6 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = "#ember-testing";
-  }
-
-  if (environment === "production") {
-
   }
 
   return ENV;
