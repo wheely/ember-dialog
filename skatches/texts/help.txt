@@ -1,0 +1,13 @@
+Библиотека постоянно находится в стадии активной разработки. Мы придерживаемся принципов релиза Ember - каждые 6 месяцев релизим новую версии. Это сделано для того, чтобы мы могли синхронизоваться с новыми фичами Ember.
+
+Если в функциональности библиотеки вам чего-то не хватает или вы не можете разобраться со возникшей проблемой - ставьте issue, мы обязательно его обработаем. Мы рады любому участию в развитии проекта. Чуствуйте себя свободно создавая Pull Requests.
+
+До тех пор пока размер community проекта небольшой по возникающим вопросам в использовании ember-dialog вы можете писать мне лично в slack - @ajile, но учтите я живу в GMT+4.
+
+
+
+The library is under constant develoment. We stick to concept of Ember releases - every 6 monthes we release new version.  We do so to sync with new Ember features.
+
+If you find something lacking in the library functions - add issue on github, we shall process it. We are open to any cooperation. Feel free to send us Pull Requests.
+
+While the project's community is small you may send me all incoming issues with ember-dialog to slack - @ajile, but keep in mind, I am in GMT+4.

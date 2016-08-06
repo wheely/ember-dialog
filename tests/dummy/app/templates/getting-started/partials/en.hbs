@@ -1,23 +1,29 @@
 <h1 class="w-title">Getting Started</h1>
 
-<p>An lightweight and powerful Ember Addon that enables you to easily create <b>routable</b> dialog windows and control their closing. It consists of a service that is available from any object and a component which is a dialog-window itself.</p>
-<p>So how does it look? Please look: <a class="w-link w-link__pseudo" onclick={{action "showAlert"}}>alert</a>, <a class="w-link w-link__pseudo" onclick={{action "showConfirm"}}>confirm</a> and <a class="w-link w-link__pseudo" onclick={{action "showBlank"}}>blank</a> dialog window.</p>
+<p>A lightweight and powerful Ember Addon that allows you to easily create <b>routable</b> dialog windows and control their closing. It consists of a service that is available from any object and a component which is a dialog-window itself.</p>
+
+<p>So how do they look like? See yourself: <a class="w-link w-link__pseudo" onclick={{action "showAlert"}}>alert</a>, <a class="w-link w-link__pseudo" onclick={{action "showConfirm"}}>confirm</a> and <a class="w-link w-link__pseudo" onclick={{action "showBlank"}}>blank</a>.</p>
 
 <h2 class="w-subtitle">Installation</h2>
 
 <p>Installing the library is as easy as:</p>
 <pre data-src="examples/getting-started/installation-1.bash"></pre>
+
 <p>You will see something like this:</p>
 <pre data-src="examples/getting-started/installation-2.bash"></pre>
 
 <h2 class="w-subtitle">Concept</h2>
 
-<p>The principle of work is simple. Service is instructed to display a modal window (`show`, `alert`, `confirm` or `blank` methods), creates a component instance with required layout and template, then renders it, and attaches it to the body. At this point, it also creates a Promise, "handles" of which puts into the component and returns it. The component has 2 actions on aboard: one for `resolved` closing, another one for `rejected` closing. Actions available within the template and can be called, for instance by clicking on the button (in the layout or in the template). When you call an action, one of the Promise's method is executed and triggered independent "accepted" or "declined" event. The dialog service when gets the event destroys component object and detaches it from the DOM.</p>
+<p>The principle of work is simple. Service is instructed to display a modal window (`show`, `alert`, `confirm` or `blank` methods), creates a component instance with required layout and template, then renders it, and attaches it to the body. At this point, it also creates a Promise, resolve и reject methods of which are put into the component, while promise is returned from method for the program that called the creation could know the result of window closing. The component has 2 actions on aboard: one for `resolved` closing, the other one for `rejected` closing. Actions are available within a template and can be called, for instance by clicking on the button (in a layout or in a template). When you call an action, one of the Promise's method is executed and an independent event is triggered: "accepted" or "declined". The dialog service destroys component instance and detaches it from the DOM on this events.</p>
 
-<p>Let's say you want to ask user confirm an action. You should call `show` method of the dialog service with a layout path (you needed dialog window with two buttons - `confirm` layout what you need) and a path to template that you want to show the user in the modal window. Method creates and shows dialog window and returns a Promise, that will become resolved or rejected when window closed (it's depend on which button user has clicked).</p>
+<p>Let's say you want to ask a user to confirm an action. You should call `show` method of the dialog service with a layout path (you need a dialog window with two buttons - `dialog/confirm` layout is exactly what you need) and a template path you want to show the user in the modal window. Method creates and shows dialog window and returns a Promise, that will become resolved or rejected when the window is closed (it depends on the button user has clicked).</p>
 
 <pre data-src="examples/getting-started/example-1.javascript" data-line="7" class="line-numbers"></pre>
 
-<p>There is simple ways to create dialogs different types:</p>
+<p>The method `show` allows you to create dialogs with different layouts: with various number of buttons, ways of display etc. We have foreseen the most popular variants of the modal windows: alert, confirm and blank, so you don't have to write the same layout path in different places of the program. For instance:</p>
 
 <pre data-src="examples/getting-started/example-2.javascript" class="line-numbers"></pre>
+
+<p>What's next? You may visit page {{#link-to 'tutorial' class="w-link"}}{{t "navigation.tutorial"}}{{/link-to}}, {{#link-to 'cookbook' class="w-link"}}{{t "navigation.cookbook"}}{{/link-to}} or dig the <a href="docs" class="w-link">docs</a></p>. For any questions, please write issue, we will try to help you. 
+
+<p>Good luck!</p>
