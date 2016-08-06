@@ -1,3 +1,24 @@
 <h1 class="w-title __w-first">{{t "tutorial.creating_first_dialog"}}</h1>
 
-TBD: Unfortunately there is no English version yet. Please see the <a class="w-link w-link__pseudo" {{action "setLanguageCode" "ru"}}>Russian version</a>, you may find useful examples there...
+<h2 class="w-subtitle">Alert dialog window creation</h2>
+
+<p>All the controllers acquire the 'dialog' property after ember-dialog installation, this property is a link for the dialog window service where all the dialog wondows are created.</p>
+
+<p>To create your first dialog let us create a route, a controller and a template. To do that go the the root of your project and run the commands:</p>
+
+<pre data-src="examples/tutorial/creating/generate-things.bash"></pre>
+
+<p>Ember will create the route, the controller and the template for you. Now open the created controller (it should be here: <code>app/controllers/example.js</code>) and edit it.</p>
+
+<pre data-src="examples/tutorial/creating/controller-1.javascript" data-line="4-7" class="line-numbers"></pre>
+
+<p>When opening url <code>http://127.0.0.1:4200/example</code> a default alert window with text "Hello, Vladimir Milkov" should pop up. JS code execution stops until the window is closed. It looks like this (You know ;))</p>
+
+<div style="text-align: center; overflow: hidden;"><img src="assets/default-alert.png"></div>
+
+<p>To create an ember-dialog window you should change the code like this:</p>
+
+<pre data-src="examples/tutorial/creating/controller-2.javascript" data-line="7" class="line-numbers"></pre>
+
+TBD: Unfortunately the English version isn't finished yet. Please see the <a class="w-link w-link__pseudo
+" {{action "setLanguageCode" "ru"}}>Russian version</a>, you may find useful examples there...
