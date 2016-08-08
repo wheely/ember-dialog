@@ -7,7 +7,7 @@ export default DialogManager.extend({
   },
 
   slide(template, context) {
-    return this.alert(template, context, { animate: "fade" }, "presenter-animated");
+    return this.alert(template, context, { animate: "slide" }, "presenter-animated");
   }
 
 });
