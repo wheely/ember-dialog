@@ -1,3 +1,89 @@
 <h1 class="w-title __w-first">{{t "cookbook.animation"}}</h1>
 
-TBD
+<p>Диалоговые окна показываются и исчезают незамедлительно - поскольку при создании они вставляются в DOM, а при уничтожении удаляются. Поэтому чтобы анимировать появление и исчезание нужно немного изменить это поведение.</p>
+
+<p>Анимирование появления: Окно должно создаваться с css классом, которое скрывает его, а через мгновение, после того как оно было вставлено в DOM страницы, к нему должен добавляться css-класс делающий его видимым (через анимацию).</p>
+
+<p>Анимирование исчезания: При закрытии окно должно выдергиваться из DOM страницы с задержкой, необходимой для анимирования его исчезания.</p>
+
+<p>Для начала создадим css стили, которые будут отвечать за анимацию.</p>
+
+<p><b>app/styles/app.scss:</b></p>
+
+<pre data-src="examples/cookbook/animation/animation.scss"></pre>
+
+<p>Далее нужно отнаследовать <a href="docs/module-ember-dialog_components_presenter.html" class="w-link">Presenter</a>, добавлять css классы при создании и уничтожении.</p>
+
+<p><b>app/components/presenter-animated.js:</b></p>
+
+<pre data-src="examples/cookbook/animation/animated-presenter-1.javascript"></pre>
+
+<p>После того как окно отрендерилось, но еще не вставилось в DOM страницы нужно добавить css-класс, которое делает окно невидимым (в примере делаем opacity: 0). После того как элемент был вставлен в DOM добавляем еще один класс делающий окно видимым (делаем opacity: 1)</p>
+
+<pre data-src="examples/cookbook/animation/animated-presenter-2.javascript" data-line="6-16" class="line-numbers"></pre>
+
+<p>Если запустить пример окно плавно появится на экране, но при закрытии оно исчезнет без анимации (просто удалится из DOM). Чтобы добавить анимацию на закрытие окна нам нужно:</p>
+
+<ul>
+  <li>1. Удалять окно из DOM с задержкой, необходимой для css анимации</li>
+  <li>2. Удалять добавленный при создании css класс (чтобы opacity снова стал равен 0)</li>
+</ul>
+
+<p>Переопределим методы отвечающие за закрытие окна, добавим удаление css класса и задержку.</p>
+
+<pre data-src="examples/cookbook/animation/animated-presenter-3.javascript" data-line="6-14" class="line-numbers"></pre>
+
+<p>Все готово! Теперь окна созданные по компоненту <code>presenter-animated</code> будут показываться и исчезать с анимацией.</p>
+
+<p>Но как его вызвать? По умолчанию Dialog Manager создает экземпляр компонента <code>presenter</code>, чтобы создать окно <code>presenter-animated</code> нужно указать его имя последним аргументом:</p>
+
+<pre data-src="examples/cookbook/animation/controller-1.javascript" data-line="8" class="line-numbers"></pre>
+
+<p><button class="w-btn" onclick={{action "showDialog"}}>Показать presenter</button> <button class="w-btn" onclick={{action "showAnimatedDialog"}}>Показать presenter-animated</button></p>
+
+<p>Но если мы хотим добавить еще один вариант анимации, придется дублировать компонент? Нет, возможно определять анимацию при создании диалогового окна через <code>options</code> следующим образом.</p>
+
+<pre data-src="examples/cookbook/animation/controller-3.javascript" data-line="8" class="line-numbers"></pre>
+
+<p>Для этого изменим немного компонент:</p>
+
+<pre data-src="examples/cookbook/animation/animated-presenter-4.javascript" data-line="6,9,14,25" class="line-numbers"></pre>
+
+<p>Теперь можно указывать имя анимации:</p>
+
+<pre data-src="examples/cookbook/animation/controller-2.javascript" data-line="8,9" class="line-numbers"></pre>
+
+<p>Но код создания окна с анимацией стал слишком длинным, давайте расширим Dialog Manager и упрячем имя анимации и компонента в него:</p>
+
+<pre data-src="examples/cookbook/animation/example-1.javascript" class="line-numbers"></pre>
+
+<p>Теперь мы можем создавать анимированные окна так:</p>
+
+<pre data-src="examples/cookbook/animation/controller-4.javascript" data-line="8" class="line-numbers"></pre>
+
+<h1 class="w-title">Использование сторонних библиотек</h1>
+
+<p>
+  Также можно использовать различные сторонние библиотеки, например <a href="https://github.com/daneden/animate.css/">animate.css</a>. Попробуйте сами:
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "bounceIn" "bounceOut" 500}}>bounce</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "fadeIn" "fadeOut" 500}}>fade</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "flipInX" "flipOutX" 500}}>flipX</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "flipInY" "flipOutY" 500}}>flipY</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "lightSpeedIn" "lightSpeedOut" 1000}}>lightSpeed</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "rotateIn" "rotateOut" 1000}}>rotate</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "rollIn" "rollOut" 1000}}>roll</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "zoomIn" "zoomOut" 1000}}>zoom</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "slideInDown" "slideOutDown" 1000}}>slideDown</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "fadeIn" "hinge" 2000}}>hinge Out</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "pulse" "" 0}}>pulse</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "flash" "" 0}}>flash</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "rubberBand" "" 0}}>rubberBand</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "shake" "" 0}}>shake</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "headShake" "" 0}}>headShake</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "swing" "" 0}}>swing</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "tada" "" 0}}>tada</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "wobble" "" 0}}>wobble</a>,
+  <a class="w-link w-link__pseudo" onclick={{action "showAnimation" "jello" "" 0}}>jello</a>
+</p>
+
+<p>Как вы понимаете наследуя presenter-компонент можно сделать анимацию на любой элемент (на подложку или на само окно) любой сложности.</p>

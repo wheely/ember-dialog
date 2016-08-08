@@ -35,7 +35,7 @@
 .w-page_content {
   @include size('padding-bottom', 'size_xl');
 
-  :not(pre) > code[class*=language-], 
+  :not(pre) > code[class*=language-],
   pre[class*=language-] {
     @include size('margin', 'size_l 0');
   }
@@ -50,4 +50,19 @@
   p {
     @extend .w-paragraph;
   }
+}
+
+
+
+.animation {
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease-in;
+  -moz-transition: opacity 0.5s ease-in;
+  -o-transition: opacity 0.5s ease-in;
+  -ms-transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
+}
+
+.animation__fadeIn {
+  opacity: 1;
 }
