@@ -1,6 +1,33 @@
 <h1 class="w-title __w-first">{{t "tutorial.customizing_dialog"}}</h1>
 
+<p>Стили написаны на языке <a href="http://sass-lang.com/" class="w-link">sass</a>, что позволяет подключить их в ваш проект.</p>
+
+<p>Проект содержит 2 файла со стилями. Первый файл содержит каркас диалоговых окон - т.е. обеспечивает их показ в нужном размере и нужном месте. Второй файл содержит стили влияющие на внешний вид. Вы можете подключить в ваш проект любой из этих файлов независимо.</p>
+
 <h2 class="w-subtitle">Как подключить стили в проект</h2>
-<h2 class="w-subtitle">Как написать свой собственный стиль</h2>
+
+<p>Для подключения всех стилей ember-dialog пропишите в вашем <code>app/styles/app.scss</code>:</p>
+
+<code class="language-scss">@import "node_modules/ember-dialog/addon/styles/ember-dialog";</code>
+
+<p>Чтобы не указывать весь путь до стилей, вы можете добавить этот путь в конфиг sass. Для этого поправьте ваш <code>ember-cli-build.js</code>:</p>
+
+<pre data-src="examples/tutorial/customizing-dialog/ember-cli-build.javascript"></pre>
+
+<p>После этого вы сможете подлючать стили так:</p>
+
+<pre data-src="examples/tutorial/customizing-dialog/including.scss"></pre>
+
+<p>Также вы можете подключить к проекту только структуру:</p>
+
+<pre data-src="examples/tutorial/customizing-dialog/structure-including.scss"></pre>
+
+{{!-- <h2 class="w-subtitle">Как написать свой собственный стиль</h2> --}}
+
 <h2 class="w-subtitle">Как сделать анимацию</h2>
+
+<p>Основной класс диалоговых окон <code>ember-dialog-dialog</code>, вы можете добавлять к нему различные css анимации. Если вы хотите хотите применить анимацию на конкретное окно - вы можете создать новый css класс и указать его в <code>options.className</code> при его создании (см. {{#link-to 'tutorial.presenter-and-manager'}}{{t "tutorial.presenter_and_manager"}}{{/link-to}}).</p>
+
 <h2 class="w-subtitle">Как создать новый лейаут</h2>
+
+<p>Описание этого раздела было перенесено {{#link-to 'tutorial.creating-dialog-templates'}}сюда{{/link-to}}.</p>

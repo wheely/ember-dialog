@@ -1,8 +1,4 @@
-$dialog-padding: 10px;
-$dialog-min-width: 300px;
-$dialog-max-width: 500px;
-
-.component-dialog-dialog {
+.ember-dialog-dialog {
   min-width: $dialog-min-width;
   max-width: $dialog-max-width;
 
