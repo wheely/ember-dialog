@@ -11,3 +11,4 @@ The library is under constant develoment. We stick to concept of Ember releases 
 If you find something lacking in the library functions - add issue on github, we shall process it. We are open to any cooperation. Feel free to send us Pull Requests.
 
 While the project's community is small you may send me all incoming issues with ember-dialog to slack - @ajile, but keep in mind, I am in GMT+4.
+Also you may send all incoming issues to [slack](https://ember-dialog.slack.com/).

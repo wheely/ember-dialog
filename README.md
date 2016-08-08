@@ -257,8 +257,10 @@ export default Dialog.extend({
 });
 ```
 
-## Cookbook
+## Contributing
 
-### Creating form dialog
+The library is under constant develoment. We stick to concept of Ember releases - every 6 monthes we release new version.  We do so to sync with new Ember features.
 
-TBD
+If you find something lacking in the library functions - add issue on github, we shall process it. We are open to any cooperation. Feel free to send us Pull Requests.
+
+Also you may send all incoming issues to [slack](https://ember-dialog.slack.com/).
