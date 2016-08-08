@@ -1,8 +1,8 @@
 # ember-dialog [![license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/wheely/ember-dialog/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/wheely/ember-dialog.svg?branch=master)](https://travis-ci.org/wheely/ember-dialog) [![Code Climate](https://codeclimate.com/github/wheely/ember-dialog/badges/gpa.svg)](https://codeclimate.com/github/wheely/ember-dialog) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f364ecdab2f4486dbd15b198d5debf87)](https://www.codacy.com/app/ajile/ember-dialog?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wheely/ember-dialog&amp;utm_campaign=Badge_Grade)
 
-Old version (ember-cli-dialog and ember-dialog below v2) outdated and will not be supported.
+A lightweight and powerful Ember Addon that allows you to easily create <b>routable</b> dialog windows and control their closing. It consists of a service that is available from any object and a component which is a dialog-window itself.
 
-Tutorials, Cookbook and documentation you can find on the [site](http://wheely.github.io/ember-dialog/).
+With ember-dialog you can create any popups like dialogs, modals, notices, bubbles etc. We have decided do not include realization of all this features to the library for minification reasons. Instead of it we have written absolute documentation how you can make it your own (see <a href="http://wheely.github.io/ember-dialog/#/cookbook">cookbook</a> and <a href="http://wheely.github.io/ember-dialog/#/tutorial">tutorial</a> with examples). You can look the library's code on github and get surprised how much code on aboard to realize all features, presented on this site.
 
 ## Installation
 
@@ -15,8 +15,6 @@ ember install ember-dialog
 ## About
 
 <img align="right" src="http://dl2.joxi.net/drive/2016/07/14/0007/2363/473403/03/5f20c42c19.png">
-
-A lightweight and powerful Ember Addon that allows you to easily create *routable* dialog windows and control their closing. It consists of a service that is available from any object and a component which is a dialog-window itself.
 
 The principle of work is simple. Service is instructed to display a modal window (`show`, `alert`, `confirm` or `blank` methods), creates a component instance with required layout and template, then renders it, and attaches it to the body. At this point, it also creates a Promise, "handles" of which puts into the component and returns it. The component has 2 actions on aboard: one for `resolved` closing, another one for `rejected` closing. Actions available within the template and can be called, for instance by clicking on the button (in the layout or in the template). When you call an action, one of the Promise's method is executed and triggered independent "accepted" or "declined" event. The dialog service when gets the event destroys component object and detaches it from the DOM.
 
@@ -257,8 +255,10 @@ export default Dialog.extend({
 });
 ```
 
-## Cookbook
+## Contributing
 
-### Creating form dialog
+The library is under constant develoment. We stick to concept of Ember releases - every 6 monthes we release new version.  We do so to sync with new Ember features.
 
-TBD
+If you find something lacking in the library functions - add issue on github, we shall process it. We are open to any cooperation. Feel free to send us Pull Requests.
+
+Also you may send all incoming issues to [slack](https://ember-dialog.slack.com/).

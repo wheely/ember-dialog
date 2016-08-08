@@ -4,6 +4,8 @@ import Configuration from 'ember-dialog/configuration';
 
 const { guidFor } = Ember;
 
+const DEFAULT_COMPONENT_NAME = "presenter";
+
 /**
  * The built in string object.
  * @external Ember/RSVP/Promise
@@ -231,12 +233,15 @@ export default Ember.Service.extend(Ember.Evented, {
    *                                             and context that passed on creation as `contextObject`.
    * @param {Object} [context]                 - An onject available in the template as `contextObject`.
    * @param {Object} [options={}]              - An object pass to presenter on creating.
+   * @param {String} [componentName="presenter"]  - The dialog component name
    * @return {external:Ember/RSVP/Promise}
    */
-  show(layout, template, context, options = {}) {
+  show(layout, template, context, options = {}, componentName = DEFAULT_COMPONENT_NAME) {
 
     // Getting presenter class to create its instance that we'll show.
-    var Presenter = this.container.lookupFactory("component:presenter");
+    var Presenter = this.container.lookupFactory(["component", componentName].join(":"));
+
+    Ember.assert("You have passed `componentName` argument, but component by this name doesn't exist.", Presenter);
 
     Presenter = Presenter.extend(ContextMixin);
 
@@ -259,7 +264,7 @@ export default Ember.Service.extend(Ember.Evented, {
     presenter.context.set("contextObject", context || Ember.Object.create());
 
     // Show it to user
-    Ember.run(() => presenter.appendTo(this.get("rootElement")));
+    Ember.run(() => presenter.appendTo(options.root || this.get("rootElement")));
 
     /**
      * Triggered when `presenter` instance created. May be used to control
@@ -315,12 +320,14 @@ export default Ember.Service.extend(Ember.Evented, {
    * @param {String} template
    * @param {Object} [context]
    * @param {Object} [options]
+   * @param {String} [componentName="presenter"]  - The dialog component name
    * @return {external:Ember/RSVP/Promise}
    */
-  alert(template, context, options) {
+  alert(template, context, options, componentName = DEFAULT_COMPONENT_NAME) {
     var scope = this;
     if (!this.show) { scope = this.get("dialog"); }
-    return scope.show(Configuration["ember-dialog"].layoutPath + "/alert", template, context, options);
+    const layout = Configuration["ember-dialog"].layoutPath + "/alert";
+    return scope.show(layout, template, context, options, componentName);
   },
 
   /**
@@ -343,10 +350,12 @@ export default Ember.Service.extend(Ember.Evented, {
    * @param {String} template
    * @param {Object} [context]
    * @param {Object} [options]
+   * @param {String} [componentName="presenter"]  - The dialog component name
    * @return {external:Ember/RSVP/Promise}
    */
-  confirm(template, context, options) {
-    return this.show(Configuration["ember-dialog"].layoutPath + "/confirm", template, context, options);
+  confirm(template, context, options, componentName = DEFAULT_COMPONENT_NAME) {
+    const layout = Configuration["ember-dialog"].layoutPath + "/confirm";
+    return this.show(layout, template, context, options, componentName);
   },
 
   /**
@@ -367,10 +376,12 @@ export default Ember.Service.extend(Ember.Evented, {
    * @param {String} template
    * @param {Object} [context]
    * @param {Object} [options]
+   * @param {String} [componentName="presenter"]  - The dialog component name
    * @return {external:Ember/RSVP/Promise}
    */
-  blank(template, context, options) {
-    return this.show(Configuration["ember-dialog"].layoutPath + "/blank", template, context, options);
+  blank(template, context, options, componentName = DEFAULT_COMPONENT_NAME) {
+    const layout = Configuration["ember-dialog"].layoutPath + "/blank";
+    return this.show(layout, template, context, options, componentName);
   }
 
 });

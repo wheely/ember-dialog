@@ -1,3 +1,42 @@
 <h1 class="w-title __w-first">{{t "cookbook.showing_server_errors"}}</h1>
 
-TBD
+<p>Диалоговое окно отлично подходит для показа серверных или любых других фатальных ошибок. Например соединение по WebSoсket отвалилось или протух токен или...</p>
+
+<h2 class="w-subtitle">Token expired error</h2>
+
+<p>Давайте сделаем показ ошибки токена. Сначала нам надо инъектить Dialog Manager в адаптер приложения и сделать вывод ошибки в модальном окне на 401 ответ от сервера.</p>
+
+<pre data-src="examples/cookbook/showing-server-errors/adapter-1.javascript"></pre>
+<pre data-src="examples/cookbook/showing-server-errors/error-unauthenticated.handlebars"></pre>
+
+<p>Теперь при получении от сервера ответа со статусом 401 пользователь будет видеть сообщение:</p>
+
+<div><img src="assets/dialog-session-expired.png" style="max-width:100%"></div>
+
+<p>После нажатия на кнопку "OK" сессия будет инвалидирована.</p>
+
+<h2 class="w-subtitle">Invalid request error</h2>
+
+<p>Рассмотрим вариант показа любых ошибок от сервера вверху страницы. Для этого нам надо добавить логику показа ошибок в адапторе, создать новый шаблон layout и стили к нему.</p>
+
+<p><b>app/adapter/application.js:</b></p>
+<pre data-src="examples/cookbook/showing-server-errors/adapter-2.javascript"></pre>
+
+<p><b>app/templates/dialog/top-error.hbs:</b></p>
+<pre data-src="examples/cookbook/showing-server-errors/top-error.handlebars"></pre>
+
+<p><b>app/templates/messages/titled.hbs:</b></p>
+<pre data-src="examples/cookbook/showing-server-errors/titled.handlebars"></pre>
+
+<p><b>app/styles/top-error-dialog.scss:</b></p>
+<pre data-src="examples/cookbook/showing-server-errors/top-error-dialog.scss"></pre>
+
+<p>Ошибка будет выглядеть следующим образом:</p>
+
+<div><img src="assets/dialog-top-error.png" style="max-width:100%"></div>
+
+<p>Осталось сделать автозакрытие этого окна. Для этого нам нужно подписаться на событие `created` диалогового менеджера - так мы получим ссылку на созданное диалоговое окно. Далее через какое-то время у диалога нужно вызвать метод <code>accept</code> или <code>reject</code> для того, чтобы его закрыть.</p>
+
+<pre data-src="examples/cookbook/showing-server-errors/adapter-3.javascript" data-line="11"></pre>
+
+<p><button class="w-btn" onclick={{action "showTopError"}}>Посмотреть как работает</button></p>
