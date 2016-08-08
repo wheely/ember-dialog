@@ -264,7 +264,7 @@ export default Ember.Service.extend(Ember.Evented, {
     presenter.context.set("contextObject", context || Ember.Object.create());
 
     // Show it to user
-    Ember.run(() => presenter.appendTo(this.get("rootElement")));
+    Ember.run(() => presenter.appendTo(options.root || this.get("rootElement")));
 
     /**
      * Triggered when `presenter` instance created. May be used to control

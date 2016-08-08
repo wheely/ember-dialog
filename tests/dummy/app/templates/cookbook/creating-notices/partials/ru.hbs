@@ -1,3 +1,26 @@
 <h1 class="w-title __w-first">{{t "cookbook.creating_notices"}}</h1>
 
-TBD
+<p>Авто закрытие:</p>
+<pre data-src="examples/cookbook/creating-notices/controller-1.javascript"></pre>
+
+<p><button class="w-btn" onclick={{action "showAutoHideDialog"}}>Показать диалог с автозакрытием</button></p>
+
+<p>Layout нотиса:</p>
+<pre data-src="examples/cookbook/creating-notices/layout-1.handlebars"></pre>
+
+<p>Стили нотиса:</p>
+<pre data-src="examples/cookbook/creating-notices/notice.scss"></pre>
+
+<p>Создайте div с классом notices на уровне <code>body</code>, для этого откройте <code>app/index.html</code>. Затем откройте <code>app/styles/app.scss</code> и добавьте: <code class="language-scss">.notices { position: fixed; right: 0; z-index: 99999999; }</code>. Далее создавая диалоговое окно нужно указать к какому элементу его нужно прикрепить - селектор элемента должен находиться здесь <code>options.root</code>.</p>
+
+<pre data-src="examples/cookbook/creating-notices/controller-2.javascript"></pre>
+
+<p><button class="w-btn" onclick={{action "showNotice"}}>Показать нотис</button></p>
+
+<p>Чтобы каждый раз к controller не писать логику автозакрытия и layout, давайте расширим Dialog Manager:</p>
+
+<pre data-src="examples/cookbook/creating-notices/example-1.javascript"></pre>
+
+<p>Тогда можно будет делать так:</p>
+
+<pre data-src="examples/cookbook/creating-notices/controller-3.javascript"></pre>
