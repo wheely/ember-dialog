@@ -9,7 +9,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:testall"
+    "test": "ember try:testall",
+    "deploy": "./publish.sh"
   },
   "repository": {
     "type": "git",
@@ -62,6 +63,10 @@
     "ember-cli-sass": "^4.2.0"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "demoURL": "http://wheely.github.io/ember-dialog/",
+    "configPath": "tests/dummy/config",
+    "versionCompatibility": {
+       "ember": ">1.10.0"
+    }
   }
 }
