@@ -15,7 +15,9 @@ export default Ember.Controller.extend({
       });
 
       // Always when dialog closes
-      promise.finally(() => { this.set("error", null); });
+      promise.finally(() => {
+        this.set("error", null);
+      });
     },
 
     saveUser(presenter) {
