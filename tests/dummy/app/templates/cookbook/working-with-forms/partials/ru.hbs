@@ -1,3 +1,21 @@
 <h1 class="w-title __w-first">{{t "cookbook.working_with_forms"}}</h1>
 
-TBD
+<p>Показ форм в модалках не тривиальная задача, поскольку:</p>
+
+<p>&mdash; во-первых accept закрытие должно происходить на submit формы</p>
+<p>&mdash; во-вторых окно не должно закрываться пока форма не валидна</p>
+<p>&mdash; в-третьих если пользователь нажимает на кнопку Cancel нужно откатывать измененные поля модели</p>
+
+<p>К счастью Ember Dialog позволяет следать и то и другое.</p>
+
+<p>Чтобы сделать accept закрытие на submit формы мы можем использовать <code>blank layout</code> для создания собственного интерфейса.</p>
+
+<p><b>app/templates/forms/user.hbs:</b></p>
+<pre data-src="examples/cookbook/working-with-forms/template-1.handlebars"></pre>
+
+<p>Accept закрытие на submit формы мы сделали, теперь нужно сделать проверку заполненности данных перед закрытием окна. И откадывание данных модели в случае отмены.</p>
+
+<p><b>app/controllers/user.js:</b></p>
+<pre data-src="examples/cookbook/working-with-forms/controller-1.js"></pre>
+
+<p>Для работы с формами и валидацией объектов в целом мы рекомендуем использовать <a href="https://github.com/ajile/ember-validation" class="w-link">ember-validation</a>.</p>
