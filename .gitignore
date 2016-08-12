@@ -17,6 +17,9 @@
 npm-debug.log
 testem.log
 bower.json.ember-try
+lcov.dat
+coverage.json
+coverage.html
 
 # OS
 .DS_Store

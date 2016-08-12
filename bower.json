@@ -12,5 +12,8 @@
     "jquery": "1.11.3",
     "loader.js": "ember-cli/loader.js#3.4.0",
     "qunit": "~1.20.0"
+  },
+  "devDependencies": {
+    "blanket": "5e94fc30f2e694bb5c3718ddcbf60d467f4b4d26"
   }
 }
