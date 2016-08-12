@@ -1,15 +1,8 @@
 @import "wheely";
 @import 'addon/styles/ember-dialog';
 
-.left-nav {
-  ul {
-    padding-left: 0;
-    .w-link {
-      display: block;
-      padding: 5px 4px;
-      margin-bottom: 2px;
-    }
-  }
+.w-header_project {
+  margin-left: 0;
 }
 
 .red-corner-dialog {
@@ -32,6 +25,7 @@
   }
 }
 
+/* Page */
 .w-page_content {
   @include size('padding-bottom', 'size_xl');
 
@@ -52,7 +46,18 @@
   }
 }
 
+/* Left Navigation */
+.left-nav {
+  @include size('padding-top', 'size_xl');
 
+  .w-ol, .w-ul {
+    @include size('padding-left', 'size_m');    
+  }
+
+  .__w-state-selected {
+    @extend .w-link;
+  }
+}
 
 .animation {
   opacity: 0;
