@@ -11,8 +11,8 @@
     "start": "ember server",
     "test": "ember try:testall",
     "deploy": "./publish.sh",
-    "generate-coverage": "COVERAGE=true ember test",
-    "coverage": "npm run generate-coverage && cat ./coverage/lcov.info | CODACY_PROJECT_TOKEN=ca5159a3391d43db90a053c83cb34eea ./node_modules/.bin/codacy-coverage"
+    "generate-coverage": "ember test --test-page='tests/index.html?coverage=true'",
+    "coverage": "npm run generate-coverage && cat lcov.dat | CODACY_PROJECT_TOKEN=ca5159a3391d43db90a053c83cb34eea ./node_modules/.bin/codacy-coverage"
   },
   "repository": {
     "type": "git",
