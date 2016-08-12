@@ -1,0 +1,13 @@
+<div class="dialog-body">
+  {{#if contextObject.error}}
+    <div class="error">{{contextObject.error}}</div>
+  {{/if}}
+  <form class="w-form" onsubmit={{action "accept"}}>
+    <div>{{input type='text' value=contextObject.model.first_name}}</div>
+    <div>{{input type='text' value=contextObject.model.last_name}}</div>
+  </form>
+</div>
+<div class="dialog-footer">
+  <button class="btn btn__accept" type="submit">Save</button>
+  <button class="btn btn__decline" type="button" {{action "decline"}}>Cancel</button>
+</div>

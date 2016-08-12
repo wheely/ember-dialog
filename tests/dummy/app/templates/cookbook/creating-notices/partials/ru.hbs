@@ -1,26 +1,36 @@
 <h1 class="w-title __w-first">{{t "cookbook.creating_notices"}}</h1>
 
-<p>Авто закрытие:</p>
+<p>Ember Dialog Addon позволяет создавать все виды всплывающих окон, включая различные нотисы. Реализация нотисов основывается на возможности программного закрытия окон, а также возможности их стилизации.</p>
+
+<p>Для начала давайте разберемся с тем, как сделать автозакрытие окна. С помощью события <code>created</code> Dialog Manager мы можем получить ссылку на объект окна и у него в нужный момент вызвать метод <code>accept</code>, который закроет его.</p>
+
 <pre data-src="examples/cookbook/creating-notices/controller-1.javascript"></pre>
 
 <p><button class="w-btn" onclick={{action "showAutoHideDialog"}}>Показать диалог с автозакрытием</button></p>
 
-<p>Layout нотиса:</p>
+<p>Мы создали окно, которое закрывается через 500ms, но это все еще не нотис. Осталось задизайнить его. Для этого создадим layout с нужными нам css классами и опишем стили для них.</p>
+
+<p><b>app/templates/dialog/notice.hbs:</b></p>
 <pre data-src="examples/cookbook/creating-notices/layout-1.handlebars"></pre>
 
-<p>Стили нотиса:</p>
+<p><b>app/styles/dialog-notice.scss:</b></p>
 <pre data-src="examples/cookbook/creating-notices/notice.scss"></pre>
 
-<p>Создайте div с классом notices на уровне <code>body</code>, для этого откройте <code>app/index.html</code>. Затем откройте <code>app/styles/app.scss</code> и добавьте: <code class="language-scss">.notices { position: fixed; right: 0; z-index: 99999999; }</code>. Далее создавая диалоговое окно нужно указать к какому элементу его нужно прикрепить - селектор элемента должен находиться здесь <code>options.root</code>.</p>
+<p>Далее нам надо создать div с классом notices на уровне <code>body</code> (в файле <code>app/index.html</code>). К этому элементу будут прикрепляться notice окна.</p>
+
+<p>Создавая notice окна нужно указывать к какому элементу его нужно прикрепить - селектор элемента указывается так <code>options.root</code></p>
 
 <pre data-src="examples/cookbook/creating-notices/controller-2.javascript"></pre>
 
-<p><button class="w-btn" onclick={{action "showNotice"}}>Показать нотис</button></p>
+<p><button class="w-btn" onclick={{action "showNotice"}}>Выполнить</button></p>
 
-<p>Чтобы каждый раз к controller не писать логику автозакрытия и layout, давайте расширим Dialog Manager:</p>
+<p>Чтобы каждый раз к controller не писать логику автозакрытия, layout и селектор элемента к которому прикрепить нотис, мы можем создать специальный метод `notice` у Dialog Manager и упрятать всю эту логику туда:</p>
 
+<p><b>app/services/dialog.js:</b></p>
 <pre data-src="examples/cookbook/creating-notices/example-1.javascript"></pre>
 
-<p>Тогда можно будет делать так:</p>
+<p>После этого создавать notice окна мы сможем так:</p>
 
 <pre data-src="examples/cookbook/creating-notices/controller-3.javascript"></pre>
+
+<p>Приятного пользования!</p>
