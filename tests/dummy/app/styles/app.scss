@@ -11,12 +11,15 @@
   transform: inherit;
   position: fixed;
   padding: 10px;
+  
   .dialog-content {
     background: #F00;
     padding: 10px;
   }
+  
   &.substrate {
     background-image: radial-gradient(ellipse at center, rgba(255, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.3) 100%);
+    
     .dialog-content {
       margin: inherit;
       top: 0;
@@ -27,17 +30,18 @@
 
 /* Page */
 .w-page_content {
-  @include size('padding-bottom', 'size_xl');
+  @include size('padding', 'size_xl 0');
 
   :not(pre) > code[class*=language-],
   pre[class*=language-] {
-    @include size('margin', 'size_l 0');
+    @include size('margin-bottom', 'size_l');
   }
 
   .prism-show-language {
+    @include size('margin-top', 'size_l');
 
     .prism-show-language-label {
-      @include size('top', 'size_l');
+      
     }
   }
 
@@ -48,7 +52,6 @@
 
 /* Left Navigation */
 .left-nav {
-  @include size('padding-top', 'size_xl');
 
   .w-ol, .w-ul {
     @include size('padding-left', 'size_m');    
