@@ -16,7 +16,7 @@ install:
 - bower install
 script:
 - npm run-script test
-- istanbul cover *.js && cat ./coverage/lcov.info | CODACY_PROJECT_TOKEN="ca5159a3391d43db90a053c83cb34eea" ./node_modules/.bin/codacy-coverage
+- npm run-script coverage
 after_success:
 - npm run-script build:production
 env:

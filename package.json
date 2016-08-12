@@ -10,7 +10,9 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember try:testall",
-    "deploy": "./publish.sh"
+    "deploy": "./publish.sh",
+    "generate-coverage": "istanbul cover -x **/tests/** -x **/bower_components/** -x **/node_modules/** ember test",
+    "coverage": "npm run generate-coverage && cat ./coverage/lcov.info | CODACY_PROJECT_TOKEN=ca5159a3391d43db90a053c83cb34eea ./node_modules/.bin/codacy-coverage"
   },
   "repository": {
     "type": "git",
