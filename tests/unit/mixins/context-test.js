@@ -1,12 +1,61 @@
 import Ember from 'ember';
-import ContextMixin from 'ember-dialog/mixins/context';
+import { default as ContextMixin, makeArgsArray, execAction } from 'ember-dialog/mixins/context';
 import { module, test } from 'qunit';
 
 module('Unit | Mixin | context');
 
-// Replace this with your real tests.
 test('it works', function(assert) {
   let ContextObject = Ember.Object.extend(ContextMixin);
-  let subject = ContextObject.create();
-  assert.ok(subject);
+  let subject = ContextObject.create({
+    acceptHandler: "accept",
+    declineHandler: "decline",
+    context: {
+      contextObject: {
+        _actions: {
+          accept: () => {
+            assert.ok(true);
+          },
+          decline: () => {
+            assert.ok(true);
+          }
+        },
+      }
+    }
+  });
+  subject.actions.accept.apply(subject);
+  subject.actions.decline.apply(subject);
+});
+
+test('makeArgsArray works', function(assert) {
+  assert.equal(makeArgsArray(arguments, {}).length, 2);
+});
+
+test('execAction works with self function', function(assert) {
+  const context = {
+    acceptHandler: "accept",
+    accept: () => {
+      assert.ok(true);
+    },
+    context: {
+      contextObject: {
+      }
+    }
+  };
+  execAction.call(context, 'accept', arguments);
+});
+
+test('execAction works with action function', function(assert) {
+  const context = {
+    acceptHandler: "accept",
+    context: {
+      contextObject: {
+        _actions: {
+          accept: () => {
+            assert.ok(true);
+          },
+        },
+      }
+    }
+  };
+  execAction.call(context, 'accept', arguments);
 });

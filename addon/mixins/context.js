@@ -5,18 +5,18 @@ import Ember from 'ember';
  * @augments Ember.Mixin
  */
 
-function makeArgsArray(args, obj) {
+export function makeArgsArray(args, obj) {
   const argsArray = Array.prototype.slice.apply(args);
   argsArray.unshift(obj);
   return argsArray;
 }
 
 export function execAction(actionName, args) {
-  const context = this.context.get("contextObject");
+  const context = Ember.get(this.context, "contextObject");
   // @todo: Magic concatenation
-  actionName = this.get(actionName + "Handler");
+  actionName = Ember.get(this, actionName + "Handler");
   args = makeArgsArray(args, this);
-  if (context._actions && context._actions[actionName]) {
+  if (context && context._actions && context._actions[actionName]) {
     context._actions[actionName].apply(context, args);
   } else {
     this[actionName].apply(this);
