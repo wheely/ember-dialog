@@ -9,17 +9,15 @@ test('it works', function(assert) {
   let subject = ContextObject.create({
     acceptHandler: "accept",
     declineHandler: "decline",
-    context: {
-      contextObject: {
-        _actions: {
-          accept: () => {
-            assert.ok(true);
-          },
-          decline: () => {
-            assert.ok(true);
-          }
+    contextObject: {
+      _actions: {
+        accept: () => {
+          assert.ok(true);
         },
-      }
+        decline: () => {
+          assert.ok(true);
+        }
+      },
     }
   });
   subject.actions.accept.apply(subject);
@@ -36,9 +34,7 @@ test('execAction works with self function', function(assert) {
     accept: () => {
       assert.ok(true);
     },
-    context: {
-      contextObject: {
-      }
+    contextObject: {
     }
   };
   execAction.call(context, 'accept', arguments);
@@ -47,14 +43,12 @@ test('execAction works with self function', function(assert) {
 test('execAction works with action function', function(assert) {
   const context = {
     acceptHandler: "accept",
-    context: {
-      contextObject: {
-        _actions: {
-          accept: () => {
-            assert.ok(true);
-          },
+    contextObject: {
+      _actions: {
+        accept: () => {
+          assert.ok(true);
         },
-      }
+      },
     }
   };
   execAction.call(context, 'accept', arguments);

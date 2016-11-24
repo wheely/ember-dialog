@@ -12,7 +12,7 @@ export function makeArgsArray(args, obj) {
 }
 
 export function execAction(actionName, args) {
-  const context = Ember.get(this.context, "contextObject");
+  const context = Ember.get(this, "contextObject");
   // @todo: Magic concatenation
   actionName = Ember.get(this, actionName + "Handler");
   args = makeArgsArray(args, this);

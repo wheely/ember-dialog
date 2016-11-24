@@ -1,4 +1,3 @@
-@import "wheely";
 @import 'addon/styles/ember-dialog';
 
 .w-header_project {
@@ -25,40 +24,6 @@
       top: 0;
       transform: inherit;
     }
-  }
-}
-
-/* Page */
-.w-page_content {
-  @include size('padding', 'size_xl 0');
-
-  :not(pre) > code[class*=language-],
-  pre[class*=language-] {
-    @include size('margin-bottom', 'size_l');
-  }
-
-  .prism-show-language {
-    @include size('margin-top', 'size_l');
-
-    .prism-show-language-label {
-      
-    }
-  }
-
-  p {
-    @extend .w-paragraph;
-  }
-}
-
-/* Left Navigation */
-.left-nav {
-
-  .w-ol, .w-ul {
-    @include size('padding-left', 'size_m');    
-  }
-
-  .__w-state-selected {
-    @extend .w-link;
   }
 }
 

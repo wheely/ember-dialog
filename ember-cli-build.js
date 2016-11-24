@@ -7,8 +7,6 @@ module.exports = function(defaults) {
     sassOptions: {
       includePaths: [
         "addon/styles",
-        "node_modules/frontend-basis/sass",
-        "node_modules/frontend-basis/node_modules"
       ]
     }
   });

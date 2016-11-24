@@ -2,7 +2,7 @@ import Ember from 'ember';
 import ContextMixin from 'ember-dialog/mixins/context';
 import Configuration from 'ember-dialog/configuration';
 
-const { guidFor } = Ember;
+const { guidFor, getOwner} = Ember;
 
 const DEFAULT_COMPONENT_NAME = "presenter";
 
@@ -239,29 +239,29 @@ export default Ember.Service.extend(Ember.Evented, {
   show(layout, template, context, options = {}, componentName = DEFAULT_COMPONENT_NAME) {
 
     // Getting presenter class to create its instance that we'll show.
-    var Presenter = this.container.lookupFactory(["component", componentName].join(":"));
+    var Presenter = getOwner(this).lookup(["component", componentName].join(":"));
 
     Ember.assert("You have passed `componentName` argument, but component by this name doesn't exist.", Presenter);
 
-    Presenter = Presenter.extend(ContextMixin);
+    Presenter = Presenter.reopen(ContextMixin);
 
     options = Ember.merge(Ember.copy(this.get("defaults")), options);
 
     if (Ember.typeOf(layout) === "object") {
       options = Ember.merge(options, { layout });
     } else {
-      options = Ember.merge(options, { layoutName: layout });
+      options = Ember.merge(options, { layout: getOwner(this).lookup(["template", layout].join(":")) });
     }
 
     if (Ember.typeOf(template) === "object") {
-      options = Ember.merge(options, { _template: template });
+      options = Ember.merge(options, { template: template });
     } else {
-      options = Ember.merge(options, { templateName: template });
+      options = Ember.merge(options, { template: getOwner(this).lookup(["template", template].join(":")) });
     }
 
     // Creating instance
-    const presenter = Presenter.create(options);
-    presenter.context.set("contextObject", context || Ember.Object.create());
+    const presenter = Presenter.reopen(options);
+    presenter.set("contextObject", context || Ember.Object.create());
 
     // Show it to user
     Ember.run(() => presenter.appendTo(options.root || this.get("rootElement")));
