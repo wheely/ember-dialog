@@ -64,7 +64,7 @@ export default Ember.Service.extend(Ember.Evented, {
   remove(presenter) {
     this.set("dialogs", this.get("dialogs").filter((item) => {
       let id = presenter.get("presenterId") || guidFor(presenter);
-      return item.id !== id
+      return item.id !== id;
     }));
   },
 
