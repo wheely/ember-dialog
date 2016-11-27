@@ -50,7 +50,11 @@ export default Ember.Service.extend(Ember.Evented, {
    * @param {module:ember-dialog/components/presenter} presenter
    */
   add(presenter) {
-    this.get("dialogs").push({ id: guidFor(presenter), presenter });
+    var id = presenter.get("presenterId") || guidFor(presenter);
+    this.set("dialogs", this.get("dialogs").filter((item) => {
+      return item.id !== id
+    }));
+    this.get("dialogs").push({ id: id, presenter });
   },
 
   /**
@@ -58,7 +62,10 @@ export default Ember.Service.extend(Ember.Evented, {
    * @param {module:ember-dialog/components/presenter} presenter
    */
   remove(presenter) {
-    this.set("dialogs", this.get("dialogs").filter(item => item.id !== guidFor(presenter)));
+    this.set("dialogs", this.get("dialogs").filter((item) => {
+      let id = presenter.get("presenterId") || guidFor(presenter)
+      return item.id !== id
+    }));
   },
 
   /**
@@ -85,6 +92,16 @@ export default Ember.Service.extend(Ember.Evented, {
    */
   declined(presenter) { this.destroyPresenter(presenter); },
 
+
+  /**
+   * @method
+   * @fires module:ember-dialog/services/dialog~destroyed
+   */
+  destroyAllPresenter(){
+    this.get("dialogs").forEach(function(item){
+      this.destroyPresenter(item.presenter);
+    }.bind(this));
+  },
   /**
    * @method
    * @fires module:ember-dialog/services/dialog~destroyed
@@ -238,16 +255,26 @@ export default Ember.Service.extend(Ember.Evented, {
    */
   show(layout, template, context, options = {}, componentName = DEFAULT_COMPONENT_NAME) {
 
-    // Getting presenter class to create its instance that we'll show.
-    var Presenter = getOwner(this).lookup(["component", componentName].join(":"));
-    Ember.assert("You have passed `componentName` argument, but component by this name doesn't exist.", Presenter);
+    //Generate presenterId from (layoutName + templateName) or provided id to make sure the dialog won't open multiple times
+    var presenterId = options.id || "";
+    if(typeof layout == "string" && typeof template == "string"){
+      presenterId = layout + "/" + template;
+    }
+    
+    //check if dialog is already opened
+    if(this.get("dialogs").filter(item => item.id === presenterId).length){
+      return;
+    }
 
-    Presenter = Presenter.reopen(ContextMixin);
-    Presenter = Presenter.reopen({target: context});
+    // Getting presenter instance.
+    var presenter = getOwner(this).lookup(["component", componentName].join(":"));
+    Ember.assert("You have passed `componentName` argument, but component by this name doesn't exist.", presenter);
+
+    presenter = presenter.reopen(ContextMixin);
+    presenter = presenter.reopen({presenterId: presenterId, target: context});
     options = Ember.merge(Ember.copy(this.get("defaults")), options);
-
     if (Ember.typeOf(layout) === "object") {
-      options = Ember.merge(options, { layout });
+      options = Ember.merge(options, { layout: layout });
     } else {
       options = Ember.merge(options, { layout: getOwner(this).lookup(["template", layout].join(":")) });
     }
@@ -258,10 +285,11 @@ export default Ember.Service.extend(Ember.Evented, {
       options = Ember.merge(options, { template: getOwner(this).lookup(["template", template].join(":")) });
     }
 
-    // Creating instance
-    const presenter = Presenter.reopen(options);
+    presenter = presenter.reopen(options);
     presenter.set("contextObject", context || Ember.Object.create());
-
+    
+    presenterId = presenterId || guidFor(presenterId);
+    this.get("dialogs").push({ id: presenterId, presenter });
     // Show it to user
     Ember.run(() => presenter.appendTo(options.root || this.get("rootElement")));
 
@@ -295,7 +323,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
     return new Ember.RSVP.Promise((resolve, reject) => {
       presenter.reopen({ resolve, reject });
-    }, "Dialog #" + guidFor(presenter) + " promise");
+    }, "Dialog #" + presenter.get("presenterId") || guidFor(presenter) + " promise");
 
   },
 
