@@ -52,7 +52,7 @@ export default Ember.Service.extend(Ember.Evented, {
   add(presenter) {
     var id = presenter.get("presenterId") || guidFor(presenter);
     this.set("dialogs", this.get("dialogs").filter((item) => {
-      return item.id !== id
+      return item.id !== id;
     }));
     this.get("dialogs").push({ id: id, presenter });
   },
@@ -63,7 +63,7 @@ export default Ember.Service.extend(Ember.Evented, {
    */
   remove(presenter) {
     this.set("dialogs", this.get("dialogs").filter((item) => {
-      let id = presenter.get("presenterId") || guidFor(presenter)
+      let id = presenter.get("presenterId") || guidFor(presenter);
       return item.id !== id
     }));
   },
@@ -257,7 +257,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
     //Generate presenterId from (layoutName + templateName) or provided id to make sure the dialog won't open multiple times
     var presenterId = options.id || "";
-    if(typeof layout == "string" && typeof template == "string"){
+    if(typeof layout === "string" && typeof template === "string"){
       presenterId = layout + "/" + template;
     }
     
@@ -287,7 +287,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
     presenter = presenter.reopen(options);
     presenter.set("contextObject", context || Ember.Object.create());
-    
+
     presenterId = presenterId || guidFor(presenterId);
     this.get("dialogs").push({ id: presenterId, presenter });
     // Show it to user
