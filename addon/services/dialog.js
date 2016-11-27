@@ -2,7 +2,7 @@ import Ember from 'ember';
 import ContextMixin from 'ember-dialog/mixins/context';
 import Configuration from 'ember-dialog/configuration';
 
-const { guidFor, getOwner, setOwner} = Ember;
+const { guidFor, getOwner} = Ember;
 
 const DEFAULT_COMPONENT_NAME = "presenter";
 
