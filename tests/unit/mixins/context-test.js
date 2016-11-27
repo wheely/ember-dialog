@@ -10,7 +10,7 @@ test('it works', function(assert) {
     acceptHandler: "accept",
     declineHandler: "decline",
     contextObject: {
-      _actions: {
+      actions: {
         accept: () => {
           assert.ok(true);
         },
@@ -44,7 +44,7 @@ test('execAction works with action function', function(assert) {
   const context = {
     acceptHandler: "accept",
     contextObject: {
-      _actions: {
+      actions: {
         accept: () => {
           assert.ok(true);
         },
