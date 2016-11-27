@@ -16,8 +16,13 @@ export function execAction(actionName, args) {
   // @todo: Magic concatenation
   actionName = Ember.get(this, actionName + "Handler");
   args = makeArgsArray(args, this);
-  if (context && context._actions && context._actions[actionName]) {
-    context._actions[actionName].apply(context, args);
+  if (context && context.actions && context.actions[actionName]) {
+    if (context instanceof Ember.Controller || context instanceof Ember.Component || context instanceof Ember.Route){
+      args.unshift(actionName);
+      context.send.apply(context, args);
+    }else{
+      context.actions[actionName].apply(context, args);
+    }
   } else {
     this[actionName].apply(this);
   }

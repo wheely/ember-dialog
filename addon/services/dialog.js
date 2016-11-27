@@ -2,7 +2,7 @@ import Ember from 'ember';
 import ContextMixin from 'ember-dialog/mixins/context';
 import Configuration from 'ember-dialog/configuration';
 
-const { guidFor, getOwner} = Ember;
+const { guidFor, getOwner, setOwner} = Ember;
 
 const DEFAULT_COMPONENT_NAME = "presenter";
 
@@ -240,11 +240,10 @@ export default Ember.Service.extend(Ember.Evented, {
 
     // Getting presenter class to create its instance that we'll show.
     var Presenter = getOwner(this).lookup(["component", componentName].join(":"));
-
     Ember.assert("You have passed `componentName` argument, but component by this name doesn't exist.", Presenter);
 
     Presenter = Presenter.reopen(ContextMixin);
-
+    Presenter = Presenter.reopen({target: context});
     options = Ember.merge(Ember.copy(this.get("defaults")), options);
 
     if (Ember.typeOf(layout) === "object") {
