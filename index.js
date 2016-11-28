@@ -7,7 +7,7 @@ module.exports = {
   name: "ember-dialog",
 
   isDevelopingAddon() {
-    return false;
+    return !!process.env.EMBER_DEVELOPING;
   },
 
   included(app, parentAddon) {
