@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: "dummy",
     environment: environment || "development",
-    baseURL: process.env.BASE_URL || "/",
+    rootURL: "/",
     locationType: process.env.LOCATION_TYPE || "auto",
     contentSecurityPolicy: {
       "default-src": "'none'",
@@ -38,7 +38,6 @@ module.exports = function(environment) {
 
   if (environment === "test") {
     // Testem prefers this...
-    ENV.baseURL = "/";
     ENV.locationType = "none";
 
     // keep test console output quieter
