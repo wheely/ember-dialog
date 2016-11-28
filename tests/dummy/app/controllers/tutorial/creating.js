@@ -26,13 +26,13 @@ export default Ember.Controller.extend({
 
     showDialog() {
       const template = hbs`Dialog will be closed after 10 trying (you tried {{contextObject.count}})`;
-      const promise = this.get("dialog").confirm(template, this);
+      const promise = this.get("dialog").confirm(template, this, { acceptHandler: "acceptAfter" });
       promise.then(() => {
         alert("10 reached!");
       });
     },
 
-    accept(presenter) {
+    acceptAfter(presenter) {
       this.incrementProperty("count");
       if (this.get("count") >= 10) {
         presenter.accept();
