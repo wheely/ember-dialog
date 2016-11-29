@@ -19,27 +19,30 @@ test('it exists', function(assert) {
 test('it exists once', function(assert) {
   let service = this.subject();
   Ember.run(() => {
+    service.destroyAllPresenter();
     service.show(hbs`<div class="dialog-layout">layout</div>`, hbs`template`, {}, {id: "1"});
     service.show(hbs`<div class="dialog-layout">layout</div>`, hbs`template`, {}, {id: "1"});
-    assert.equal($(".dialog-layout").length, 2, "Dialog with id 1 opened once");
+    assert.equal($(".dialog-layout").length, 1, "Dialog with id 1 opened once");
   });
 });
 
 test('it exists twice without setting id', function(assert) {
   let service = this.subject();
   Ember.run(() => {
+    service.destroyAllPresenter();
     service.show(hbs`<div class="dialog-layout">layout</div>`, hbs`template`);
     service.show(hbs`<div class="dialog-layout">layout</div>`, hbs`template`);
-    assert.equal($(".dialog-layout").length, 4, "New Dialog with no id opened twice");
+    assert.equal($(".dialog-layout").length, 2, "New Dialog with no id opened twice");
   });
 });
 
 test('it exists twice with two different ids', function(assert) {
   let service = this.subject();
   Ember.run(() => {
+    service.destroyAllPresenter();
     service.show(hbs`<div class="dialog-layout">layout</div>`, hbs`template`, {}, {id: "2"});
     service.show(hbs`<div class="dialog-layout">layout</div>`, hbs`template`, {}, {id: "3"});
-    assert.equal($(".dialog-layout").length, 6, "New Dialog with different ids (1, 2) opened twice");
+    assert.equal($(".dialog-layout").length, 2, "New Dialog with different ids (1, 2) opened twice");
   });
 });
 

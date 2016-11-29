@@ -17,7 +17,7 @@ export function execAction(actionName, args) {
   actionName = Ember.get(this, actionName + "Handler");
   args = makeArgsArray(args, this);
   if (context && context.actions && context.actions[actionName]) {
-    if (context instanceof Ember.Controller || context instanceof Ember.Component || context instanceof Ember.Route){
+    if (Ember.typeOf(context.send) === "function") {
       args.unshift(actionName);
       context.send.apply(context, args);
     }else{
