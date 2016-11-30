@@ -4,28 +4,6 @@ module.exports = {
   useVersionCompatibility: true,
   scenarios: [
     {
-      name: 'ember-1.13',
-      bower: {
-        dependencies: {
-          'ember': '~1.13.0'
-        },
-        resolutions: {
-          'ember': '~1.13.0'
-        }
-      }
-    },
-    {
-      name: 'ember-lts-2.4',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#lts-2-4'
-        },
-        resolutions: {
-          'ember': 'lts-2-4'
-        }
-      }
-    },
-    {
       name: 'ember-release',
       bower: {
         dependencies: {

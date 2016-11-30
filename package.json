@@ -72,7 +72,7 @@
     "demoURL": "http://wheely.github.io/ember-dialog/",
     "configPath": "tests/dummy/config",
     "versionCompatibility": {
-      "ember": ">1.13.12"
+      "ember": ">2.3.2"
     }
   }
 }
