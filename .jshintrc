@@ -7,7 +7,7 @@
   "browser": true,
   "boss": true,
   "curly": true,
-  "debug": false,
+  "debug": true,
   "devel": true,
   "eqeqeq": true,
   "evil": true,
@@ -16,7 +16,7 @@
   "laxbreak": false,
   "newcap": true,
   "noarg": true,
-  "noempty": false,
+  "noempty": true,
   "nonew": false,
   "nomen": false,
   "onevar": false,
@@ -27,6 +27,7 @@
   "strict": false,
   "white": false,
   "eqnull": true,
-  "esversion": 6,
+  "es5": false,
+  "esnext": true,
   "unused": true
 }
