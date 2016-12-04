@@ -42,6 +42,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
   init() {
     this.on("created", presenter => this.created(presenter));
+    this.on("destroyed", presenter => this.destroyed(presenter));
     return this._super(...arguments);
   },
 
@@ -60,8 +61,8 @@ export default Ember.Service.extend(Ember.Evented, {
    * @param {module:ember-dialog/components/presenter} presenter
    */
   remove(presenter) {
+    var id = presenter.get("presenterId") || guidFor(presenter);
     var dialogs = this.get("dialogs").filter((item) => {
-      let id = presenter.get("presenterId") || guidFor(presenter);
       return item.id !== id;
     })
 
@@ -82,6 +83,14 @@ export default Ember.Service.extend(Ember.Evented, {
   /**
    * @method
    * @param {module:ember-dialog/components/presenter} presenter
+   */
+  destroyed(presenter) {
+    this.remove(presenter);
+  },
+
+  /**
+   * @method
+   * @param {module:ember-dialog/components/presenter} presenter
    * @listens module:ember-dialog/components/presenter~accepted
    */
   accepted(presenter) { this.destroyPresenter(presenter); },
@@ -96,14 +105,10 @@ export default Ember.Service.extend(Ember.Evented, {
 
   /**
    * @method
-   * @fires module:ember-dialog/services/dialog~destroyed
+   * @fires module:ember-dialog/services/dialog~destroyAllPresenter
    */
   destroyAllPresenter(){
-    this.get("dialogs").forEach(dialog => dialog.presenter.destroy())
-
-    Ember.run.scheduleOnce("destroy", this, () => { 
-      this.set("dialogs", Ember.A());
-    });
+    this.get("dialogs").forEach(dialog => this.destroyPresenter(dialog.presenter))
   },
   /**
    * @method
@@ -113,8 +118,6 @@ export default Ember.Service.extend(Ember.Evented, {
   destroyPresenter(presenter) {
 
     presenter.destroy();
-    this.remove(presenter);
-
     /**
      * Triggered when `presenter` destroyed. You may subscribe on this event to
      * make additional operations.
@@ -258,7 +261,8 @@ export default Ember.Service.extend(Ember.Evented, {
    */
   show(layout, template, context, options = {}, componentName = DEFAULT_COMPONENT_NAME) {
 
-    //Generate presenterId from (layoutName + templateName) or provided id to make sure the dialog won't open multiple times
+    /* Generate presenterId from (layoutName + templateName) or provided id 
+       to make sure the dialog won't open multiple times */
     var presenterId = options.id || "";
     if(typeof layout === "string" && typeof template === "string"){
       presenterId = layout + "/" + template;
