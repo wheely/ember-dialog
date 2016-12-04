@@ -64,7 +64,7 @@ export default Ember.Service.extend(Ember.Evented, {
     var id = presenter.get("presenterId") || guidFor(presenter);
     var dialogs = this.get("dialogs").filter((item) => {
       return item.id !== id;
-    })
+    });
 
     //filter would return Array not EmberArray?
     this.set("dialogs", Ember.A(dialogs));
@@ -108,7 +108,7 @@ export default Ember.Service.extend(Ember.Evented, {
    * @fires module:ember-dialog/services/dialog~destroyAllPresenter
    */
   destroyAllPresenter(){
-    this.get("dialogs").forEach(dialog => this.destroyPresenter(dialog.presenter))
+    this.get("dialogs").forEach(dialog => this.destroyPresenter(dialog.presenter));
   },
   /**
    * @method
