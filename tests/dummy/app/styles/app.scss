@@ -39,10 +39,6 @@
 
   .prism-show-language {
     @include size('margin-top', 'size_l');
-
-    .prism-show-language-label {
-      
-    }
   }
 
   p {
@@ -54,7 +50,7 @@
 .left-nav {
 
   .w-ol, .w-ul {
-    @include size('padding-left', 'size_m');    
+    @include size('padding-left', 'size_m');
   }
 
   .__w-state-selected {
@@ -112,3 +108,4 @@
 }
 
 .notices { position: fixed; right: 0; z-index: 99999999; }
+

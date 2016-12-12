@@ -2,7 +2,7 @@ import Ember from 'ember';
 import ContextMixin from 'ember-dialog/mixins/context';
 import Configuration from 'ember-dialog/configuration';
 
-const { guidFor } = Ember;
+const { guidFor, getOwner} = Ember;
 
 const DEFAULT_COMPONENT_NAME = "presenter";
 
@@ -42,6 +42,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
   init() {
     this.on("created", presenter => this.created(presenter));
+    this.on("destroyed", presenter => this.destroyed(presenter));
     return this._super(...arguments);
   },
 
@@ -50,7 +51,9 @@ export default Ember.Service.extend(Ember.Evented, {
    * @param {module:ember-dialog/components/presenter} presenter
    */
   add(presenter) {
-    this.get("dialogs").push({ id: guidFor(presenter), presenter });
+    var id = presenter.get("presenterId") || guidFor(presenter);
+    this.set("dialogs", Ember.A(this.get("dialogs").filter(item => item.id !== id)));
+    this.get("dialogs").pushObject({ id: id, presenter: presenter });
   },
 
   /**
@@ -58,7 +61,13 @@ export default Ember.Service.extend(Ember.Evented, {
    * @param {module:ember-dialog/components/presenter} presenter
    */
   remove(presenter) {
-    this.set("dialogs", this.get("dialogs").filter(item => item.id !== guidFor(presenter)));
+    var id = presenter.get("presenterId") || guidFor(presenter);
+    var dialogs = this.get("dialogs").filter((item) => {
+      return item.id !== id;
+    });
+
+    //filter would return Array not EmberArray?
+    this.set("dialogs", Ember.A(dialogs));
   },
 
   /**
@@ -69,6 +78,14 @@ export default Ember.Service.extend(Ember.Evented, {
     this.add(presenter);
     presenter.one("declined", presenter => this.accepted(presenter));
     presenter.one("accepted", presenter => this.declined(presenter));
+  },
+
+  /**
+   * @method
+   * @param {module:ember-dialog/components/presenter} presenter
+   */
+  destroyed(presenter) {
+    this.remove(presenter);
   },
 
   /**
@@ -85,6 +102,14 @@ export default Ember.Service.extend(Ember.Evented, {
    */
   declined(presenter) { this.destroyPresenter(presenter); },
 
+
+  /**
+   * @method
+   * @fires module:ember-dialog/services/dialog~destroyAllPresenter
+   */
+  destroyAllPresenter(){
+    this.get("dialogs").forEach(dialog => this.destroyPresenter(dialog.presenter));
+  },
   /**
    * @method
    * @fires module:ember-dialog/services/dialog~destroyed
@@ -93,8 +118,6 @@ export default Ember.Service.extend(Ember.Evented, {
   destroyPresenter(presenter) {
 
     presenter.destroy();
-    this.remove(presenter);
-
     /**
      * Triggered when `presenter` destroyed. You may subscribe on this event to
      * make additional operations.
@@ -238,31 +261,46 @@ export default Ember.Service.extend(Ember.Evented, {
    */
   show(layout, template, context, options = {}, componentName = DEFAULT_COMPONENT_NAME) {
 
-    // Getting presenter class to create its instance that we'll show.
-    var Presenter = this.container.lookupFactory(["component", componentName].join(":"));
+    /* Generate presenterId from (layoutName + templateName) or provided id 
+       to make sure the dialog won't open multiple times */
+    var presenterId = options.id || "";
+    if(typeof layout === "string" && typeof template === "string"){
+      presenterId = layout + "/" + template;
+    }
 
-    Ember.assert("You have passed `componentName` argument, but component by this name doesn't exist.", Presenter);
+    delete options.id;
+    //check if dialog is already opened
+    var presenterItem = this.get("dialogs").findBy("id", presenterId);
+    if(presenterItem && presenterItem.presenter){
+      return new Ember.RSVP.Promise((resolve, reject) => {
+        presenterItem.presenter.reopen({ resolve, reject });
+      }, "Dialog #" + presenterId + " promise");
+    }
 
-    Presenter = Presenter.extend(ContextMixin);
+    // Getting presenter instance.
+    var presenter = getOwner(this).lookup(["component", componentName].join(":"));
+    Ember.assert("You have passed `componentName` argument, but component by this name doesn't exist.", presenter);
 
+    presenter = presenter.reopen(ContextMixin);
+    presenter = presenter.reopen({presenterId: presenterId, target: context});
     options = Ember.merge(Ember.copy(this.get("defaults")), options);
-
     if (Ember.typeOf(layout) === "object") {
-      options = Ember.merge(options, { layout });
+      options = Ember.merge(options, { layout: layout });
     } else {
-      options = Ember.merge(options, { layoutName: layout });
+      options = Ember.merge(options, { layout: getOwner(this).lookup(["template", layout].join(":")) });
     }
 
     if (Ember.typeOf(template) === "object") {
-      options = Ember.merge(options, { _template: template });
+      options = Ember.merge(options, { template: template });
     } else {
-      options = Ember.merge(options, { templateName: template });
+      options = Ember.merge(options, { template: getOwner(this).lookup(["template", template].join(":")) });
     }
 
-    // Creating instance
-    const presenter = Presenter.create(options);
-    presenter.context.set("contextObject", context || Ember.Object.create());
+    presenter = presenter.reopen(options);
+    presenter.set("contextObject", context || Ember.Object.create());
 
+    presenterId = presenterId || guidFor(presenterId);
+    this.get("dialogs").pushObject({ id: presenterId, presenter: presenter });
     // Show it to user
     Ember.run(() => presenter.appendTo(options.root || this.get("rootElement")));
 
@@ -296,7 +334,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
     return new Ember.RSVP.Promise((resolve, reject) => {
       presenter.reopen({ resolve, reject });
-    }, "Dialog #" + guidFor(presenter) + " promise");
+    }, "Dialog #" + presenterId + " promise");
 
   },
 

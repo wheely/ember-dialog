@@ -8,7 +8,9 @@ var options = {
   enableCoverage: true,
   cliOptions: {
     reporters: ["json", "html", "lcov"],
-    autostart: true
+
+    // @see: https://github.com/sglanzer/ember-cli-blanket/issues/162
+    autostart: false
   }
 };
 if (typeof exports === "undefined") {

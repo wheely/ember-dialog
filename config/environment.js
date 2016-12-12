@@ -8,7 +8,6 @@ module.exports = function(/* environment, appConfig */) {
       { code: "ru" },
       { code: "en" }
     ],
-    baseURL: process.env.BASE_URL || "/",
     "ember-dialog": {
       layoutPath: "layouts"
     }

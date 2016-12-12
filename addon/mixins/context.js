@@ -12,12 +12,17 @@ export function makeArgsArray(args, obj) {
 }
 
 export function execAction(actionName, args) {
-  const context = Ember.get(this.context, "contextObject");
+  const context = Ember.get(this, "contextObject");
   // @todo: Magic concatenation
   actionName = Ember.get(this, actionName + "Handler");
   args = makeArgsArray(args, this);
-  if (context && context._actions && context._actions[actionName]) {
-    context._actions[actionName].apply(context, args);
+  if (context && context.actions && context.actions[actionName]) {
+    if (Ember.typeOf(context.send) === "function") {
+      args.unshift(actionName);
+      context.send.apply(context, args);
+    }else{
+      context.actions[actionName].apply(context, args);
+    }
   } else {
     this[actionName].apply(this);
   }

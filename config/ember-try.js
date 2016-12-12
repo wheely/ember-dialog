@@ -1,17 +1,39 @@
 /*jshint node:true*/
 module.exports = {
+  bowerOptions: ["--allow-root=true"],
+  useVersionCompatibility: true,
   scenarios: [
     {
-      name: "default",
-      dependencies: { }
+      name: "ember-release",
+      bower: {
+        dependencies: {
+          ember: "components/ember#release"
+        },
+        resolutions: {
+          ember: "release"
+        }
+      }
     },
     {
-      name: "ember-release",
-      dependencies: {
-        ember: "components/ember#release"
-      },
-      resolutions: {
-        ember: "release"
+      name: "ember-beta",
+      bower: {
+        dependencies: {
+          ember: "components/ember#beta"
+        },
+        resolutions: {
+          ember: "beta"
+        }
+      }
+    },
+    {
+      name: "ember-canary",
+      bower: {
+        dependencies: {
+          ember: "components/ember#canary"
+        },
+        resolutions: {
+          ember: "canary"
+        }
       }
     }
   ]
