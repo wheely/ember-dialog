@@ -67,7 +67,7 @@ export default Ember.Service.extend(Ember.Evented, {
     });
 
     //filter would return Array not EmberArray?
-    this.set("dialogs", dialogs);
+    this.set("dialogs", Ember.A(dialogs));
   },
 
   /**
