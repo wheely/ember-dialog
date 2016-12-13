@@ -67,7 +67,7 @@ export default Ember.Service.extend(Ember.Evented, {
     });
 
     //filter would return Array not EmberArray?
-    this.set("dialogs", Ember.A(dialogs));
+    this.set("dialogs", dialogs);
   },
 
   /**
@@ -293,7 +293,7 @@ export default Ember.Service.extend(Ember.Evented, {
     if (Ember.typeOf(template) === "object") {
       options = Ember.merge(options, { template: template });
     } else {
-      options = Ember.merge(options, { template: getOwner(this).lookup(["template", template].join(":")) });
+      options = Ember.merge(options, { template: template });
     }
 
     presenter = presenter.reopen(options);

@@ -7,9 +7,6 @@ moduleFor('service:dialog', 'Unit | Service | dialog', {
   needs: ['component:presenter'],
   setup() {
     this.service = this.subject();
-  },
-  teardown() {
-    this.service.destroyAllPresenter();
   }
 });
 
