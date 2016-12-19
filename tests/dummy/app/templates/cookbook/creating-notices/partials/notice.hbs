@@ -3,7 +3,7 @@
     {{#if templateName}}
       {{partial templateName}}
     {{else}}
-      {{component "presenter-body" layout=template contextObject=contextObject context=context}}
+      {{component "dialog-body" layout=template contextObject=contextObject context=context}}
     {{/if}}
     <div><a class="w-link w-link__pseudo" onclick={{action "accept"}}>Close</a></div>
   </div>

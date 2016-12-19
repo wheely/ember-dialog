@@ -218,7 +218,7 @@ Template `dialog-layouts/delete.hbs`:
   {{#if templateName}}
     <div class="dialog-body">{{partial templateName}}</div>
   {{else}}
-    {{component "presenter-body" layout=template contextObject=contextObject context=context class="dialog-body"}}
+    {{component "dialog-body" layout=template contextObject=contextObject context=context class="dialog-body"}}
   {{/if}}
 </div>
 <button class="danger" onclick={{action "accept"}}>DELETE!</button>

@@ -260,7 +260,7 @@ export default Ember.Service.extend(Ember.Evented, {
    */
   show(layout, template, context, options = {}, componentName = DEFAULT_COMPONENT_NAME) {
 
-    /* Generate presenterId from (layoutName + templateName) or provided id 
+    /* Generate presenterId from (layoutName + templateName) or provided id
        to make sure the dialog won't open multiple times */
     var presenterId = options.id || "";
     if(typeof layout === "string" && typeof template === "string"){
@@ -291,7 +291,7 @@ export default Ember.Service.extend(Ember.Evented, {
 
     if (Ember.typeOf(template) === "object") {
       // The template will be included into the presenter's body as
-      // presenter-body component
+      // dialog-body component
       options = Ember.merge(options, { template: template });
     } else {
       // The template will be included into the presenter's body as partial
