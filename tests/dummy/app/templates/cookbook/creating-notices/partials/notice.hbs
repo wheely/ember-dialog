@@ -1,6 +1,10 @@
 <div class="notice-dialog">
   <div class="notice-dialog-content" tabindex="-1">
-    {{yield}}
+    {{#if templateName}}
+      {{partial templateName}}
+    {{else}}
+      {{component "presenter-body" layout=template contextObject=contextObject context=context}}
+    {{/if}}
     <div><a class="w-link w-link__pseudo" onclick={{action "accept"}}>Close</a></div>
   </div>
 </div>

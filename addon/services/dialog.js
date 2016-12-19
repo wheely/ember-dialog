@@ -61,12 +61,11 @@ export default Ember.Service.extend(Ember.Evented, {
    * @param {module:ember-dialog/components/presenter} presenter
    */
   remove(presenter) {
+    if (this.get('isDestroyed')) return;
     var id = presenter.get("presenterId") || guidFor(presenter);
     var dialogs = this.get("dialogs").filter((item) => {
       return item.id !== id;
     });
-
-    //filter would return Array not EmberArray?
     this.set("dialogs", Ember.A(dialogs));
   },
 
@@ -291,9 +290,12 @@ export default Ember.Service.extend(Ember.Evented, {
     }
 
     if (Ember.typeOf(template) === "object") {
+      // The template will be included into the presenter's body as
+      // presenter-body component
       options = Ember.merge(options, { template: template });
     } else {
-      options = Ember.merge(options, { template: template });
+      // The template will be included into the presenter's body as partial
+      options = Ember.merge(options, { templateName: template });
     }
 
     presenter = presenter.reopen(options);
