@@ -3,10 +3,14 @@
 
     <div class="dialog-header">
       <button type="button" class="dialog-close" {{action "decline"}}></button>
-      <div class="dialog-title">{{ title }}</div>
+      <div class="dialog-title">{{title}}</div>
     </div>
 
-    <div class="dialog-body">{{partial template}}</div>
+      {{#if templateName}}
+        <div class="dialog-body">{{partial templateName}}</div>
+      {{else}}
+        {{component "dialog-body" layout=template contextObject=contextObject context=context class="dialog-body"}}
+      {{/if}}
 
     <div class="dialog-footer">
       <button class="btn btn__accept" type="button" {{action "accept"}}>Yes</button>

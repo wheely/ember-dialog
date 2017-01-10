@@ -17,7 +17,7 @@ export default Presenter.extend({
     Ember.run.later(this, "_decline", this.get("delay"));
   },
 
-  willInsertElement() {
+  didRender() {
     this.$(".ember-dialog-dialog").addClass("animation");
     return this._super(...arguments);
   },

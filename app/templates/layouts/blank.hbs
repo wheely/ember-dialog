@@ -1,5 +1,9 @@
 <div class="ember-dialog-dialog {{className}} {{if substrate "substrate"}}">
   <div class="dialog-content" tabindex="-1">
-    {{partial template}}
-  </div>
+    {{#if templateName}}
+      <div class="dialog-body">{{partial templateName}}</div>
+    {{else}}
+      {{component "dialog-body" layout=template contextObject=contextObject context=context class="dialog-body"}}
+    {{/if}}
+ </div>
 </div>

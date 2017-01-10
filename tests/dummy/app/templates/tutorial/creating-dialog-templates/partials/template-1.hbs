@@ -1,6 +1,12 @@
 <div class="ember-dialog-dialog red-corner-dialog {{if substrate 'substrate'}}">
   <div class="dialog-content" tabindex="-1">
-    <div>{{yield}}</div>
+    <div>
+      {{#if templateName}}
+        {{partial templateName}}
+      {{else}}
+        {{component "dialog-body" layout=template contextObject=contextObject context=context}}
+      {{/if}}
+    </div>
     <div><a class="w-link" onclick={{action "accept"}}>Close</a></div>
   </div>
 </div>
