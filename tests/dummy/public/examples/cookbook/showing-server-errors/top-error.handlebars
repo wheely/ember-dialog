@@ -1,3 +1,9 @@
 <div class="top-error-dialog">
-  <div class="top-error-dialog-content" tabindex="-1">{{yield}}</div>
+  <div class="top-error-dialog-content" tabindex="-1">
+    {{#if templateName}}
+      {{partial templateName}}
+    {{else}}
+      {{component "dialog-body" layout=template contextObject=contextObject context=context}}
+    {{/if}}
+  </div>
 </div>

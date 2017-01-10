@@ -215,7 +215,11 @@ Template `dialog-layouts/delete.hbs`:
 ```hbs
 <h1 style="color: #F00;">Confirm Deletion</h1>
 <div class="body">
-  {{yield}}
+  {{#if templateName}}
+    <div class="dialog-body">{{partial templateName}}</div>
+  {{else}}
+    {{component "dialog-body" layout=template contextObject=contextObject context=context class="dialog-body"}}
+  {{/if}}
 </div>
 <button class="danger" onclick={{action "accept"}}>DELETE!</button>
 <button onclick={{action "decline"}}>Cancel</button>
