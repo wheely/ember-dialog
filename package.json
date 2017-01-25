@@ -70,5 +70,8 @@
     "versionCompatibility": {
       "ember": ">2.3.2"
     }
+  },
+  "optionalDependencies": {
+    "jsdoc": "^3.4.3"
   }
 }
