@@ -1,5 +1,241 @@
-@import "wheely";
 @import 'addon/styles/ember-dialog';
+
+$sizes: (
+  xxs: (
+    mobile: 2px,
+    tablet: 3px,
+    desktop: 3px
+  ),
+  xs: (
+    mobile: 3px,
+    tablet: 5px,
+    desktop: 5px
+  ),
+  s: (
+    mobile: 5px,
+    tablet: 8px,
+    desktop: 8px
+  ),
+  m: (
+    mobile: 8px,
+    tablet: 13px,
+    desktop: 13px
+  ),
+  l: (
+    mobile: 13px,
+    tablet: 21px,
+    desktop: 21px
+  ),
+  xl: (
+    mobile: 21px,
+    tablet: 34px,
+    desktop: 34px
+  ),
+  xxl: (
+    mobile: 34px,
+    tablet: 55px,
+    desktop: 55px
+  ),
+  xxxl: (
+    mobile: 55px,
+    tablet: 89px,
+    desktop: 89px
+  )
+);
+
+$screen-sm: 700px;
+$screen-sm-min: $screen-sm;
+$screen-xs-max: $screen-sm - 1px;
+$screen-md: 970px;
+$screen-md-min: $screen-md;
+$screen-sm-max: $screen-md - 1px;
+
+@mixin size($prop, $value) {
+  $mobile: $value;
+  $tablet: $value;
+  $desktop: $value;
+  @each $sizeName, $sizeValue in $sizes {
+    $mobile: str-replace($mobile, "size_" + $sizeName, map-deep-get($sizes, $sizeName, "mobile"));
+    $tablet: str-replace($tablet, "size_" + $sizeName, map-deep-get($sizes, $sizeName, "tablet"));
+    $desktop: str-replace($desktop, "size_" + $sizeName, map-deep-get($sizes, $sizeName, "desktop"));
+  }
+
+  #{$prop}: $desktop;
+
+  @media (max-width: $screen-xs-max) {
+    #{$prop}: $mobile;
+  }
+
+  @media (min-width: $screen-sm) and (max-width: $screen-sm-max) {
+    #{$prop}: $tablet;
+  }
+}
+
+
+.w-body-item {
+  @include size(margin, "size_m 0 size_s");
+}
+
+.w-body-text {
+  font-weight: 400;
+}
+
+.w-paragraph {
+  @extend .w-body-text;
+  @extend .w-body-item;
+}
+
+
+.w-link {
+  display: inline;
+  cursor: pointer;
+  text-decoration: none;
+  color: #0E64CC;
+
+  &:hover,
+  &.__w-state-hover {
+    color: #187FFC;
+  }
+
+  &:active,
+  &.__w-state-active,
+  &.__w-state-selected {
+    color: #000;
+  }
+
+  &.__w-state-selected {
+    cursor: default;
+  }
+
+  &.__w-state-clickable {
+    color: #0E64CC;
+    cursor: pointer;
+
+    &:hover {
+      color: #187FFC;
+    }
+
+    &:active {
+      color: #000;
+    }
+  }
+}
+
+.w-link__pseudo {
+  border-bottom: 1px dashed rgba(24, 127, 252, 0.3);
+
+  &:hover,
+  &.__w-state-hover {
+    color: #187FFC;
+    border-bottom: 1px dashed rgba(18, 125, 255, 0.3);
+  }
+
+  &:active,
+  &.__w-state-active {
+    color: #000;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+  }
+
+  &.__w-state-selected {
+    cursor: default;
+    color: #000;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+  }
+
+  &.__w-state-clickable {
+    cursor: pointer;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+    color: #000;
+
+    &:hover,
+    &.__w-state-hover {
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+      color: #666;
+    }
+
+    &:active,
+    &.__w-state-active {
+      color: #000;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    color: #000;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+  }
+}
+
+.w-link__btn {
+  display: inline-block;
+  line-height: 34px;
+}
+
+.w-link__inverse {
+  color: #fff;
+
+  &:hover,
+  &.__w-state-hover {
+    color: #fff;
+    opacity: 0.5;
+  }
+
+  &:active,
+  &.__w-state-active {
+    color: #fff;
+    opacity: 1;
+  }
+
+  &.__w-state-selected {
+    cursor: default;
+    color: #fff;
+    opacity: 0.5;
+  }
+}
+
+.w-link__inverse-pseudo {
+  border-bottom: 1px dashed rgba(255,255,255,0.3);
+
+  &.__w-state-selected {
+    opacity: 0.5;
+    color: inherit;
+  }
+
+  &.__w-state-clickable {
+    border-bottom: 1px dashed rgba(255,255,255,0.3);
+    color: inherit;
+    opacity: 1;
+
+    &:hover,
+    &.__w-state-hover {
+      border-bottom: 1px dashed rgba(255,255,255,0.3);
+      color: inherit;
+      opacity: 0.5;
+    }
+
+    &:active,
+    &.__w-state-active {
+      color: inherit;
+      border-bottom: 1px dashed rgba(255,255,255,0.3);
+      opacity: 1;
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    color: inherit;
+    border-bottom: 1px dashed rgba(255,255,255,0.3);
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+
+  .w-link__btn {
+    line-height: 40px;
+  }
+}
+
 
 .w-header_project {
   margin-left: 0;
@@ -48,6 +284,9 @@
 
 /* Left Navigation */
 .left-nav {
+
+  // @include size('margin-top', 'size_l');
+  margin-top: 20px;
 
   .w-ol, .w-ul {
     @include size('padding-left', 'size_m');
@@ -109,3 +348,7 @@
 
 .notices { position: fixed; right: 0; z-index: 99999999; }
 
+
+.w-app-nav_group__menu .w-app-nav_item .w-app-nav_link.w-link {
+  display: inline-block;
+}
