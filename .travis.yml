@@ -8,7 +8,7 @@ node_js:
 before_install:
 - npm config set spin false
 - npm install -g bower
-- npm install -g ember-cli@v2.10.0
+- npm install -g ember-cli@v2.13.0
 - npm install -g istanbul
 install:
 - npm i
