@@ -1,0 +1,338 @@
+.highest {
+  z-index: 999999999 !important; }
+
+.ember-dialog-dialog {
+  width: 75%;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%); }
+  .ember-dialog-dialog.substrate {
+    position: fixed;
+    width: 100%;
+    max-width: inherit;
+    height: 100%;
+    min-height: 100%;
+    margin: 0px;
+    padding-top: 10px; }
+    .ember-dialog-dialog.substrate .dialog-content {
+      width: 75%;
+      margin: auto;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%); }
+  .ember-dialog-dialog .dialog-content {
+    position: relative;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    outline: 0;
+    width: 100%;
+    margin: 0;
+    top: 0;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    outline: 0; }
+    .ember-dialog-dialog .dialog-content .dialog-body {
+      position: relative; }
+
+.ember-dialog-dialog {
+  min-width: 300px;
+  max-width: 500px; }
+  .ember-dialog-dialog.substrate {
+    background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.3) 100%); }
+    .ember-dialog-dialog.substrate .dialog-content {
+      min-width: 300px;
+      max-width: 500px; }
+  .ember-dialog-dialog .dialog-content {
+    background-color: #fff;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 0 0 9px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 9px rgba(255, 255, 255, 0.2);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px; }
+    .ember-dialog-dialog .dialog-content .dialog-header {
+      min-height: 15px;
+      padding: 10px; }
+      .ember-dialog-dialog .dialog-content .dialog-header .dialog-title {
+        font-weight: 900; }
+      .ember-dialog-dialog .dialog-content .dialog-header .dialog-close {
+        margin: 0;
+        padding: 0;
+        border: none;
+        outline: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 2;
+        height: 45px;
+        width: 45px;
+        cursor: pointer; }
+      .ember-dialog-dialog .dialog-content .dialog-header .dialog-close::after, .ember-dialog-dialog .dialog-content .dialog-header .dialog-close::before {
+        position: absolute;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        background-color: #000;
+        content: ''; }
+      .ember-dialog-dialog .dialog-content .dialog-header .dialog-close::before {
+        top: 20px;
+        left: 12px;
+        width: 21px;
+        height: 1px; }
+      .ember-dialog-dialog .dialog-content .dialog-header .dialog-close::after {
+        top: 10px;
+        left: 22px;
+        height: 21px;
+        width: 1px; }
+    .ember-dialog-dialog .dialog-content .dialog-body {
+      max-height: 400px;
+      overflow: auto;
+      padding: 10px; }
+    .ember-dialog-dialog .dialog-content .dialog-footer {
+      text-align: right;
+      padding: 10px; }
+  .ember-dialog-dialog .btn {
+    webkit-font-smoothing: antialiased;
+    moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    border: none;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+    min-width: 89px;
+    max-width: 100%;
+    padding: 0 8px;
+    height: 34px;
+    cursor: pointer;
+    line-height: 34px;
+    text-align: center;
+    color: #fff;
+    transition: background-color .1s ease;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; }
+  .ember-dialog-dialog .btn__accept {
+    background-color: #0E64CC; }
+  .ember-dialog-dialog .btn__decline {
+    background-color: #CCC; }
+
+.w-body-item, .w-paragraph, .w-page_content p {
+  margin: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_m 0 size_s", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "desktop")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "desktop")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "desktop")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "desktop")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "desktop")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "desktop")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "desktop")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "desktop")); }
+  @media (max-width: 699px) {
+    .w-body-item, .w-paragraph, .w-page_content p {
+      margin: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_m 0 size_s", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "mobile")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "mobile")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "mobile")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "mobile")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "mobile")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "mobile")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "mobile")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "mobile")); } }
+  @media (min-width: 700px) and (max-width: 969px) {
+    .w-body-item, .w-paragraph, .w-page_content p {
+      margin: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_m 0 size_s", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "tablet")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "tablet")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "tablet")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "tablet")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "tablet")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "tablet")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "tablet")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "tablet")); } }
+
+.w-body-text, .w-paragraph, .w-page_content p {
+  font-weight: 400; }
+
+.w-link, .left-nav .__w-state-selected {
+  display: inline;
+  cursor: pointer;
+  text-decoration: none;
+  color: #0E64CC; }
+  .w-link:hover, .left-nav .__w-state-selected:hover, .w-link.__w-state-hover, .left-nav .__w-state-hover.__w-state-selected {
+    color: #187FFC; }
+  .w-link:active, .left-nav .__w-state-selected:active, .w-link.__w-state-active, .left-nav .__w-state-active.__w-state-selected, .w-link.__w-state-selected, .left-nav .__w-state-selected {
+    color: #000; }
+  .w-link.__w-state-selected, .left-nav .__w-state-selected {
+    cursor: default; }
+  .w-link.__w-state-clickable, .left-nav .__w-state-clickable.__w-state-selected {
+    color: #0E64CC;
+    cursor: pointer; }
+    .w-link.__w-state-clickable:hover, .left-nav .__w-state-clickable.__w-state-selected:hover {
+      color: #187FFC; }
+    .w-link.__w-state-clickable:active, .left-nav .__w-state-clickable.__w-state-selected:active {
+      color: #000; }
+
+.w-link__pseudo {
+  border-bottom: 1px dashed rgba(24, 127, 252, 0.3); }
+  .w-link__pseudo:hover, .w-link__pseudo.__w-state-hover {
+    color: #187FFC;
+    border-bottom: 1px dashed rgba(18, 125, 255, 0.3); }
+  .w-link__pseudo:active, .w-link__pseudo.__w-state-active {
+    color: #000;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3); }
+  .w-link__pseudo.__w-state-selected {
+    cursor: default;
+    color: #000;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3); }
+  .w-link__pseudo.__w-state-clickable {
+    cursor: pointer;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+    color: #000; }
+    .w-link__pseudo.__w-state-clickable:hover, .w-link__pseudo.__w-state-clickable.__w-state-hover {
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+      color: #666; }
+    .w-link__pseudo.__w-state-clickable:active, .w-link__pseudo.__w-state-clickable.__w-state-active {
+      color: #000;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.3); }
+  .w-link__pseudo[disabled] {
+    opacity: 0.5;
+    color: #000;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3); }
+
+.w-link__btn {
+  display: inline-block;
+  line-height: 34px; }
+
+.w-link__inverse {
+  color: #fff; }
+  .w-link__inverse:hover, .w-link__inverse.__w-state-hover {
+    color: #fff;
+    opacity: 0.5; }
+  .w-link__inverse:active, .w-link__inverse.__w-state-active {
+    color: #fff;
+    opacity: 1; }
+  .w-link__inverse.__w-state-selected {
+    cursor: default;
+    color: #fff;
+    opacity: 0.5; }
+
+.w-link__inverse-pseudo {
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.3); }
+  .w-link__inverse-pseudo.__w-state-selected {
+    opacity: 0.5;
+    color: inherit; }
+  .w-link__inverse-pseudo.__w-state-clickable {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    color: inherit;
+    opacity: 1; }
+    .w-link__inverse-pseudo.__w-state-clickable:hover, .w-link__inverse-pseudo.__w-state-clickable.__w-state-hover {
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+      color: inherit;
+      opacity: 0.5; }
+    .w-link__inverse-pseudo.__w-state-clickable:active, .w-link__inverse-pseudo.__w-state-clickable.__w-state-active {
+      color: inherit;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+      opacity: 1; }
+  .w-link__inverse-pseudo[disabled] {
+    opacity: 0.5;
+    color: inherit;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3); }
+
+@media (max-width: 699px) {
+  .w-link__btn {
+    line-height: 40px; } }
+
+.w-header_project {
+  margin-left: 0; }
+
+.red-corner-dialog {
+  top: 0;
+  margin: initial;
+  transform: inherit;
+  position: fixed;
+  padding: 10px; }
+  .red-corner-dialog .dialog-content {
+    background: #F00;
+    padding: 10px; }
+  .red-corner-dialog.substrate {
+    background-image: radial-gradient(ellipse at center, rgba(255, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.3) 100%); }
+    .red-corner-dialog.substrate .dialog-content {
+      margin: inherit;
+      top: 0;
+      transform: inherit; }
+
+/* Page */
+.w-page_content {
+  padding: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_xl 0", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "desktop")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "desktop")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "desktop")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "desktop")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "desktop")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "desktop")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "desktop")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "desktop")); }
+  @media (max-width: 699px) {
+    .w-page_content {
+      padding: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_xl 0", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "mobile")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "mobile")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "mobile")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "mobile")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "mobile")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "mobile")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "mobile")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "mobile")); } }
+  @media (min-width: 700px) and (max-width: 969px) {
+    .w-page_content {
+      padding: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_xl 0", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "tablet")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "tablet")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "tablet")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "tablet")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "tablet")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "tablet")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "tablet")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "tablet")); } }
+  .w-page_content :not(pre) > code[class*=language-],
+  .w-page_content pre[class*=language-] {
+    margin-bottom: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_l", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "desktop")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "desktop")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "desktop")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "desktop")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "desktop")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "desktop")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "desktop")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "desktop")); }
+    @media (max-width: 699px) {
+      .w-page_content :not(pre) > code[class*=language-],
+      .w-page_content pre[class*=language-] {
+        margin-bottom: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_l", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "mobile")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "mobile")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "mobile")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "mobile")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "mobile")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "mobile")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "mobile")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "mobile")); } }
+    @media (min-width: 700px) and (max-width: 969px) {
+      .w-page_content :not(pre) > code[class*=language-],
+      .w-page_content pre[class*=language-] {
+        margin-bottom: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_l", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "tablet")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "tablet")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "tablet")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "tablet")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "tablet")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "tablet")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "tablet")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "tablet")); } }
+  .w-page_content .prism-show-language {
+    margin-top: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_l", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "desktop")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "desktop")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "desktop")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "desktop")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "desktop")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "desktop")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "desktop")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "desktop")); }
+    @media (max-width: 699px) {
+      .w-page_content .prism-show-language {
+        margin-top: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_l", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "mobile")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "mobile")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "mobile")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "mobile")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "mobile")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "mobile")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "mobile")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "mobile")); } }
+    @media (min-width: 700px) and (max-width: 969px) {
+      .w-page_content .prism-show-language {
+        margin-top: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_l", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "tablet")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "tablet")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "tablet")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "tablet")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "tablet")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "tablet")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "tablet")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "tablet")); } }
+
+/* Left Navigation */
+.left-nav {
+  margin-top: 20px; }
+  .left-nav .w-ol, .left-nav .w-ul {
+    padding-left: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_m", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "desktop")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "desktop")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "desktop")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "desktop")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "desktop")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "desktop")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "desktop")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "desktop")); }
+    @media (max-width: 699px) {
+      .left-nav .w-ol, .left-nav .w-ul {
+        padding-left: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_m", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "mobile")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "mobile")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "mobile")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "mobile")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "mobile")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "mobile")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "mobile")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "mobile")); } }
+    @media (min-width: 700px) and (max-width: 969px) {
+      .left-nav .w-ol, .left-nav .w-ul {
+        padding-left: str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace(str-replace("size_m", "size_xxs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxs, "tablet")), "size_xs", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xs, "tablet")), "size_s", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), s, "tablet")), "size_m", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), m, "tablet")), "size_l", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), l, "tablet")), "size_xl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xl, "tablet")), "size_xxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxl, "tablet")), "size_xxxl", map-deep-get((xxs: (mobile: 2px, tablet: 3px, desktop: 3px), xs: (mobile: 3px, tablet: 5px, desktop: 5px), s: (mobile: 5px, tablet: 8px, desktop: 8px), m: (mobile: 8px, tablet: 13px, desktop: 13px), l: (mobile: 13px, tablet: 21px, desktop: 21px), xl: (mobile: 21px, tablet: 34px, desktop: 34px), xxl: (mobile: 34px, tablet: 55px, desktop: 55px), xxxl: (mobile: 55px, tablet: 89px, desktop: 89px)), xxxl, "tablet")); } }
+
+.animation {
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease-in;
+  -moz-transition: opacity 0.5s ease-in;
+  -o-transition: opacity 0.5s ease-in;
+  -ms-transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in; }
+
+.animation__fadeIn {
+  opacity: 1; }
+
+.top-error-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 5px);
+  background: rgba(177, 60, 60, 0.9);
+  color: #FFF;
+  margin: 5px; }
+
+.top-error-dialog .top-error-dialog-content {
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+  max-width: 800px; }
+
+.notice-dialog {
+  position: relative;
+  top: 0;
+  right: 0;
+  background: #FFF;
+  width: 300px;
+  min-height: 30px;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-right: 15px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25); }
+
+.notice-dialog-content {
+  padding: 10px; }
+
+.notices {
+  position: fixed;
+  right: 0;
+  z-index: 99999999; }
+
+.w-app-nav_group__menu .w-app-nav_item .w-app-nav_link.w-link, .w-app-nav_group__menu .w-app-nav_item .left-nav .w-app-nav_link.__w-state-selected, .left-nav .w-app-nav_group__menu .w-app-nav_item .w-app-nav_link.__w-state-selected {
+  display: inline-block; }
+
+/*# sourceMappingURL=dummy.css.map */
