@@ -18,7 +18,7 @@ import Config from '../config/environment';
   @member storage
   @type {external:localStorage}
 */
-var storage = localStorage;
+export const storage = localStorage;
 
 /**
   The language code, dictionary of which is exist any way. If the `languageCode`
@@ -26,7 +26,7 @@ var storage = localStorage;
   @member DEFAULT_LANGUAGE
   @type {String}
 */
-var DEFAULT_LANGUAGE = 'en';
+export const DEFAULT_LANGUAGE = 'en';
 
 /**
   The language code gotten from browser's locale. The language will be
@@ -35,7 +35,7 @@ var DEFAULT_LANGUAGE = 'en';
   @member DETERMINED_LANGUAGE
   @type {String}
 */
-var DETERMINED_LANGUAGE = window.navigator.language.split('-').shift();
+export const DETERMINED_LANGUAGE = window.navigator.language.split('-').shift();
 
 /**
   @class Locale
@@ -152,6 +152,3 @@ var Locale = Ember.Service.extend(Ember.Evented, {
 });
 
 export default Locale;
-export var DETERMINED_LANGUAGE;
-export var DEFAULT_LANGUAGE;
-export var storage;

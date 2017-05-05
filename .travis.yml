@@ -4,15 +4,15 @@ cache:
   directories:
   - node_modules
 node_js:
-- '7.4.0'
+- '6.0.0'
 before_install:
 - npm config set spin false
 - npm install -g bower
 - npm install -g ember-cli@v2.10.0
 - npm install -g istanbul
 install:
-- npm install
-- bower install
+- npm i
+- bower i
 script:
 - npm run-script test
 - npm run-script coverage
