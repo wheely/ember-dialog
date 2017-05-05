@@ -1,2 +1,2 @@
 /* global Ember */
-Ember.libraries.register("Ember Dialog", "3.0.0");
+Ember.libraries.register("Ember Dialog", "3.1.0");
