@@ -4,7 +4,8 @@
 
   &.substrate {
     background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.3) 100%);
-
+    transform: translateZ(0);
+    top: 0;
     .dialog-content {
       min-width: $dialog-min-width;
       max-width: $dialog-max-width;
