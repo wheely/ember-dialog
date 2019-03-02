@@ -22,11 +22,22 @@ const { $ } = Ember;
  * @return {Number}  Max `z-index` of the element on the page
  */
 export function max() {
-  var max = Math.max.apply(null, $.map($(':visible:not(.highest)'), function(element){
-    if($(element).css('position') === 'absolute' || $(element).css('position') === 'relative'){
-      return ($(element).css('z-index') >> 0) || 1;  // jshint ignore: line
+  let elements = document.querySelectorAll(':not(.highest)');
+
+  return [...elements].reduce((max, element) => {
+    let { position } = element.style;
+
+    if (!isVisible(element) || position !== 'absolute' || position !== 'relative') {
+      return max;
     }
-    return 0;
-  }));
-  return max;
+
+    let zIndex = element.style.zIndex >> 0 || 1;
+
+    return (zIndex > max) ? zIndex : max;
+  }, 1);
+}
+
+// https://github.com/jquery/jquery/blob/e743cbd28553267f955f71ea7248377915613fd9/src/css/hiddenVisibleSelectors.js#L11-L13
+function isVisible(elem) {
+  return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
 }

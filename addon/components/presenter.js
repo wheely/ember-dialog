@@ -117,10 +117,14 @@ export default Ember.Component.extend({
     const zindex = max();
 
     // Component element (wrapper of dialog-element)
-    const dialog = this.$().children();
+    let { childNodes } = this.element;
 
-    // Set z-index biggest then biggenest
-    dialog.css({'z-index': zindex + 1});
+    for (let node of childNodes) {
+      // Set z-index biggest then biggenest
+      if (node.style) {
+        node.style.zIndex = zindex + 1;
+      }
+    }
 
   }
 
