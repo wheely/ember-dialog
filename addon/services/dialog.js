@@ -332,7 +332,7 @@ export default Ember.Service.extend(Ember.Evented, {
      * @event module:ember-dialog/services/dialog~created
      * @type {module:ember-dialog/components/presenter}
      */
-    Ember.run.scheduleOnce("sync", this, () => { this.trigger("created", presenter); });
+    Ember.run.scheduleOnce("actions", this, () => { this.trigger("created", presenter); });
 
     return new Ember.RSVP.Promise((resolve, reject) => {
       presenter.reopen({ resolve, reject });
